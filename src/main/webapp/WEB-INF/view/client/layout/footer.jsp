@@ -101,8 +101,7 @@
                                 <p class="text-secondary small">Technology for Future</p>
                             </a>
                         </div>
-                        <p class="mb-4">Chúng tôi cam kết mang đến những sản phẩm công nghệ chất lượng nhất, đi kèm dịch
-                            vụ hỗ trợ tận tâm cho từng khách hàng.</p>
+                        <p class="mb-4">We are committed to providing the best technology products, along with dedicated support services for each customer.</p>
                         <div class="social-icons">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -112,21 +111,21 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6">
-                        <h4 class="mb-4">Thông Tin Cửa Hàng</h4>
+                        <h4 class="mb-4">Shop Information</h4>
                         <div class="d-flex flex-column">
-                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Về chúng tôi</a>
-                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Chính sách bảo hành</a>
-                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Chính sách bảo mật</a>
-                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Điều khoản sử dụng</a>
-                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Hệ thống cửa hàng</a>
+                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>About Us</a>
+                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Warranty Policy</a>
+                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Privacy Policy</a>
+                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Terms of Use</a>
+                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Store System</a>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6">
-                        <h4 class="mb-4">Liên Hệ</h4>
+                        <h4 class="mb-4">Contact Us</h4>
                         <div class="contact-item">
                             <i class="fa fa-map-marker-alt"></i>
-                            <span>46/23 Dũng Sĩ Thanh Khê, Đà Nẵng</span>
+                            <span>46/23 Dung Si Thanh Khe, Da Nang</span>
                         </div>
                         <div class="contact-item">
                             <i class="fa fa-phone-alt"></i>
@@ -137,7 +136,7 @@
                             <span>support@phucxo.vn</span>
                         </div>
                         <div class="mt-4">
-                            <h6 class="text-white mb-3">Chấp nhận thanh toán:</h6>
+                            <h6 class="text-white mb-3">Accepted Payments:</h6>
                             <div class="d-flex gap-2">
                                 <i class="fab fa-cc-visa fa-2x"></i>
                                 <i class="fab fa-cc-mastercard fa-2x"></i>

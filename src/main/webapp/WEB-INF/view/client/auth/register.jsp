@@ -3,13 +3,13 @@
         <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
             <!DOCTYPE html>
-            <html lang="vi">
+            <html lang="en">
 
             <head>
                 <meta charset="utf-8" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <title>Đăng ký - Laptopshop</title>
+                <title>Register - Laptopshop</title>
 
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
                     rel="stylesheet">
@@ -134,8 +134,8 @@
                                 <span>LAPTOPSHOP</span>
                             </div>
 
-                            <h3 class="fw-bold mb-1" style="color: var(--text-dark);">Tạo tài khoản mới</h3>
-                            <p class="text-muted small mb-4">Nhập thông tin cá nhân của bạn để đăng ký.</p>
+                            <h3 class="fw-bold mb-1" style="color: var(--text-dark);">Create New Account</h3>
+                            <p class="text-muted small mb-4">Enter your personal details to register.</p>
 
                             <form:form action="/register" method="post" modelAttribute="registerUser">
 
@@ -157,13 +157,13 @@
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Họ</label>
+                                        <label class="form-label">First Name</label>
                                         <form:input class="form-control ${not empty errorFirstName ? 'is-invalid' : ''}"
                                             path="firstName" placeholder="Nguyen Van" />
                                         ${errorFirstName}
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Tên</label>
+                                        <label class="form-label">Last Name</label>
                                         <form:input class="form-control ${not empty errorLastName ? 'is-invalid' : ''}"
                                             path="lastName" placeholder="A" />
                                         ${errorLastName}
@@ -179,13 +179,13 @@
 
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Mật khẩu</label>
+                                        <label class="form-label">Password</label>
                                         <form:input class="form-control ${not empty errorPassword ? 'is-invalid' : ''}"
                                             path="passWord" type="password" placeholder="••••••••" />
                                         ${errorPassword}
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <label class="form-label">Xác nhận mật khẩu</label>
+                                        <label class="form-label">Confirm Password</label>
                                         <form:input
                                             class="form-control ${not empty errorConfirmPassword ? 'is-invalid' : ''}"
                                             path="confirmPassword" type="password" placeholder="••••••••" />
@@ -194,13 +194,12 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-primary btn-login w-100 mt-2">
-                                    Đăng ký tài khoản
+                                    Register Account
                                 </button>
 
                                 <div class="text-center mt-4">
-                                    <p class="small text-muted">Đã có tài khoản?
-                                        <a href="/login" class="text-primary fw-bold text-decoration-none">Đăng nhập
-                                            ngay</a>
+                                    <p class="small text-muted">Already have an account?
+                                        <a href="/login" class="text-primary fw-bold text-decoration-none">Login now</a>
                                     </p>
                                 </div>
                             </form:form>
@@ -210,8 +209,8 @@
                     <section class="login-image-section d-none d-lg-block">
                         <div class="h-100 w-100 d-flex flex-column justify-content-end p-5 text-white"
                             style="position: relative; z-index: 1;">
-                            <h2 class="fw-bold">Tham gia cộng đồng công nghệ</h2>
-                            <p class="opacity-75">Tạo tài khoản để theo dõi đơn hàng và nhận ưu đãi hấp dẫn.</p>
+                            <h2 class="fw-bold">Join the tech community</h2>
+                            <p class="opacity-75">Create an account to track orders and receive attractive offers.</p>
                         </div>
                     </section>
                 </div>

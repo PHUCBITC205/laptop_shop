@@ -13,8 +13,8 @@
                     </button>
                     <div class="collapse navbar-collapse bg-white justify-content-between mx-5" id="navbarCollapse">
                         <div class="navbar-nav">
-                            <a href="/" class="nav-item nav-link active">Trang Chủ</a>
-                            <a href="/products" class="nav-item nav-link">Sản Phẩm</a>
+                            <a href="/" class="nav-item nav-link active">Home</a>
+                            <a href="/products" class="nav-item nav-link">Products</a>
 
                         </div>
                         <div class="d-flex m-3 me-0">
@@ -44,12 +44,12 @@
                                         </li>
 
                                          <c:if test="${pageContext.request.isUserInRole('ADMIN')}">
-                                            <li><a class="dropdown-item" href="/admin">Quản trị hệ thống</a></li>
+                                            <li><a class="dropdown-item" href="/admin">Admin Dashboard</a></li>
                                         </c:if>
 
-                                        <li><a class="dropdown-item" href="/user/profile">Quản lý tài khoản</a></li>
+                                        <li><a class="dropdown-item" href="/user/profile">Account Settings</a></li>
 
-                                        <li><a class="dropdown-item" href="/order-history">Lịch sử mua hàng</a></li>
+                                        <li><a class="dropdown-item" href="/order-history">Order History</a></li>
                                        
                                         <li>
                                             <hr class="dropdown-divider">
@@ -58,7 +58,7 @@
                                             <form method="post" action="/logout">
                                                 <input type="hidden" name="${_csrf.parameterName}"
                                                     value="${_csrf.token}" />
-                                                <button class="dropdown-item">Đăng xuất</button>
+                                                <button class="dropdown-item">Logout</button>
                                             </form>
                                         </li>
                                     </ul>
@@ -67,7 +67,7 @@
 
                             <c:if test="${ empty pageContext.request.userPrincipal}">
                                 <a href="/login" class="position-relative me-4 my-auto">
-                                    Đăng nhập
+                                    Login
                                 </a>
                             </c:if>
                         </div>

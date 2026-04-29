@@ -8,7 +8,7 @@
 
                 <head>
                     <meta charset="utf-8">
-                    <title> Thanh toán - Laptopshop</title>
+                    <title> Checkout - Laptopshop</title>
                     <meta content="width=device-width, initial-scale=1.0" name="viewport">
                     <meta content="" name="keywords">
                     <meta content="" name="description">
@@ -57,7 +57,7 @@
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Thông tin thanh toán</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Checkout Information</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -128,24 +128,24 @@
                                     <div class="mt-5 row g-4 justify-content-start">
                                         <div class="col-12 col-md-6">
                                             <div class="p-4 ">
-                                                <h5>Thông Tin Người Nhận
+                                                <h5>Recipient Information
                                                 </h5>
                                                 <div class="row">
                                                     <div class="col-12 form-group mb-3">
-                                                        <label>Tên người nhận</label>
+                                                        <label>Full Name</label>
                                                         <input class="form-control" name="receiverName" required />
                                                     </div>
                                                     <div class="col-12 form-group mb-3">
-                                                        <label>Địa chỉ người nhận</label>
+                                                        <label>Address</label>
                                                         <input class="form-control" name="receiverAddress" required />
                                                     </div>
                                                     <div class="col-12 form-group mb-3">
-                                                        <label>Số điện thoại</label>
+                                                        <label>Phone Number</label>
                                                         <input class="form-control" name="receiverPhone" required />
                                                     </div>
                                                     <div class="mt-4">
                                                         <i class="fas fa-arrow-left"></i>
-                                                        <a href="/cart">Quay lại giỏ hàng</a>
+                                                        <a href="/cart">Back to cart</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -153,26 +153,25 @@
                                         <div class="col-12 col-md-6">
                                             <div class="bg-light rounded">
                                                 <div class="p-4">
-                                                    <h1 class="display-6 mb-4">Thông Tin <span class="fw-normal">Thanh
-                                                            Toán</span>
+                                                    <h1 class="display-6 mb-4">Payment <span class="fw-normal">Information</span>
                                                     </h1>
 
                                                     <div class="d-flex justify-content-between">
-                                                        <h5 class="mb-0 me-4">Phí vận chuyển</h5>
+                                                        <h5 class="mb-0 me-4">Shipping Fee</h5>
                                                         <div class="">
                                                             <p class="mb-0">0 đ</p>
                                                         </div>
                                                     </div>
                                                     <div class="mt-3 d-flex justify-content-between">
-                                                        <h5 class="mb-0 me-4">Hình thức</h5>
+                                                        <h5 class="mb-0 me-4">Payment Method</h5>
                                                         <div class="">
-                                                            <p class="mb-0">Thanh toán khi nhận hàng (COD)</p>
+                                                            <p class="mb-0">Cash on Delivery (COD)</p>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div
                                                     class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                                                    <h5 class="mb-0 ps-4 me-4">Tổng số tiền</h5>
+                                                    <h5 class="mb-0 ps-4 me-4">Total Amount</h5>
                                                     <p class="mb-0 pe-4" data-cart-total-price="${totalPrice}">
                                                         <fmt:formatNumber type="number" value="${totalPrice}" /> đ
                                                     </p>
@@ -180,7 +179,7 @@
 
                                                 <button
                                                     class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4">
-                                                    Xác nhận thanh toán
+                                                    Place Order
                                                 </button>
 
                                             </div>

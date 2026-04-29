@@ -8,7 +8,7 @@
 
                 <head>
                     <meta charset="utf-8">
-                    <title> Sản Phẩm - Laptopshop</title>
+                    <title> Products - Laptopshop</title>
                     <meta content="width=device-width, initial-scale=1.0" name="viewport">
                     <meta content="" name="keywords">
                     <meta content="" name="description">
@@ -58,7 +58,7 @@
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Danh Sách Sản Phẩm
+                                            <li class="breadcrumb-item active" aria-current="page">Product List
                                             </li>
                                         </ol>
                                     </nav>
@@ -68,7 +68,7 @@
                                     <div class="col-12 col-md-4">
                                         <div class="row g-4">
                                             <div class="col-12" id="factoryFilter">
-                                                <div class="mb-2"><b>Hãng sản xuất</b></div>
+                                                <div class="mb-2"><b>Manufacturer</b></div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="factory-1"
                                                         value="APPLE">
@@ -104,7 +104,7 @@
 
                                             </div>
                                             <div class="col-12" id="targetFilter">
-                                                <div class="mb-2"><b>Mục đích sử dụng</b></div>
+                                                <div class="mb-2"><b>Usage Purpose</b></div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="target-1"
                                                         value="GAMING">
@@ -131,59 +131,59 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="target-5"
                                                         value="DOANH-NHAN">
-                                                    <label class="form-check-label" for="target-5">Doanh nhân</label>
+                                                    <label class="form-check-label" for="target-5">Business</label>
                                                 </div>
 
 
                                             </div>
                                             <div class="col-12" id="priceFilter">
-                                                <div class="mb-2"><b>Mức giá</b></div>
+                                                <div class="mb-2"><b>Price Range</b></div>
 
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="price-2"
                                                         value="duoi-10-trieu">
-                                                    <label class="form-check-label" for="price-2">Dưới 10 triệu</label>
+                                                    <label class="form-check-label" for="price-2">Under 10 million</label>
                                                 </div>
 
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="price-3"
                                                         value="10-15-trieu">
                                                     <label class="form-check-label" for="price-3">Từ 10 - 15
-                                                        triệu</label>
+                                                        million</label>
                                                 </div>
 
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="price-4"
                                                         value="15-20-trieu">
                                                     <label class="form-check-label" for="price-4">Từ 15 - 20
-                                                        triệu</label>
+                                                        million</label>
                                                 </div>
 
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="price-5"
                                                         value="tren-20-triệu">
-                                                    <label class="form-check-label" for="price-5">Trên 20 triệu</label>
+                                                    <label class="form-check-label" for="price-5">Above 20 million</label>
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <div class="mb-2"><b>Sắp xếp</b></div>
+                                                <div class="mb-2"><b>Sort By</b></div>
 
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" id="sort-1"
                                                         value="gia-tang-dan" name="radio-sort">
-                                                    <label class="form-check-label" for="sort-1">Giá tăng dần</label>
+                                                    <label class="form-check-label" for="sort-1">Price: Low to High</label>
                                                 </div>
 
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" id="sort-2"
                                                         value="gia-giam-dan" name="radio-sort">
-                                                    <label class="form-check-label" for="sort-2">Giá giảm dần</label>
+                                                    <label class="form-check-label" for="sort-2">Price: High to Low</label>
                                                 </div>
 
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="radio" id="sort-3" checked
                                                         value="gia-nothing" name="radio-sort">
-                                                    <label class="form-check-label" for="sort-3">Không sắp xếp</label>
+                                                    <label class="form-check-label" for="sort-3">No Sorting</label>
                                                 </div>
 
                                             </div>
@@ -191,7 +191,7 @@
                                                 <button
                                                     class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4"
                                                     id="btnFilter">
-                                                    Lọc Sản Phẩm
+                                                    Filter Products
                                                 </button>
                                             </div>
                                         </div>
@@ -199,7 +199,7 @@
                                     <div class="col-12 col-md-8 text-center">
                                         <div class="row g-4">
                                             <c:if test="${totalPages == 0 }">
-                                                <div>Không tìm thấy sản phẩm </div>
+                                                <div>No products found </div>
                                             </c:if>
                                             <c:forEach var="product" items="${products}">
                                                 <div class="col-md-6 col-lg-4">
@@ -338,13 +338,13 @@
                                         $('#showCartId').text(response);
                                         
                                         var toast = $('<div style="position: fixed; top: 100px; right: 20px; z-index: 9999; background: #81c408; color: white; padding: 15px 25px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none;">' + 
-                                                    '<i class="fa fa-check-circle me-2"></i> Đã thêm vào giỏ hàng!' + 
+                                                    '<i class="fa fa-check-circle me-2"></i> Added to cart!' + 
                                                     '</div>');
                                         $('body').append(toast);
                                         toast.fadeIn().delay(2000).fadeOut(function() { $(this).remove(); });
                                     },
                                     error: function (error) {
-                                        alert('Có lỗi xảy ra khi thêm vào giỏ hàng.');
+                                        alert('Error adding product to cart.');
                                     }
                                 });
                             });

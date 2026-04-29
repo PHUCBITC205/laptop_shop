@@ -3,13 +3,13 @@
         <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
             <!DOCTYPE html>
-            <html lang="vi">
+            <html lang="en">
 
             <head>
                 <meta charset="utf-8" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <title>Đăng nhập - Laptopshop</title>
+                <title>Login - Laptopshop</title>
 
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
                     rel="stylesheet">
@@ -166,27 +166,27 @@
                                 <span>LAPTOPSHOP</span>
                             </div>
 
-                            <h3 class="fw-bold mb-1" style="color: var(--text-dark);">Chào mừng trở lại</h3>
-                            <p class="text-muted small mb-4">Vui lòng nhập thông tin để truy cập hệ thống.</p>
+                            <h3 class="fw-bold mb-1" style="color: var(--text-dark);">Welcome Back</h3>
+                            <p class="text-muted small mb-4">Please enter your details to access your account.</p>
 
                             <form method="post" action="/login">
 
                                 <c:if test="${param.error != null}">
                                     <div class="alert alert-danger custom-alert mb-3">
-                                        <i class="fa-solid fa-circle-exclamation me-2"></i> Sai Email hoặc mật khẩu.
+                                        <i class="fa-solid fa-circle-exclamation me-2"></i> Invalid Email or password.
                                     </div>
                                 </c:if>
 
                                 <c:if test="${param.logout != null}">
                                     <div class="alert alert-success custom-alert mb-3"
                                         style="background-color: var(--soft-blue); color: var(--primary-blue);">
-                                        <i class="fa-solid fa-circle-check me-2"></i> Bạn đã đăng xuất thành công.
+                                        <i class="fa-solid fa-circle-check me-2"></i> You have logged out successfully.
                                     </div>
                                 </c:if>
 
                                 <c:if test="${param.resetSuccess != null}">
                                     <div class="alert alert-success custom-alert mb-3" style="background-color: var(--soft-blue); color: var(--primary-blue);">
-                                        <i class="fa-solid fa-circle-check me-2"></i> Đổi mật khẩu thành công. Vui lòng đăng nhập lại.
+                                        <i class="fa-solid fa-circle-check me-2"></i> Password reset successful. Please login again.
                                     </div>
                                 </c:if>
 
@@ -198,7 +198,7 @@
 
                                 <div class="mb-3">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <label class="form-label">Mật khẩu</label>
+                                        <label class="form-label">Password</label>
                                     </div>
 
                                     <input class="form-control" type="password" placeholder="••••••••" name="password"
@@ -207,7 +207,7 @@
                                     <div class="text-end">
                                         <a href="/forgot-password"
                                             class="text-decoration-none small text-primary fw-500">
-                                            Quên mật khẩu?
+                                            Forgot password?
                                         </a>
                                     </div>
                                 </div>
@@ -216,15 +216,14 @@
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
                                 <button type="submit" class="btn btn-primary btn-login w-100 mt-2">
-                                    Đăng nhập
+                                    Login
                                 </button>
 
-                                <div class="social-login-text">Hoặc tiếp tục với</div>
+                                <div class="social-login-text">Or continue with</div>
 
                                 <div class="text-center mt-4">
-                                    <p class="small text-muted">Chưa có tài khoản?
-                                        <a href="/register" class="text-primary fw-bold text-decoration-none">Đăng ký
-                                            tài khoản</a>
+                                    <p class="small text-muted">Don't have an account?
+                                        <a href="/register" class="text-primary fw-bold text-decoration-none">Register here</a>
                                     </p>
                                 </div>
                             </form>
@@ -234,8 +233,8 @@
                     <section class="login-image-section d-none d-lg-block">
                         <div class="h-100 w-100 d-flex flex-column justify-content-end p-5 text-white"
                             style="position: relative; z-index: 1;">
-                            <h2 class="fw-bold">Nâng tầm trải nghiệm công nghệ</h2>
-                            <p class="opacity-75">Hàng ngàn sản phẩm laptop chính hãng đang chờ đón bạn tại LaptopShop.
+                            <h2 class="fw-bold">Elevate your tech experience</h2>
+                            <p class="opacity-75">Thousands of genuine laptop products are waiting for you at LaptopShop.
                             </p>
                         </div>
                     </section>

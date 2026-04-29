@@ -11,7 +11,7 @@
                             </div>
                             <div class="featurs-content text-center">
                                 <h5>Free Shipping</h5>
-                                <p class="mb-0">Hỏa tốc trong 2h</p>
+                                <p class="mb-0">Fast delivery within 2h</p>
                             </div>
                         </div>
                     </div>
@@ -22,7 +22,7 @@
                             </div>
                             <div class="featurs-content text-center">
                                 <h5>Security Payment</h5>
-                                <p class="mb-0">Giao dịch an toàn</p>
+                                <p class="mb-0">100% secure payment</p>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                             </div>
                             <div class="featurs-content text-center">
                                 <h5>30 Day Return</h5>
-                                <p class="mb-0">Đổi trả miễn phí</p>
+                                <p class="mb-0">30 day money guarantee</p>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                             </div>
                             <div class="featurs-content text-center">
                                 <h5>24/7 Support</h5>
-                                <p class="mb-0">Hỗ trợ nhiệt tình</p>
+                                <p class="mb-0">Support every time fast</p>
                             </div>
                         </div>
                     </div>

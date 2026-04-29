@@ -61,7 +61,7 @@
                         <div class="tab-class text-center">
                             <div class="row g-4">
                                 <div class="col-lg-4 text-start">
-                                    <h1>Sản phẩm nổi bật</h1>
+                                    <h1>Featured Products</h1>
                                 </div>
                                 <div class="col-lg-8 text-end">
                                     <ul class="nav nav-pills d-inline-flex text-center mb-5">
@@ -177,13 +177,13 @@
                                     // Hiển thị thông báo nhỏ
                                     // Tự chế 1 cái toast đơn giản
                                     var toast = $('<div style="position: fixed; top: 100px; right: 20px; z-index: 9999; background: #81c408; color: white; padding: 15px 25px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none;">' + 
-                                                '<i class="fa fa-check-circle me-2"></i> Đã thêm vào giỏ hàng!' + 
+                                                '<i class="fa fa-check-circle me-2"></i> Added to cart!' + 
                                                 '</div>');
                                     $('body').append(toast);
                                     toast.fadeIn().delay(2000).fadeOut(function() { $(this).remove(); });
                                 },
                                 error: function (error) {
-                                    alert('Có lỗi xảy ra khi thêm vào giỏ hàng.');
+                                    alert('Error adding product to cart.');
                                 }
                             });
                         });

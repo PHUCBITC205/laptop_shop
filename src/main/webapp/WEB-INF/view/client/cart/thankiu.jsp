@@ -8,7 +8,7 @@
 
                 <head>
                     <meta charset="utf-8">
-                    <title> Thanh toán - Laptopshop</title>
+                    <title> Thank You - Laptopshop</title>
                     <meta content="width=device-width, initial-scale=1.0" name="viewport">
                     <meta content="" name="keywords">
                     <meta content="" name="description">
@@ -50,7 +50,7 @@
                                 <div class="row">
                                     <div class="col-12 mt-5">
                                         <div class="alert alert-success" role="alert">
-                                            Cảm ơn bạn đã đặt hàng, đơn hàng đã được xác nhận thành công .
+                                            Thank you for your order! Your order has been successfully confirmed.
                                         </div>
                                     </div>
                                 </div>
