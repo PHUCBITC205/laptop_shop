@@ -50,9 +50,29 @@ public class ForgotPasswordController {
             // SỬA TẠI ĐÂY: Dùng biến baseUrl thay vì localhost cứng
             String resetLink = baseUrl + "/reset-password?token=" + token;
 
+            String emailContent = "<div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;'>"
+                    + "<div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center; color: white;'>"
+                    + "<h1 style='margin: 0; font-size: 24px;'>LaptopShop</h1>"
+                    + "</div>"
+                    + "<div style='padding: 30px; color: #333; line-height: 1.6;'>"
+                    + "<h2>Yêu cầu đặt lại mật khẩu</h2>"
+                    + "<p>Chào bạn,</p>"
+                    + "<p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn tại <b>LaptopShop</b>. Vui lòng bấm vào nút bên dưới để tiến hành đặt lại mật khẩu:</p>"
+                    + "<div style='text-align: center; margin: 30px 0;'>"
+                    + "<a href='" + resetLink
+                    + "' style='background-color: #764ba2; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>Đặt lại mật khẩu</a>"
+                    + "</div>"
+                    + "<p>Nếu bạn không gửi yêu cầu này, vui lòng bỏ qua email này. Link sẽ hết hạn sau một thời gian ngắn.</p>"
+                    + "<hr style='border: none; border-top: 1px solid #eee; margin: 20px 0;'>"
+                    + "<p style='font-size: 12px; color: #777;'>Đây là email tự động, vui lòng không trả lời email này.</p>"
+                    + "</div>"
+                    + "<div style='background-color: #f9f9f9; padding: 15px; text-align: center; font-size: 12px; color: #999;'>"
+                    + "&copy; 2024 LaptopShop. All rights reserved."
+                    + "</div>"
+                    + "</div>";
+
             try {
-                this.emailService.sendSimpleEmail(user.getEmail(), "Đặt lại mật khẩu",
-                        "Click vào đây để đặt lại mật khẩu: " + resetLink);
+                this.emailService.sendHtmlEmail(user.getEmail(), "Đặt lại mật khẩu - LaptopShop", emailContent);
                 model.addAttribute("message", "Link đặt lại mật khẩu đã được gửi vào email của bạn.");
             } catch (Exception e) {
                 model.addAttribute("error", "Lỗi khi gửi email: " + e.getMessage());
