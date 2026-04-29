@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.http.ResponseEntity;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -62,6 +64,29 @@ public class ItemController {
         long productId = id;
         this.productService.handleAddProductToCart(email, productId, session, 1);
         return "redirect:/";
+    }
+
+    @PostMapping("/api/add-product-to-cart/{id}")
+    @ResponseBody
+    public ResponseEntity<Integer> addProductToCartAjax(@PathVariable long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String email = (String) session.getAttribute("email");
+        this.productService.handleAddProductToCart(email, id, session, 1);
+        int cartSum = (int) session.getAttribute("sum");
+        return ResponseEntity.ok(cartSum);
+    }
+
+    @PostMapping("/api/add-product-from-view-detail")
+    @ResponseBody
+    public ResponseEntity<Integer> addProductFromViewDetailAjax(
+            @RequestParam("id") long id,
+            @RequestParam("quantity") long quantity,
+            HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String email = (String) session.getAttribute("email");
+        this.productService.handleAddProductToCart(email, id, session, quantity);
+        int cartSum = (int) session.getAttribute("sum");
+        return ResponseEntity.ok(cartSum);
     }
 
     @PostMapping("/add-product-to-cartALL/{id}")

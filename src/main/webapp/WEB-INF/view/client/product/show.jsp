@@ -319,6 +319,37 @@
 
                     <!-- Template Javascript -->
                     <script src="/client/js/main.js"></script>
+
+                    <script>
+                        $(document).ready(function () {
+                            $('.fruite-item form').submit(function (event) {
+                                event.preventDefault(); 
+                                
+                                var form = $(this);
+                                var url = form.attr('action');
+                                var apiUrl = url.replace('/add-product-to-cart/', '/api/add-product-to-cart/')
+                                                .replace('/add-product-to-cartALL/', '/api/add-product-to-cart/');
+
+                                $.ajax({
+                                    type: "POST",
+                                    url: apiUrl,
+                                    data: form.serialize(), 
+                                    success: function (response) {
+                                        $('#showCartId').text(response);
+                                        
+                                        var toast = $('<div style="position: fixed; top: 100px; right: 20px; z-index: 9999; background: #81c408; color: white; padding: 15px 25px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none;">' + 
+                                                    '<i class="fa fa-check-circle me-2"></i> Đã thêm vào giỏ hàng!' + 
+                                                    '</div>');
+                                        $('body').append(toast);
+                                        toast.fadeIn().delay(2000).fadeOut(function() { $(this).remove(); });
+                                    },
+                                    error: function (error) {
+                                        alert('Có lỗi xảy ra khi thêm vào giỏ hàng.');
+                                    }
+                                });
+                            });
+                        });
+                    </script>
                 </body>
 
                 </html>
