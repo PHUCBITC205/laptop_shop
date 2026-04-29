@@ -49,6 +49,14 @@ public class Product {
     private String factory;
     private String target;
 
+    private String cpu;
+    private String ram;
+    private String storage;
+    private String gpu;
+    private String screen;
+    private String battery;
+    private String weight;
+
     public String getName() {
         return name;
     }
@@ -121,11 +129,69 @@ public class Product {
         this.target = target;
     }
 
+    public String getCpu() {
+        return cpu;
+    }
+
+    public void setCpu(String cpu) {
+        this.cpu = cpu;
+    }
+
+    public String getRam() {
+        return ram;
+    }
+
+    public void setRam(String ram) {
+        this.ram = ram;
+    }
+
+    public String getStorage() {
+        return storage;
+    }
+
+    public void setStorage(String storage) {
+        this.storage = storage;
+    }
+
+    public String getGpu() {
+        return gpu;
+    }
+
+    public void setGpu(String gpu) {
+        this.gpu = gpu;
+    }
+
+    public String getScreen() {
+        return screen;
+    }
+
+    public void setScreen(String screen) {
+        this.screen = screen;
+    }
+
+    public String getBattery() {
+        return battery;
+    }
+
+    public void setBattery(String battery) {
+        this.battery = battery;
+    }
+
+    public String getWeight() {
+        return weight;
+    }
+
+    public void setWeight(String weight) {
+        this.weight = weight;
+    }
+
     @Override
     public String toString() {
         return "Product [id=" + id + ", orderDetails=" + orderDetails + ", name=" + name + ", price=" + price
                 + ", image=" + image + ", detailDesc=" + detailDesc + ", shortDesc=" + shortDesc + ", quantity="
-                + quantity + ", sold=" + sold + ", factory=" + factory + ", target=" + target + "]";
+                + quantity + ", sold=" + sold + ", factory=" + factory + ", target=" + target + ", cpu=" + cpu
+                + ", ram=" + ram + ", storage=" + storage + ", gpu=" + gpu + ", screen=" + screen + ", battery="
+                + battery + ", weight=" + weight + "]";
     }
 
     public long getId() {

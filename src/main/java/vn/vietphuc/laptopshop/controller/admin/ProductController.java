@@ -123,6 +123,13 @@ public class ProductController {
             currentProduct.setShortDesc(pr.getShortDesc());
             currentProduct.setFactory(pr.getFactory());
             currentProduct.setTarget(pr.getTarget());
+            currentProduct.setCpu(pr.getCpu());
+            currentProduct.setRam(pr.getRam());
+            currentProduct.setStorage(pr.getStorage());
+            currentProduct.setGpu(pr.getGpu());
+            currentProduct.setScreen(pr.getScreen());
+            currentProduct.setBattery(pr.getBattery());
+            currentProduct.setWeight(pr.getWeight());
 
             this.productService.createProduct(currentProduct);
         }

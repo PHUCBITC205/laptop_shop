@@ -122,27 +122,99 @@
                                                 </button>
                                             </form>
 
-                                        </div>
-                                        <div class="col-lg-12">
+                                        </div>                                        <div class="col-lg-12">
                                             <nav>
-                                                <div class="nav nav-tabs mb-3">
-                                                    <button class="nav-link active border-white border-bottom-0"
+                                                <div class="nav nav-tabs mb-4 border-0">
+                                                    <button class="nav-link active border-0 fw-bold px-4 rounded-3 me-2 shadow-sm"
                                                         type="button" role="tab" id="nav-about-tab" data-bs-toggle="tab"
                                                         data-bs-target="#nav-about" aria-controls="nav-about"
-                                                        aria-selected="true">Description</button>
+                                                        aria-selected="true" style="background: #81c408; color: white;">
+                                                        <i class="fas fa-info-circle me-2"></i>Description
+                                                    </button>
+                                                    <button class="nav-link border-0 fw-bold px-4 rounded-3 shadow-sm text-dark"
+                                                        type="button" role="tab" id="nav-specs-tab" data-bs-toggle="tab"
+                                                        data-bs-target="#nav-specs" aria-controls="nav-specs"
+                                                        aria-selected="false" style="background: #f8f9fa;">
+                                                        <i class="fas fa-list-ul me-2"></i>Specifications
+                                                    </button>
                                                 </div>
                                             </nav>
-                                            <div class="tab-content mb-5">
-                                                <div class="tab-pane active" id="nav-about" role="tabpanel"
+                                            <div class="tab-content border rounded-4 p-4 bg-white shadow-sm mb-5">
+                                                <div class="tab-pane fade show active" id="nav-about" role="tabpanel"
                                                     aria-labelledby="nav-about-tab">
-                                                    <p>
+                                                    <div class="product-description" style="line-height: 1.8; color: #4a4a4a;">
                                                         ${product.detailDesc}
-                                                    </p>
-
+                                                    </div>
                                                 </div>
-
+                                                <div class="tab-pane fade" id="nav-specs" role="tabpanel"
+                                                    aria-labelledby="nav-specs-tab">
+                                                    <h5 class="fw-bold mb-4" style="color: #2c3e50;">Technical Specifications</h5>
+                                                    <div class="table-responsive">
+                                                        <table class="table table-hover align-middle mb-0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th scope="row" class="text-muted py-3" style="width: 30%; border-top: none;">
+                                                                        <i class="fas fa-microchip me-2"></i>CPU
+                                                                    </th>
+                                                                    <td class="fw-bold py-3" style="border-top: none; color: #2c3e50;">
+                                                                        ${product.cpu != null && product.cpu != "" ? product.cpu : 'Updating...'}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" class="text-muted py-3">
+                                                                        <i class="fas fa-memory me-2"></i>RAM
+                                                                    </th>
+                                                                    <td class="fw-bold py-3" style="color: #2c3e50;">
+                                                                        ${product.ram != null && product.ram != "" ? product.ram : 'Updating...'}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" class="text-muted py-3">
+                                                                        <i class="fas fa-hdd me-2"></i>Storage
+                                                                    </th>
+                                                                    <td class="fw-bold py-3" style="color: #2c3e50;">
+                                                                        ${product.storage != null && product.storage != "" ? product.storage : 'Updating...'}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" class="text-muted py-3">
+                                                                        <i class="fas fa-desktop me-2"></i>GPU
+                                                                    </th>
+                                                                    <td class="fw-bold py-3" style="color: #2c3e50;">
+                                                                        ${product.gpu != null && product.gpu != "" ? product.gpu : 'Updating...'}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" class="text-muted py-3">
+                                                                        <i class="fas fa-expand me-2"></i>Display
+                                                                    </th>
+                                                                    <td class="fw-bold py-3" style="color: #2c3e50;">
+                                                                        ${product.screen != null && product.screen != "" ? product.screen : 'Updating...'}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" class="text-muted py-3">
+                                                                        <i class="fas fa-battery-full me-2"></i>Battery
+                                                                    </th>
+                                                                    <td class="fw-bold py-3" style="color: #2c3e50;">
+                                                                        ${product.battery != null && product.battery != "" ? product.battery : 'Updating...'}
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th scope="row" class="text-muted py-3">
+                                                                        <i class="fas fa-weight me-2"></i>Weight
+                                                                    </th>
+                                                                    <td class="fw-bold py-3" style="color: #2c3e50;">
+                                                                        ${product.weight != null && product.weight != "" ? product.weight : 'Updating...'}
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
+
 
                                     </div>
                                 </div>

@@ -223,7 +223,7 @@
                                                             </div>
 
                                                             <div class="col-12">
-                                                                <label class="form-label">Mô tả phần cứng</label>
+                                                                <label class="form-label">Mô tả tóm tắt (Short Description)</label>
                                                                 <spring:bind path="shortDesc">
                                                                     <form:input type="text"
                                                                         class="form-control ${status.error ? 'is-invalid' : ''}"
@@ -232,6 +232,40 @@
                                                                     <form:errors path="shortDesc"
                                                                         cssClass="invalid-feedback" />
                                                                 </spring:bind>
+                                                            </div>
+
+                                                            <!-- Technical Specs Section -->
+                                                            <div class="col-12 mt-4 mb-2">
+                                                                <h5 class="text-purple" style="color: var(--accent-purple);">Thông số kỹ thuật</h5>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">CPU</label>
+                                                                <form:input type="text" class="form-control" path="cpu" placeholder="Ví dụ: Intel Core i7-13700H" />
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">RAM</label>
+                                                                <form:input type="text" class="form-control" path="ram" placeholder="Ví dụ: 16GB DDR5 5200MHz" />
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">Ổ cứng (Storage)</label>
+                                                                <form:input type="text" class="form-control" path="storage" placeholder="Ví dụ: 512GB SSD NVMe" />
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">GPU (Card đồ họa)</label>
+                                                                <form:input type="text" class="form-control" path="gpu" placeholder="Ví dụ: NVIDIA RTX 4060 8GB" />
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">Màn hình (Display)</label>
+                                                                <form:input type="text" class="form-control" path="screen" placeholder="Ví dụ: 15.6 inch QHD 165Hz" />
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">Pin (Battery)</label>
+                                                                <form:input type="text" class="form-control" path="battery" placeholder="Ví dụ: 4-cell, 90Wh" />
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label class="form-label">Trọng lượng (Weight)</label>
+                                                                <form:input type="text" class="form-control" path="weight" placeholder="Ví dụ: 2.1 kg" />
                                                             </div>
 
                                                             <div class="col-md-4">

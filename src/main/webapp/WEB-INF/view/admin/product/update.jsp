@@ -235,7 +235,7 @@
                                                                 </div>
 
                                                                 <div class="col-12">
-                                                                    <label class="form-label">Mô tả phần cứng</label>
+                                                                    <label class="form-label">Mô tả tóm tắt (Short Description)</label>
                                                                     <spring:bind path="shortDesc">
                                                                         <form:input type="text"
                                                                             class="form-control ${status.error ? 'is-invalid' : ''}"
@@ -243,6 +243,40 @@
                                                                         <form:errors path="shortDesc"
                                                                             cssClass="invalid-feedback" />
                                                                     </spring:bind>
+                                                                </div>
+
+                                                                <!-- Technical Specs Section -->
+                                                                <div class="col-12 mt-4 mb-2">
+                                                                    <h5 class="text-warning">Thông số kỹ thuật</h5>
+                                                                </div>
+
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">CPU</label>
+                                                                    <form:input type="text" class="form-control" path="cpu" />
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">RAM</label>
+                                                                    <form:input type="text" class="form-control" path="ram" />
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Ổ cứng (Storage)</label>
+                                                                    <form:input type="text" class="form-control" path="storage" />
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">GPU (Card đồ họa)</label>
+                                                                    <form:input type="text" class="form-control" path="gpu" />
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Màn hình (Display)</label>
+                                                                    <form:input type="text" class="form-control" path="screen" />
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Pin (Battery)</label>
+                                                                    <form:input type="text" class="form-control" path="battery" />
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label class="form-label">Trọng lượng (Weight)</label>
+                                                                    <form:input type="text" class="form-control" path="weight" />
                                                                 </div>
 
                                                                 <div class="col-md-4">
