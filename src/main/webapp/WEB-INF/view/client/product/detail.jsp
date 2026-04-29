@@ -217,49 +217,41 @@
 
 
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-xl-3">
+                                </div>                                <div class="col-lg-4 col-xl-3">
                                     <div class="row g-4 fruite">
                                         <div class="col-lg-12">
-
                                             <div class="mb-4">
-                                                <h4>Categories</h4>
-                                                <ul class="list-unstyled fruite-categorie">
-                                                    <li>
-                                                        <div class="d-flex justify-content-between fruite-name">
-                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Apples</a>
-                                                            <span>(3)</span>
+                                                <h4 class="fw-bold mb-3" style="color: #2c3e50;">Related Products</h4>
+                                                <div class="related-products-list">
+                                                    <c:forEach var="related" items="${relatedProducts}">
+                                                        <div class="d-flex align-items-center mb-3 p-2 border rounded-3 bg-white shadow-sm hover-shadow transition-all" 
+                                                             style="cursor: pointer;" 
+                                                             onclick="window.location.href='/product/${related.id}'">
+                                                            <div class="flex-shrink-0" style="width: 80px; height: 80px;">
+                                                                <img src="/images/product/${related.image}" 
+                                                                     class="img-fluid rounded-2 h-100 w-100 object-fit-cover" 
+                                                                     alt="${related.name}">
+                                                            </div>
+                                                            <div class="flex-grow-1 ms-3 overflow-hidden">
+                                                                <h6 class="text-truncate mb-1 fw-bold" style="font-size: 0.9rem;">${related.name}</h6>
+                                                                <div class="text-primary fw-bold" style="font-size: 0.85rem;">
+                                                                    <fmt:formatNumber value="${related.price}" type="number" /> đ
+                                                                </div>
+                                                                <div class="text-muted" style="font-size: 0.75rem;">
+                                                                    ${related.factory}
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="d-flex justify-content-between fruite-name">
-                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Dell</a>
-                                                            <span>(5)</span>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="d-flex justify-content-between fruite-name">
-                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Asus</a>
-                                                            <span>(2)</span>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="d-flex justify-content-between fruite-name">
-                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Acer</a>
-                                                            <span>(8)</span>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="d-flex justify-content-between fruite-name">
-                                                            <a href="#"><i class="fas fa-apple-alt me-2"></i>Lenovo</a>
-                                                            <span>(5)</span>
-                                                        </div>
-                                                    </li>
-                                                </ul>
+                                                    </c:forEach>
+                                                    <c:if test="${empty relatedProducts}">
+                                                        <p class="text-muted italic">No related products found.</p>
+                                                    </c:if>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>

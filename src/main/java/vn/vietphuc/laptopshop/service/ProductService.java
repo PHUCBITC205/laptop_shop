@@ -216,6 +216,10 @@ public class ProductService {
         return this.productRepository.findById(id);
     }
 
+    public List<Product> fetchRelatedProducts(String factory, long id) {
+        return this.productRepository.findTop10ByFactoryAndIdNot(factory, id);
+    }
+
     public void deleteProduct(long id) {
         this.productRepository.deleteById(id);
     }

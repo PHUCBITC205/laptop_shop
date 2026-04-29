@@ -51,7 +51,9 @@ public class ItemController {
     public String getProductPage(Model model, @PathVariable long id) {
 
         Product pr = this.productService.fetchProductById(id).get();
+        List<Product> relatedProducts = this.productService.fetchRelatedProducts(pr.getFactory(), id);
         model.addAttribute("product", pr);
+        model.addAttribute("relatedProducts", relatedProducts);
         model.addAttribute("id", id);
         return "client/product/detail";
     }

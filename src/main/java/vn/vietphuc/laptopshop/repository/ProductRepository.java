@@ -27,4 +27,5 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
 
     // Optional<Product> findById(long id);
 
+    List<Product> findTop10ByFactoryAndIdNot(String factory, long id);
 }
