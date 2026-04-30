@@ -2,6 +2,7 @@ package vn.vietphuc.laptopshop.controller.client;
 
 import java.net.http.HttpRequest;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,6 +24,7 @@ import vn.vietphuc.laptopshop.service.OrderService;
 import vn.vietphuc.laptopshop.service.ProductService;
 import vn.vietphuc.laptopshop.service.UserSevice;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -95,6 +97,45 @@ public class HomePageController {
         List<Order> order = this.orderService.fetchOrderByUser(cureenUser);
         model.addAttribute("orders", order);
         return "client/cart/order-history";
+    }
+
+    @PostMapping("/cancel-order/{id}")
+    public String handleCancelOrder(@PathVariable long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        long userId = (long) session.getAttribute("id");
+
+        Optional<Order> orderOptional = this.orderService.fetchOrderById(id);
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            // Verify ownership and status
+            if (order.getUser().getId() == userId &&
+                    (order.getStatus().equals("UNPAID") || order.getStatus().equals("PENDING"))) {
+                this.orderService.updateOrderStatus(id, "CANCEL");
+            }
+        }
+        return "redirect:/order-history";
+    }
+
+    @PostMapping("/update-order-info")
+    public String handleUpdateOrderInfo(
+            @RequestParam("id") long id,
+            @RequestParam("receiverName") String receiverName,
+            @RequestParam("receiverAddress") String receiverAddress,
+            @RequestParam("receiverPhone") String receiverPhone,
+            HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        long userId = (long) session.getAttribute("id");
+
+        Optional<Order> orderOptional = this.orderService.fetchOrderById(id);
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            // Verify ownership and status (only allow update if not shipped/cancelled/success)
+            if (order.getUser().getId() == userId &&
+                    (order.getStatus().equals("UNPAID") || order.getStatus().equals("PENDING"))) {
+                this.orderService.updateOrderInfo(id, receiverName, receiverAddress, receiverPhone);
+            }
+        }
+        return "redirect:/order-history";
     }
 
 }

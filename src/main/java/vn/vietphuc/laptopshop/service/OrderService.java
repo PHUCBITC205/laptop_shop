@@ -1,5 +1,6 @@
 package vn.vietphuc.laptopshop.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,8 +41,30 @@ public class OrderService {
         Optional<Order> optionalOrder = this.orderRepository.findById(id);
         if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
-            order.setStatus(status); // Cập nhật trạng thái
-            this.orderRepository.save(order); // Lưu thay đổi vào database
+            order.setStatus(status);
+
+            if (status.equals("PENDING")) {
+                order.setPendingDate(LocalDateTime.now());
+            } else if (status.equals("SHIPPING")) {
+                order.setShippingDate(LocalDateTime.now());
+            } else if (status.equals("SUCCESS")) {
+                order.setCompleteDate(LocalDateTime.now());
+            } else if (status.equals("CANCEL")) {
+                order.setCancelDate(LocalDateTime.now());
+            }
+
+            this.orderRepository.save(order);
+        }
+    }
+
+    public void updateOrderInfo(long id, String receiverName, String receiverAddress, String receiverPhone) {
+        Optional<Order> orderOptional = this.orderRepository.findById(id);
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            order.setReceiverName(receiverName);
+            order.setReceiverAddress(receiverAddress);
+            order.setReceiverPhone(receiverPhone);
+            this.orderRepository.save(order);
         }
     }
 

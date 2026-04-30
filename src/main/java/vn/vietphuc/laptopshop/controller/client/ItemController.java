@@ -23,6 +23,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import vn.vietphuc.laptopshop.domain.Cart;
 import vn.vietphuc.laptopshop.domain.CartDetail;
+import vn.vietphuc.laptopshop.domain.Order;
 import vn.vietphuc.laptopshop.domain.Product;
 import vn.vietphuc.laptopshop.domain.Product_;
 import vn.vietphuc.laptopshop.domain.User;
@@ -174,13 +175,33 @@ public class ItemController {
             HttpServletRequest request,
             @RequestParam("receiverName") String receiverName,
             @RequestParam("receiverAddress") String receiverAddress,
-            @RequestParam("receiverPhone") String receiverPhone) {
+            @RequestParam("receiverPhone") String receiverPhone,
+            @RequestParam("paymentMethod") String paymentMethod) {
         HttpSession session = request.getSession(false);
         User currentUser = new User();// null
         long id = (long) session.getAttribute("id");
         currentUser.setId(id);
 
-        this.productService.handlePlaceOrder(currentUser, session, receiverName, receiverAddress, receiverPhone);
+        Order order = this.productService.handlePlaceOrder(currentUser, session, receiverName, receiverAddress,
+                receiverPhone, paymentMethod);
+
+        if (paymentMethod.equals("COD")) {
+            return "redirect:/thankiu";
+        } else {
+            return "redirect:/payment/" + order.getId();
+        }
+    }
+
+    @GetMapping("/payment/{id}")
+    public String getPaymentPage(Model model, @PathVariable long id) {
+        Order order = this.productService.fetchOrderById(id);
+        model.addAttribute("order", order);
+        return "client/cart/payment";
+    }
+
+    @PostMapping("/confirm-payment")
+    public String handleConfirmPayment(@RequestParam("id") long id) {
+        this.productService.updatePaymentStatus(id, "PAYMENT_SUCCESS");
         return "redirect:/thankiu";
     }
 

@@ -1,5 +1,6 @@
 package vn.vietphuc.laptopshop.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -216,6 +217,23 @@ public class ProductService {
         return this.productRepository.findById(id);
     }
 
+    public Order fetchOrderById(long id) {
+        return this.orderRepository.findById(id).orElse(null);
+    }
+
+    public void updatePaymentStatus(long id, String status) {
+        Optional<Order> orderOptional = this.orderRepository.findById(id);
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            order.setPaymentStatus(status);
+            if (status.equals("PAYMENT_SUCCESS")) {
+                order.setStatus("PENDING");
+                order.setPendingDate(LocalDateTime.now());
+            }
+            this.orderRepository.save(order);
+        }
+    }
+
     public List<Product> fetchRelatedProducts(String factory, long id) {
         return this.productRepository.findTop10ByFactoryAndIdNot(factory, id);
     }
@@ -313,8 +331,8 @@ public class ProductService {
         }
     }
 
-    public void handlePlaceOrder(User user, HttpSession session, String receiverName,
-            String receiverAddress, String receiverPhone) {
+    public Order handlePlaceOrder(User user, HttpSession session, String receiverName,
+            String receiverAddress, String receiverPhone, String paymentMethod) {
 
         // Create orderDetail
         // step 1 : get cart by user
@@ -330,7 +348,18 @@ public class ProductService {
                 order.setReceiverAddress(receiverAddress);
                 order.setReceiverPhone(receiverPhone);
                 order.setReceiverName(receiverName);
-                order.setStatus("PENDING");
+                order.setPaymentMethod(paymentMethod);
+                order.setOrderDate(LocalDateTime.now());
+
+                if (paymentMethod.equals("COD")) {
+                    order.setStatus("PENDING");
+                    order.setPaymentStatus("PAYMENT_PENDING");
+                    order.setPendingDate(LocalDateTime.now());
+                } else {
+                    order.setStatus("UNPAID");
+                    order.setPaymentStatus("PAYMENT_UNPAID");
+                }
+
                 order = this.orderRepository.save(order);
 
                 double sum = 0;
@@ -361,8 +390,10 @@ public class ProductService {
 
                 // step 3 : update session
                 session.setAttribute("sum", 0);
+                return order;
             }
         }
+        return null;
     }
 
 }

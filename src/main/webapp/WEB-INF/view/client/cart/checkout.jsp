@@ -162,10 +162,21 @@
                                                             <p class="mb-0">0 đ</p>
                                                         </div>
                                                     </div>
-                                                    <div class="mt-3 d-flex justify-content-between">
-                                                        <h5 class="mb-0 me-4">Payment Method</h5>
-                                                        <div class="">
-                                                            <p class="mb-0">Cash on Delivery (COD)</p>
+                                                    <div class="mt-4">
+                                                        <h5 class="mb-3">Payment Method</h5>
+                                                        <div class="form-check mb-2">
+                                                            <input class="form-check-input" type="radio" name="paymentMethod" 
+                                                                id="paymentCOD" value="COD" checked>
+                                                            <label class="form-check-label" for="paymentCOD">
+                                                                Cash on Delivery (COD)
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="paymentMethod" 
+                                                                id="paymentQR" value="VIETQR">
+                                                            <label class="form-check-label" for="paymentQR">
+                                                                Bank Transfer via VietQR
+                                                            </label>
                                                         </div>
                                                     </div>
                                                 </div>

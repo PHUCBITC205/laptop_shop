@@ -68,40 +68,90 @@
                             </div>
                         </c:if>
 
+
                         <c:forEach var="order" items="${orders}">
-                            <div class="card mb-4 shadow-sm">
-                                <div class="card-header bg-light py-3">
-                                    <div class="row">
+                            <div class="card mb-5 shadow-sm border-0 rounded-3">
+                                <div class="card-header bg-primary text-white py-3 rounded-top-3">
+                                    <div class="row align-items-center">
                                         <div class="col-md-6">
-                                            <h5 class="mb-0">Đơn hàng: ${order.id}</h5>
+                                            <h5 class="mb-0 text-white"><i class="fas fa-shopping-bag me-2"></i>Đơn
+                                                hàng: #${order.id}</h5>
                                         </div>
-                                        <div class="col-md-6 text-md-end">
-                                            <span class="me-3"><strong>Tổng tiền:</strong>
-                                                <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
-                                            </span>
-                                            <span><strong>Trạng thái:</strong>
-                                                <span
-                                                    class="badge 
+                                        <div class="col-md-6 text-md-end mt-2 mt-md-0">
+                                            <span class="badge 
                                                 <c:choose>
+                                                    <c:when test='${order.status == "UNPAID"}'>bg-light text-dark</c:when>
                                                     <c:when test='${order.status == "PENDING"}'>bg-warning text-dark</c:when>
                                                     <c:when test='${order.status == "SUCCESS"}'>bg-success</c:when>
                                                     <c:when test='${order.status == "SHIPPING"}'>bg-info text-dark</c:when>
                                                     <c:when test='${order.status == "CANCEL"}'>bg-danger</c:when>
                                                     <c:otherwise>bg-secondary</c:otherwise>
                                                 </c:choose>
-                                            ">${order.status}</span>
-                                            </span>
+                                            px-3 py-2 fs-6">${order.status}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <thead>
+                                <div class="card-body p-4">
+                                    <div class="row mb-4">
+                                        <div class="col-md-6 border-end">
+                                            <h6 class="text-primary fw-bold mb-3"><i class="fas fa-user me-2"></i>Thông
+                                                tin người nhận</h6>
+                                            <p class="mb-1"><strong>Họ tên:</strong> ${order.receiverName}</p>
+                                            <p class="mb-1"><strong>Địa chỉ:</strong> ${order.receiverAddress}</p>
+                                            <p class="mb-1"><strong>Số điện thoại:</strong> ${order.receiverPhone}</p>
+                                            <p class="mb-1"><strong>Phương thức:</strong> ${order.paymentMethod}</p>
+                                            <p class="mb-0"><strong>Thanh toán:</strong>
+                                                <span
+                                                    class="${order.paymentStatus == 'PAYMENT_SUCCESS' ? 'text-success' : 'text-danger'}">
+                                                    ${order.paymentStatus}
+                                                </span>
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6 ps-md-4">
+                                            <h6 class="text-primary fw-bold mb-3"><i
+                                                    class="fas fa-history me-2"></i>Trạng thái chi tiết</h6>
+                                            <ul class="list-unstyled small">
+                                                <c:if test="${not empty order.orderDate}">
+                                                    <li class="mb-1">
+                                                        <span class="text-muted"><fmt:formatDate value="${order.orderDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></span>: 
+                                                        <span class="fw-bold">Đã đặt đơn</span>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${not empty order.pendingDate}">
+                                                    <li class="mb-1">
+                                                        <span class="text-muted"><fmt:formatDate value="${order.pendingDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></span>: 
+                                                        <span class="fw-bold text-warning">Chờ xác nhận</span>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${not empty order.shippingDate}">
+                                                    <li class="mb-1">
+                                                        <span class="text-muted"><fmt:formatDate value="${order.shippingDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></span>: 
+                                                        <span class="fw-bold text-info">Đang giao hàng</span>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${not empty order.completeDate}">
+                                                    <li class="mb-1">
+                                                        <span class="text-muted"><fmt:formatDate value="${order.completeDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></span>: 
+                                                        <span class="fw-bold text-success">Hoàn thành</span>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test="${not empty order.cancelDate}">
+                                                    <li class="mb-1">
+                                                        <span class="text-muted"><fmt:formatDate value="${order.cancelDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></span>: 
+                                                        <span class="fw-bold text-danger">Đã hủy</span>
+                                                    </li>
+                                                </c:if>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-bordered align-middle">
+                                            <thead class="table-light">
                                                 <tr>
                                                     <th scope="col" colspan="2">Sản phẩm</th>
-                                                    <th scope="col">Giá</th>
-                                                    <th scope="col">Số lượng</th>
+                                                    <th scope="col" class="text-center">Giá</th>
+                                                    <th scope="col" class="text-center">Số lượng</th>
                                                     <th scope="col" class="text-end">Thành tiền</th>
                                                 </tr>
                                             </thead>
@@ -110,20 +160,22 @@
                                                     <tr>
                                                         <td style="width: 80px;">
                                                             <img src="/images/product/${orderDetail.product.image}"
-                                                                class="img-fluid rounded" alt="">
+                                                                class="img-fluid rounded" style="max-height: 60px;"
+                                                                alt="">
                                                         </td>
                                                         <td>
                                                             <a href="/product/${orderDetail.product.id}"
-                                                                target="_blank" class="text-decoration-none">
+                                                                target="_blank"
+                                                                class="text-decoration-none fw-bold text-dark">
                                                                 ${orderDetail.product.name}
                                                             </a>
                                                         </td>
-                                                        <td>
+                                                        <td class="text-center">
                                                             <fmt:formatNumber type="number"
                                                                 value="${orderDetail.price}" /> đ
                                                         </td>
-                                                        <td>${orderDetail.quantity}</td>
-                                                        <td class="text-end">
+                                                        <td class="text-center">${orderDetail.quantity}</td>
+                                                        <td class="text-end fw-bold">
                                                             <fmt:formatNumber type="number"
                                                                 value="${orderDetail.price * orderDetail.quantity}" />
                                                             đ
@@ -131,12 +183,81 @@
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td colspan="4" class="text-end fw-bold">Tổng cộng:</td>
+                                                    <td class="text-end fw-bold text-danger fs-5">
+                                                        <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
+                                                    </td>
+                                                </tr>
+                                            </tfoot>
                                         </table>
+                                    </div>
+
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <c:if test="${order.status == 'UNPAID' || order.status == 'PENDING'}">
+                                            <button type="button" class="btn btn-outline-primary btn-sm"
+                                                data-bs-toggle="modal" data-bs-target="#updateModal${order.id}">
+                                                <i class="fas fa-edit me-1"></i>Cập nhật thông tin
+                                            </button>
+
+                                            <form action="${pageContext.request.contextPath}/cancel-order/${order.id}" method="post"
+                                                onsubmit="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này?')">
+                                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                                <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                    <i class="fas fa-times me-1"></i>Hủy đơn
+                                                </button>
+                                            </form>
+                                        </c:if>
+
+                                        <c:if test="${order.status == 'UNPAID'}">
+                                            <a href="/payment/${order.id}" class="btn btn-primary btn-sm">
+                                                <i class="fas fa-credit-card me-1"></i>Thanh toán ngay
+                                            </a>
+                                        </c:if>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Update Modal -->
+                            <div class="modal fade" id="updateModal${order.id}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form action="${pageContext.request.contextPath}/update-order-info" method="post">
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Cập nhật thông tin nhận hàng</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="hidden" name="id" value="${order.id}">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Tên người nhận</label>
+                                                    <input type="text" class="form-control" name="receiverName"
+                                                        value="${order.receiverName}" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Địa chỉ nhận hàng</label>
+                                                    <textarea class="form-control" name="receiverAddress" rows="2"
+                                                        required>${order.receiverAddress}</textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Số điện thoại</label>
+                                                    <input type="text" class="form-control" name="receiverPhone"
+                                                        value="${order.receiverPhone}" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Đóng</button>
+                                                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </c:forEach>
-
                     </div>
                 </div>
                 <!-- Cart Page End -->
