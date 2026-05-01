@@ -19,90 +19,84 @@
 
     <style>
         :root {
-            --bg-dark: #0f111a;
-            --card-glass: rgba(255, 255, 255, 0.03);
-            --accent-purple: #7c4dff;
-            --border-glass: rgba(255, 255, 255, 0.1);
-            --text-muted: #94a3b8;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --accent-blue: #0d6efd;
+            --border-color: #e2e8f0;
+            --text-dark: #334155;
+            --text-muted: #64748b;
             --money-green: #10b981;
         }
 
         body {
             font-family: 'Inter', sans-serif !important;
-            background-color: var(--bg-dark) !important;
-            color: #fff;
+            background-color: var(--bg-light) !important;
+            color: var(--text-dark);
         }
 
         #layoutSidenav_content {
-            background-image: radial-gradient(circle at top right, rgba(124, 77, 255, 0.05), transparent);
+            background-color: #f4f7f6;
         }
 
         /* Container & Animation */
         .detail-container {
-            background: var(--card-glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--border-glass);
-            border-radius: 24px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             padding: 35px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            animation: slideUp 0.6s ease-out;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             margin-bottom: 50px;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         /* Table Styling */
-        .table { color: #e2e8f0 !important; vertical-align: middle; border: none !important; }
+        .table { color: var(--text-dark) !important; vertical-align: middle; }
         .table thead th {
-            background: rgba(124, 77, 255, 0.1);
-            color: var(--accent-purple);
+            background: #f8fafc;
+            color: var(--text-muted);
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 1px;
             padding: 18px;
-            border: none !important;
+            border-bottom: 2px solid var(--border-color) !important;
         }
-        .table tbody tr { border-bottom: 1px solid var(--border-glass); transition: 0.3s; }
-        .table tbody tr:hover { background: rgba(255, 255, 255, 0.02) !important; }
+        .table tbody tr { border-bottom: 1px solid var(--border-color); transition: 0.3s; }
+        .table tbody tr:hover { background: #f8fafc !important; }
 
         /* Product Image Style */
         .product-img-circle {
             width: 70px;
             height: 70px;
             object-fit: cover;
-            border-radius: 16px;
-            border: 2px solid var(--border-glass);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             transition: 0.3s;
         }
         tr:hover .product-img-circle {
-            border-color: var(--accent-purple);
-            transform: scale(1.1) rotate(3deg);
+            border-color: var(--accent-blue);
+            transform: scale(1.05);
         }
 
         /* Price Typography */
         .price-text { color: var(--money-green); font-weight: 700; }
-        .total-item-text { font-weight: 800; font-size: 1.1rem; color: #fff; }
+        .total-item-text { font-weight: 800; font-size: 1.1rem; color: var(--text-dark); }
 
         /* Product Link */
         .product-link {
-            color: #fff;
+            color: var(--text-dark);
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             transition: 0.3s;
         }
-        .product-link:hover { color: var(--accent-purple); }
+        .product-link:hover { color: var(--accent-blue); }
 
         /* Buttons */
         .btn-back-modern {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-glass);
-            color: #fff;
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
             padding: 12px 30px;
-            border-radius: 12px;
+            border-radius: 10px;
             font-weight: 600;
             text-decoration: none;
             display: inline-flex;
@@ -111,9 +105,12 @@
             margin-top: 20px;
         }
         .btn-back-modern:hover {
-            background: var(--accent-purple);
+            background: #e2e8f0;
             transform: translateX(-5px);
-            color: #fff;
+        }
+        
+        .border-secondary {
+            border-color: var(--border-color) !important;
         }
     </style>
 </head>
@@ -132,15 +129,103 @@
                         <li class="breadcrumb-item active">Mã đơn ${id}</li>
                     </ol>
 
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="detail-container h-100 mb-0">
+                                <h4 class="mb-4" style="color: var(--accent-purple); font-weight: 700;">
+                                    <i class="fas fa-user-tag me-2"></i>Thông tin nhận hàng
+                                </h4>
+                                <div class="mb-3">
+                                    <label class="small text-muted text-uppercase d-block">Họ tên người nhận</label>
+                                    <span class="fw-bold">${orders.receiverName}</span>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="small text-muted text-uppercase d-block">Số điện thoại</label>
+                                    <span class="fw-bold">${orders.receiverPhone}</span>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="small text-muted text-uppercase d-block">Địa chỉ</label>
+                                    <span class="fw-bold">${orders.receiverAddress}</span>
+                                </div>
+                                <div class="mb-0">
+                                    <label class="small text-muted text-uppercase d-block">Người đặt</label>
+                                    <span class="fw-bold">${orders.user.fullName} (${orders.user.email})</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="detail-container h-100 mb-0">
+                                <h4 class="mb-4" style="color: var(--money-green); font-weight: 700;">
+                                    <i class="fas fa-credit-card me-2"></i>Thanh toán
+                                </h4>
+                                <div class="mb-3">
+                                    <label class="small text-muted text-uppercase d-block">Phương thức</label>
+                                    <span class="fw-bold badge bg-secondary">${orders.paymentMethod}</span>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="small text-muted text-uppercase d-block">Trạng thái</label>
+                                    <span class="fw-bold ${orders.paymentStatus == 'PAYMENT_SUCCESS' ? 'text-success' : 'text-danger'}">
+                                        ${orders.paymentStatus}
+                                    </span>
+                                </div>
+                                <div class="mb-0">
+                                    <label class="small text-muted text-uppercase d-block">Tổng tiền</label>
+                                    <span class="fw-bold fs-4 price-text">
+                                        <fmt:formatNumber type="number" value="${orders.totalPrice}" /> đ
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="detail-container h-100 mb-0">
+                                <h4 class="mb-4" style="color: #fbbf24; font-weight: 700;">
+                                    <i class="fas fa-clock-rotate-left me-2"></i>Lịch sử trạng thái
+                                </h4>
+                                <ul class="list-unstyled mb-0" style="font-size: 0.85rem;">
+                                    <c:if test="${not empty orders.orderDate}">
+                                        <li class="mb-2 pb-2 border-bottom border-secondary">
+                                            <div class="text-muted small"><fmt:formatDate value="${orders.orderDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></div>
+                                            <div class="fw-bold">🆕 Đã đặt đơn</div>
+                                        </li>
+                                    </c:if>
+                                    <c:if test="${not empty orders.pendingDate}">
+                                        <li class="mb-2 pb-2 border-bottom border-secondary">
+                                            <div class="text-muted small"><fmt:formatDate value="${orders.pendingDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></div>
+                                            <div class="fw-bold text-warning">🕒 Chờ xác nhận</div>
+                                        </li>
+                                    </c:if>
+                                    <c:if test="${not empty orders.shippingDate}">
+                                        <li class="mb-2 pb-2 border-bottom border-secondary">
+                                            <div class="text-muted small"><fmt:formatDate value="${orders.shippingDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></div>
+                                            <div class="fw-bold text-info">🚚 Đang giao hàng</div>
+                                        </li>
+                                    </c:if>
+                                    <c:if test="${not empty orders.completeDate}">
+                                        <li class="mb-2 pb-2 border-bottom border-secondary">
+                                            <div class="text-muted small"><fmt:formatDate value="${orders.completeDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></div>
+                                            <div class="fw-bold text-success">✅ Hoàn thành</div>
+                                        </li>
+                                    </c:if>
+                                    <c:if test="${not empty orders.cancelDate}">
+                                        <li class="mb-0">
+                                            <div class="text-muted small"><fmt:formatDate value="${orders.cancelDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></div>
+                                            <div class="fw-bold text-danger">❌ Đã hủy</div>
+                                        </li>
+                                    </c:if>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="detail-container">
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h3 style="font-weight: 800; letter-spacing: -0.5px;">
                                 <i class="fas fa-receipt text-purple me-2" style="color: var(--accent-purple);"></i>
                                 Danh sách sản phẩm mua
                             </h3>
-                            <span class="badge bg-dark border border-secondary p-2 px-3" style="border-radius: 10px;">
-                                Đơn hàng ID: ${id}
-                            </span>
+                            <a href="/admin/order/update/${orders.id}" class="btn btn-warning btn-sm fw-bold">
+                                <i class="fas fa-pen me-1"></i> Sửa đơn hàng
+                            </a>
                         </div>
 
                         <div class="table-responsive">

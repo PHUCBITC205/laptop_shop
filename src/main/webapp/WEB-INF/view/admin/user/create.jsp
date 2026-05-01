@@ -20,53 +20,40 @@
 
                 <style>
                     :root {
-                        --bg-dark: #0f111a;
-                        --card-glass: rgba(255, 255, 255, 0.03);
-                        --accent-purple: #7c4dff;
-                        --border-glass: rgba(255, 255, 255, 0.1);
-                        --text-muted: #94a3b8;
-                        --input-bg: rgba(255, 255, 255, 0.05);
+                        --bg-light: #f8fafc;
+                        --card-bg: #ffffff;
+                        --accent-blue: #0d6efd;
+                        --border-color: #e2e8f0;
+                        --text-dark: #334155;
+                        --text-muted: #64748b;
+                        --input-bg: #ffffff;
                     }
 
                     body {
                         font-family: 'Inter', sans-serif !important;
-                        background-color: var(--bg-dark) !important;
-                        color: #fff;
+                        background-color: var(--bg-light) !important;
+                        color: var(--text-dark);
                     }
 
                     #layoutSidenav_content {
-                        background-image: radial-gradient(circle at top right, rgba(124, 77, 255, 0.05), transparent);
+                        background-color: #f4f7f6;
                     }
 
                     /* Container Style */
                     .create-form-container {
-                        background: var(--card-glass);
-                        backdrop-filter: blur(15px);
-                        border: 1px solid var(--border-glass);
-                        border-radius: 24px;
+                        background: var(--card-bg);
+                        border: 1px solid var(--border-color);
+                        border-radius: 16px;
                         padding: 40px;
-                        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-                        animation: fadeInUp 0.6s ease-out;
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
                         margin-bottom: 50px;
-                    }
-
-                    @keyframes fadeInUp {
-                        from {
-                            opacity: 0;
-                            transform: translateY(30px);
-                        }
-
-                        to {
-                            opacity: 1;
-                            transform: translateY(0);
-                        }
                     }
 
                     /* Form Styling */
                     .form-label {
-                        font-weight: 600;
-                        font-size: 0.85rem;
-                        color: var(--text-muted);
+                        font-weight: 700;
+                        font-size: 0.8rem;
+                        color: var(--text-dark);
                         margin-bottom: 8px;
                         text-transform: uppercase;
                         letter-spacing: 0.5px;
@@ -75,69 +62,60 @@
                     .form-control,
                     .form-select {
                         background-color: var(--input-bg) !important;
-                        border: 1px solid var(--border-glass) !important;
-                        color: #fff !important;
-                        border-radius: 12px !important;
-                        padding: 12px 15px !important;
-                        transition: all 0.3s ease !important;
+                        border: 1px solid var(--border-color) !important;
+                        color: var(--text-dark) !important;
+                        border-radius: 10px !important;
+                        padding: 10px 15px !important;
+                        transition: all 0.2s ease !important;
                     }
 
                     .form-control:focus,
                     .form-select:focus {
-                        background-color: rgba(255, 255, 255, 0.08) !important;
-                        border-color: var(--accent-purple) !important;
-                        box-shadow: 0 0 0 4px rgba(124, 77, 255, 0.15) !important;
+                        border-color: var(--accent-blue) !important;
+                        box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1) !important;
                     }
 
                     .invalid-feedback {
                         font-size: 0.8rem;
-                        color: #ff6b6b;
+                        color: #dc3545;
                         margin-top: 5px;
                     }
 
                     /* Avatar Section */
                     .avatar-preview-box {
-                        border: 2px dashed var(--border-glass);
-                        border-radius: 20px;
+                        border: 2px dashed var(--border-color);
+                        border-radius: 16px;
                         padding: 20px;
                         text-align: center;
-                        background: rgba(255, 255, 255, 0.01);
+                        background: #f8fafc;
                         transition: 0.3s;
                     }
 
-                    .avatar-preview-box:hover {
-                        border-color: var(--accent-purple);
-                    }
-
                     #avatarPreview {
-                        width: 150px;
-                        height: 150px;
+                        width: 130px;
+                        height: 130px;
                         object-fit: cover;
                         border-radius: 50%;
-                        border: 3px solid var(--accent-purple);
-                        box-shadow: 0 0 15px rgba(124, 77, 255, 0.3);
+                        border: 4px solid #fff;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                         margin-bottom: 15px;
                     }
 
                     /* Create Button */
                     .btn-create-submit {
-                        background: linear-gradient(135deg, var(--accent-purple) 0%, #a259ff 100%);
+                        background: var(--accent-blue);
                         border: none;
                         color: #fff;
                         font-weight: 700;
-                        padding: 14px 40px;
-                        border-radius: 12px;
-                        text-transform: uppercase;
-                        letter-spacing: 1px;
-                        box-shadow: 0 8px 20px rgba(124, 77, 255, 0.3);
+                        padding: 12px 30px;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
                         transition: 0.3s;
-                        width: 100%;
                     }
 
                     .btn-create-submit:hover {
-                        transform: translateY(-3px);
-                        box-shadow: 0 12px 25px rgba(124, 77, 255, 0.4);
-                        filter: brightness(1.1);
+                        background: #0b5ed7;
+                        transform: translateY(-2px);
                     }
                 </style>
 

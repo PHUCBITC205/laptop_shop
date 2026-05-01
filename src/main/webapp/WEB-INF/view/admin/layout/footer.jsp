@@ -2,48 +2,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
-    /* Biến số đồng bộ với hệ thống */
+    /* Biến số đồng bộ với hệ thống Light Mode */
     :root {
-        --footer-bg: rgba(26, 28, 35, 0.95);
-        --accent-purple: #7c4dff;
-        --glass-border: rgba(255, 255, 255, 0.05);
-        --transition-std: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --footer-bg: #ffffff;
+        --accent-blue: #0d6efd;
+        --border-color: #e2e8f0;
+        --text-muted: #64748b;
+        --transition-std: all 0.3s ease;
     }
 
     .footer-modern {
         background: var(--footer-bg) !important;
-        backdrop-filter: blur(10px);
-        border-top: 1px solid var(--glass-border);
-        color: rgba(255, 255, 255, 0.6) !important;
+        border-top: 1px solid var(--border-color);
+        color: var(--text-muted) !important;
         position: relative;
-        overflow: hidden;
-    }
-
-    /* Hiệu ứng đường kẻ màu tím chạy phía trên footer */
-    .footer-modern::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
     }
 
     .footer-link {
-        color: rgba(255, 255, 255, 0.5) !important;
+        color: var(--text-muted) !important;
         text-decoration: none !important;
         transition: var(--transition-std);
         display: inline-flex;
         align-items: center;
-        padding: 5px 10px;
+        padding: 5px 12px;
         border-radius: 8px;
+        font-weight: 500;
     }
 
     .footer-link:hover {
-        color: #fff !important;
-        background: rgba(255, 255, 255, 0.05);
-        transform: translateY(-3px);
+        color: var(--accent-blue) !important;
+        background: #f1f5f9;
+        transform: translateY(-2px);
     }
 
     .footer-link i {
@@ -51,7 +40,7 @@
         transition: var(--transition-std);
     }
 
-    .footer-link:hover .fa-globe { color: #00d2ff; }
+    .footer-link:hover .fa-globe { color: var(--accent-blue); }
     .footer-link:hover .fa-youtube { color: #ff0000; }
 
     .copyright-text {
@@ -60,7 +49,7 @@
     }
 
     .brand-highlight {
-        color: var(--accent-purple);
+        color: var(--accent-blue);
         font-weight: 700;
         text-transform: uppercase;
     }

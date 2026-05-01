@@ -8,7 +8,16 @@ public class ProductCriteriaDTO {
     private Optional<List<String>> factory;
     private Optional<List<String>> target;
     private Optional<List<String>> price;
+    private Optional<String> name;
     private Optional<String> sort;
+
+    public Optional<String> getName() {
+        return name;
+    }
+
+    public void setName(Optional<String> name) {
+        this.name = name;
+    }
 
     public Optional<String> getPage() {
         return page;

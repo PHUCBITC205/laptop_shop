@@ -69,11 +69,17 @@ public class ProductService {
     public Page<Product> fetchProductsWithSpec(Pageable page, ProductCriteriaDTO productCriteriaDTO) {
         if (productCriteriaDTO.getTarget() == null
                 && productCriteriaDTO.getFactory() == null
-                && productCriteriaDTO.getPrice() == null) {
+                && productCriteriaDTO.getPrice() == null
+                && productCriteriaDTO.getName() == null) {
             return this.productRepository.findAll(page);
         }
 
         Specification<Product> combinedSpec = Specification.where(null);
+
+        if (productCriteriaDTO.getName() != null && productCriteriaDTO.getName().isPresent()) {
+            Specification<Product> currentSpecs = ProductSpecs.nameLike(productCriteriaDTO.getName().get());
+            combinedSpec = combinedSpec.and(currentSpecs);
+        }
 
         if (productCriteriaDTO.getTarget() != null && productCriteriaDTO.getTarget().isPresent()) {
             Specification<Product> currentSpecs = ProductSpecs.matchListTarget(productCriteriaDTO.getTarget().get());

@@ -4,19 +4,16 @@
         <style>
             /* Biến số để đồng nhất với Sidebar */
             :root {
-                --nav-bg: rgba(26, 28, 35, 0.85);
-                /* Dark Glass */
-                --accent-color: #7c4dff;
-                --glass-border: rgba(255, 255, 255, 0.1);
+                --nav-bg: #ffffff;
+                --accent-color: #0d6efd;
+                --border-color: #e2e8f0;
+                --text-dark: #334155;
                 --transition-fast: all 0.3s ease;
             }
 
             .sb-topnav {
                 background: var(--nav-bg) !important;
-                backdrop-filter: blur(12px);
-                /* Hiệu ứng kính mờ */
-                -webkit-backdrop-filter: blur(12px);
-                border-bottom: 1px solid var(--glass-border);
+                border-bottom: 1px solid var(--border-color);
                 padding-right: 1rem;
                 height: 65px;
             }
@@ -24,83 +21,68 @@
             /* Hiệu ứng Brand Logo */
             .navbar-brand {
                 font-weight: 800 !important;
-                letter-spacing: 1px;
+                letter-spacing: 0.5px;
                 font-size: 1.4rem !important;
                 transition: var(--transition-fast);
-                background: linear-gradient(45deg, #fff 30%, var(--accent-color) 100%);
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
+                color: var(--accent-color) !important;
             }
 
             .navbar-brand:hover {
-                transform: scale(1.05);
-                filter: brightness(1.2);
+                filter: brightness(0.8);
             }
 
             /* Nút Toggle Sidebar xoay tròn khi hover */
             #sidebarToggle {
                 transition: var(--transition-fast);
-                border-radius: 50%;
+                border-radius: 8px;
                 width: 40px;
                 height: 40px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: rgba(255, 255, 255, 0.7) !important;
+                color: var(--text-dark) !important;
             }
 
             #sidebarToggle:hover {
-                background: rgba(255, 255, 255, 0.1);
+                background: #f1f5f9;
                 color: var(--accent-color) !important;
-                transform: rotate(90deg);
             }
 
             /* User Name styling */
             .user-name-display {
-                font-weight: 500;
-                color: rgba(255, 255, 255, 0.9);
+                font-weight: 600;
+                color: var(--text-dark);
                 margin-right: 10px;
                 font-size: 0.9rem;
             }
 
             /* Dropdown Animation */
             .dropdown-menu {
-                border: none !important;
-                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
-                background: #212529 !important;
-                border: 1px solid var(--glass-border) !important;
-                transform: translateY(10px);
-                opacity: 0;
-                display: block;
-                visibility: hidden;
-                transition: all 0.3s ease;
-            }
-
-            .dropdown-menu.show {
-                transform: translateY(0);
-                opacity: 1;
-                visibility: visible;
+                border: 1px solid var(--border-color) !important;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+                background: #ffffff !important;
+                border-radius: 12px !important;
+                padding: 10px !important;
             }
 
             .dropdown-item {
-                color: rgba(255, 255, 255, 0.7) !important;
-                padding: 10px 20px !important;
+                color: var(--text-dark) !important;
+                padding: 10px 15px !important;
+                border-radius: 8px !important;
                 transition: var(--transition-fast);
             }
 
             .dropdown-item:hover {
-                background: var(--accent-color) !important;
-                color: #fff !important;
-                padding-left: 25px !important;
-                /* Hiệu ứng trượt nhẹ */
+                background: #f1f5f9 !important;
+                color: var(--accent-color) !important;
             }
 
             .dropdown-divider {
-                border-top: 1px solid var(--glass-border);
+                border-top: 1px solid var(--border-color);
             }
         </style>
 
-        <nav class="sb-topnav navbar navbar-expand navbar-dark">
+        <nav class="sb-topnav navbar navbar-expand navbar-light">
             <a class="navbar-brand ps-3" href="/admin">
                 <i class="fas fa-laptop me-2"></i>Laptopshop
             </a>

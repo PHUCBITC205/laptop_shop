@@ -46,28 +46,36 @@ public class OrderController {
 
     @GetMapping("/admin/order")
     public String getDashBoard(Model model,
-            @RequestParam("page") Optional<String> pageOptional) {
+            @RequestParam("page") Optional<String> pageOptional,
+            @RequestParam("status") Optional<String> statusOptional,
+            HttpServletRequest request) {
         int page = 1;
         try {
             if (pageOptional.isPresent()) {
-                // convert String to int
                 page = Integer.parseInt(pageOptional.get());
-
-            } else {
-                // page = 1 ;
             }
         } catch (Exception e) {
             // page = 1;
-            // TODO: handle exception
         }
-        Pageable pageable = PageRequest.of(page - 1, 4);
-        Page<Order> od = this.orderService.fetchOrder(pageable);
-        List<Order> order = od.getContent();
-        model.addAttribute("orders", order);
-        model.addAttribute("currentOrder", page);
-        model.addAttribute("totalOrder", od.getTotalPages());
+
+        String status = statusOptional.orElse("");
+        Pageable pageable = PageRequest.of(page - 1, 5);
+        Page<Order> prs = this.orderService.fetchOrdersWithSpec(pageable, status);
+        List<Order> listOrders = prs.getContent();
+
+        String qs = request.getQueryString();
+        if (qs != null && !qs.isBlank()) {
+            qs = qs.replace("page=" + page, "");
+        }
+
+        model.addAttribute("orders", listOrders);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", prs.getTotalPages());
+        model.addAttribute("queryString", qs);
+        model.addAttribute("currentStatus", status);
         return "admin/order/show";
     }
+
 
     @GetMapping("/admin/order/{id}")
 
@@ -95,8 +103,10 @@ public class OrderController {
     }
 
     @PostMapping("/admin/order/update")
-    public String handleUpdateOrder(@RequestParam("id") long id, @RequestParam("status") String status) {
-        this.orderService.updateOrderStatus(id, status);
+    public String handleUpdateOrder(@ModelAttribute("newOrder") Order order) {
+        this.orderService.updateOrderStatus(order.getId(), order.getStatus());
+        this.orderService.updateOrderInfo(order.getId(), order.getReceiverName(), order.getReceiverAddress(),
+                order.getReceiverPhone());
         return "redirect:/admin/order";
     }
 

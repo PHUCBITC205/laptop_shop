@@ -6,10 +6,12 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import vn.vietphuc.laptopshop.domain.Cart;
 import vn.vietphuc.laptopshop.domain.Order;
+import vn.vietphuc.laptopshop.domain.Order_;
 import vn.vietphuc.laptopshop.domain.OrderDetail;
 import vn.vietphuc.laptopshop.domain.User;
 import vn.vietphuc.laptopshop.repository.CartRepository;
@@ -31,6 +33,14 @@ public class OrderService {
 
     public Page<Order> fetchOrder(Pageable pageable) {
         return this.orderRepository.findAll(pageable);
+    }
+
+    public Page<Order> fetchOrdersWithSpec(Pageable pageable, String status) {
+        if (status == null || status.isBlank()) {
+            return this.orderRepository.findAll(pageable);
+        }
+        Specification<Order> spec = (root, query, cb) -> cb.equal(root.get("status"), status);
+        return this.orderRepository.findAll(spec, pageable);
     }
 
     public Optional<Order> fetchOrderById(long id) {

@@ -23,30 +23,30 @@
 
                 <style>
                     :root {
-                        --bg-dark: #12141a;
-                        --card-bg: rgba(255, 255, 255, 0.03);
-                        --accent-purple: #7c4dff;
-                        --border-glass: rgba(255, 255, 255, 0.1);
-                        --text-muted: #94a3b8;
+                        --bg-light: #f8fafc;
+                        --card-bg: #ffffff;
+                        --accent-blue: #0d6efd;
+                        --border-color: #e2e8f0;
+                        --text-dark: #334155;
+                        --text-muted: #64748b;
                     }
-
 
                     body {
                         font-family: 'Inter', sans-serif !important;
-                        background-color: var(--bg-dark) !important;
-                        color: #fff;
+                        background-color: var(--bg-light) !important;
+                        color: var(--text-dark);
                     }
 
                     #layoutSidenav_content {
-                        background-image: radial-gradient(circle at top right, rgba(124, 77, 255, 0.05), transparent);
+                        background-color: #f4f7f6;
                     }
 
                     /* Breadcrumb Style */
                     .breadcrumb {
                         background: var(--card-bg);
                         padding: 12px 20px;
-                        border-radius: 12px;
-                        border: 1px solid var(--border-glass);
+                        border-radius: 10px;
+                        border: 1px solid var(--border-color);
                     }
 
                     .breadcrumb-item a {
@@ -56,75 +56,58 @@
                     }
 
                     .breadcrumb-item a:hover {
-                        color: var(--accent-purple);
+                        color: var(--accent-blue);
                     }
 
                     .breadcrumb-item.active {
-                        color: var(--accent-purple) !important;
+                        color: var(--accent-blue) !important;
                         font-weight: 600;
                     }
 
                     /* Table Card Container */
                     .table-container {
                         background: var(--card-bg);
-                        backdrop-filter: blur(10px);
-                        border: 1px solid var(--border-glass);
-                        border-radius: 20px;
+                        border: 1px solid var(--border-color);
+                        border-radius: 16px;
                         padding: 25px;
-                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
                         margin-bottom: 30px;
-                        animation: fadeIn 0.6s ease-out;
-                    }
-
-                    @keyframes fadeIn {
-                        from {
-                            opacity: 0;
-                            transform: translateY(20px);
-                        }
-
-                        to {
-                            opacity: 1;
-                            transform: translateY(0);
-                        }
                     }
 
                     /* Custom Table Styling */
                     .table {
-                        color: #e2e8f0 !important;
-                        border-color: var(--border-glass) !important;
+                        color: var(--text-dark) !important;
                         vertical-align: middle;
                     }
 
                     .table thead th {
-                        background: rgba(124, 77, 255, 0.1);
-                        color: var(--accent-purple);
+                        background: #f8fafc;
+                        color: var(--text-muted);
                         text-transform: uppercase;
                         font-size: 0.75rem;
                         letter-spacing: 1px;
                         font-weight: 700;
-                        border: none;
-                        /* padding: 15px; */
+                        padding: 15px;
+                        border-bottom: 2px solid var(--border-color) !important;
                     }
 
                     .table tbody tr {
                         transition: 0.3s;
-                        border-bottom: 1px solid var(--border-glass);
+                        border-bottom: 1px solid var(--border-color);
                     }
 
                     .table tbody tr:hover {
-                        background: rgba(255, 255, 255, 0.02) !important;
+                        background: #f1f5f9 !important;
                     }
 
-                    .table td,
-                    .table th {
+                    .table td {
                         padding: 15px;
-                        border: none !important;
                     }
 
                     /* Status Badge for Roles */
                     .role-badge {
-                        background: rgba(124, 77, 255, 0.2);
-                        color: var(--accent-purple);
+                        background: #e0f2fe;
+                        color: #0369a1;
                         padding: 4px 12px;
                         border-radius: 20px;
                         font-size: 0.8rem;
@@ -133,19 +116,17 @@
 
                     /* Modern Buttons */
                     .btn-create {
-                        background: linear-gradient(135deg, var(--accent-purple) 0%, #a259ff 100%);
+                        background: var(--accent-blue);
                         border: none;
                         padding: 10px 24px;
-                        border-radius: 12px;
+                        border-radius: 10px;
                         font-weight: 600;
-                        box-shadow: 0 4px 15px rgba(124, 77, 255, 0.3);
-                        transition: 0.3s;
+                        box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
                     }
 
                     .btn-create:hover {
+                        background: #0b5ed7;
                         transform: translateY(-2px);
-                        box-shadow: 0 6px 20px rgba(124, 77, 255, 0.4);
-                        filter: brightness(1.1);
                     }
 
                     .btn-action {
@@ -154,53 +135,47 @@
                         display: inline-flex;
                         align-items: center;
                         justify-content: center;
-                        border-radius: 10px;
+                        border-radius: 8px;
                         transition: 0.3s;
                         margin: 0 2px;
                     }
 
                     /* Pagination Styling */
-                    /* Tinh chỉnh Pagination phong cách Modern Dark */
-                    .pagination {
-                        gap: 8px;
-                        /* Khoảng cách giữa các nút số */
-                    }
-
                     .pagination .page-item .page-link {
-                        background: rgba(255, 255, 255, 0.03) !important;
-                        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                        background: #ffffff !important;
+                        border: 1px solid var(--border-color) !important;
                         color: var(--text-muted) !important;
-                        border-radius: 10px !important;
-                        padding: 10px 18px;
-                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        border-radius: 8px !important;
+                        padding: 8px 16px;
                         font-weight: 600;
                     }
 
-                    /* Hiệu ứng khi Hover vào các nút số */
-                    .pagination .page-item:not(.active):not(.disabled) .page-link:hover {
-                        background: rgba(124, 77, 255, 0.1) !important;
-                        color: var(--accent-purple) !important;
-                        border-color: var(--accent-purple) !important;
-                        transform: translateY(-3px);
-                    }
-
-                    /* Trạng thái trang HIỆN TẠI (Active) */
                     .pagination .page-item.active .page-link {
-                        background: linear-gradient(135deg, var(--accent-purple) 0%, #a259ff 100%) !important;
+                        background: var(--accent-blue) !important;
                         color: #fff !important;
-                        border: none !important;
-                        box-shadow: 0 0 15px rgba(124, 77, 255, 0.5);
-                        /* Hiệu ứng phát sáng */
-                        transform: scale(1.1);
-                        /* Phóng to nhẹ trang đang đứng */
+                        border-color: var(--accent-blue) !important;
                     }
 
-                    /* Trạng thái nút bị vô hiệu hóa (Disabled) */
-                    .pagination .page-item.disabled .page-link {
-                        background: rgba(255, 255, 255, 0.01) !important;
-                        border-color: rgba(255, 255, 255, 0.05) !important;
-                        color: rgba(255, 255, 255, 0.1) !important;
-                        cursor: not-allowed;
+                    /* Modal Light Style */
+                    .modal-content {
+                        background: #ffffff !important;
+                        border-radius: 20px !important;
+                        border: none !important;
+                        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+                    }
+
+                    .modal-header h5 {
+                        color: var(--text-dark) !important;
+                    }
+
+                    .modal-body p.text-white {
+                        color: var(--text-dark) !important;
+                    }
+
+                    .modal-footer .btn-secondary {
+                        background: #f1f5f9 !important;
+                        color: var(--text-dark) !important;
+                        border: 1px solid var(--border-color) !important;
                     }
                 </style>
             </head>
@@ -220,7 +195,7 @@
 
                                 <div class="table-container">
                                     <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <h3 class="m-0" style="font-weight: 700; color: #fff;">Danh sách thành viên</h3>
+                                        <h3 class="m-0" style="font-weight: 700; color: var(--text-dark);">Danh sách thành viên</h3>
                                         <a href="/admin/user/create" class="btn btn-primary btn-create">
                                             <i class="fas fa-user-plus me-2"></i>Thêm người dùng
                                         </a>
@@ -245,7 +220,7 @@
                                                         <td>
                                                             <div class="d-flex align-items-center">
                                                                 <div class="avatar-circle me-3"
-                                                                    style="width: 40px; height: 40px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-glass);">
+                                                                    style="width: 40px; height: 40px; background: #f8fafc; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color);">
                                                                     <i class="fas fa-envelope text-muted"
                                                                         style="font-size: 0.9rem;"></i>
                                                                 </div>
@@ -263,10 +238,14 @@
                                                                 class="btn btn-action btn-outline-warning" title="Sửa">
                                                                 <i class="fas fa-edit"></i>
                                                             </a>
-                                                            <a href="/admin/user/delete/${user.id}"
-                                                                class="btn btn-action btn-outline-danger" title="Xóa">
+                                                            <button 
+                                                                class="btn btn-action btn-outline-danger btn-delete-user" 
+                                                                title="Xóa"
+                                                                data-id="${user.id}"
+                                                                data-bs-toggle="modal" 
+                                                                data-bs-target="#deleteUserModal">
                                                                 <i class="fas fa-trash-alt"></i>
-                                                            </a>
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -308,7 +287,46 @@
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                     crossorigin="anonymous"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
                 <script src="/js/scripts.js"></script>
+
+                <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header border-0 pt-4 px-4">
+                                <h5 class="modal-title fw-bold" id="deleteModalLabel">Xác nhận xóa người dùng</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-4 py-3">
+                                <div class="text-center mb-4">
+                                    <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 rounded-circle mb-3" style="width: 80px; height: 80px;">
+                                        <i class="fas fa-exclamation-triangle text-danger fs-1"></i>
+                                    </div>
+                                    <p class="mb-1 fw-bold fs-5">Bạn có chắc chắn muốn xóa?</p>
+                                    <p class="text-muted">Hành động này sẽ xóa vĩnh viễn tài khoản có mã <span id="displayUserId" class="badge bg-secondary"></span>. Không thể hoàn tác sau khi thực hiện.</p>
+                                </div>
+                            </div>
+                            <div class="modal-footer border-0 pb-4 px-4 gap-2">
+                                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Hủy bỏ</button>
+                                <form action="/admin/user/delete" method="post">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <input type="hidden" name="id" id="inputUserId" />
+                                    <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">XÁC NHẬN XÓA</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    $(document).ready(function() {
+                        $('.btn-delete-user').click(function() {
+                            const userId = $(this).data('id');
+                            $('#displayUserId').text(userId);
+                            $('#inputUserId').val(userId);
+                        });
+                    });
+                </script>
             </body>
 
             </html>

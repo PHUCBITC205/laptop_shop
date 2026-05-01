@@ -18,30 +18,31 @@
 
                 <style>
                     :root {
-                        --bg-dark: #0f111a;
-                        --card-glass: rgba(255, 255, 255, 0.03);
-                        --accent-purple: #7c4dff;
-                        --border-glass: rgba(255, 255, 255, 0.1);
-                        --text-muted: #94a3b8;
+                        --bg-light: #f8fafc;
+                        --card-bg: #ffffff;
+                        --accent-blue: #0d6efd;
+                        --border-color: #e2e8f0;
+                        --text-dark: #334155;
+                        --text-muted: #64748b;
+                        --input-bg: #ffffff;
                     }
 
                     body {
                         font-family: 'Inter', sans-serif !important;
-                        background-color: var(--bg-dark) !important;
-                        color: #fff;
+                        background-color: var(--bg-light) !important;
+                        color: var(--text-dark);
                     }
 
                     #layoutSidenav_content {
-                        background-image: radial-gradient(circle at top right, rgba(124, 77, 255, 0.05), transparent);
+                        background-color: #f4f7f6;
                     }
 
                     .settings-card {
-                        background: var(--card-glass);
-                        backdrop-filter: blur(15px);
-                        border: 1px solid var(--border-glass);
-                        border-radius: 24px;
+                        background: var(--card-bg);
+                        border: 1px solid var(--border-color);
+                        border-radius: 16px;
                         padding: 40px;
-                        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
                         animation: fadeInUp 0.6s ease-out;
                     }
 
@@ -58,41 +59,44 @@
                     }
 
                     .form-control {
-                        background: rgba(255, 255, 255, 0.05);
-                        border: 1px solid var(--border-glass);
-                        color: #fff;
+                        background: var(--input-bg) !important;
+                        border: 1px solid var(--border-color) !important;
+                        color: var(--text-dark) !important;
                         padding: 12px 20px;
-                        border-radius: 12px;
+                        border-radius: 10px;
                     }
 
                     .form-control:focus {
-                        background: rgba(255, 255, 255, 0.08);
-                        border-color: var(--accent-purple);
-                        color: #fff;
-                        box-shadow: 0 0 0 4px rgba(124, 77, 255, 0.15);
+                        border-color: var(--accent-blue) !important;
+                        box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1) !important;
                     }
 
                     .form-label {
-                        font-weight: 600;
-                        color: var(--text-muted);
+                        font-weight: 700;
+                        color: var(--text-dark);
                         margin-bottom: 8px;
-                        font-size: 0.9rem;
+                        font-size: 0.8rem;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
                     }
 
                     .btn-primary {
-                        background: linear-gradient(135deg, var(--accent-purple) 0%, #a259ff 100%);
-                        border: none;
-                        padding: 12px 30px;
-                        border-radius: 12px;
-                        font-weight: 600;
-                        letter-spacing: 0.5px;
-                        transition: 0.3s;
+                        background: var(--accent-blue) !important;
+                        border: none !important;
+                        padding: 12px 30px !important;
+                        border-radius: 10px !important;
+                        font-weight: 600 !important;
+                        transition: all 0.3s ease !important;
                     }
 
                     .btn-primary:hover {
-                        background-color: #0b5ed7;
+                        background: #0b5ed7 !important;
                         transform: translateY(-2px);
-                        box-shadow: 0 6px 14px rgba(13, 110, 253, 0.4);
+                        box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2) !important;
+                    }
+                    
+                    .alert {
+                        border-radius: 10px;
                     }
                 </style>
             </head>

@@ -20,144 +20,122 @@
                         rel="stylesheet">
                     <jsp:include page="/WEB-INF/view/client/layout/favicon.jsp" />
 
-                    <style>
-                        :root {
-                            --bg-dark: #0f111a;
-                            --card-glass: rgba(255, 255, 255, 0.03);
-                            --accent-purple: #7c4dff;
-                            --border-glass: rgba(255, 255, 255, 0.1);
-                            --text-muted: #94a3b8;
-                            --input-bg: rgba(255, 255, 255, 0.05);
-                        }
+                <style>
+                    :root {
+                        --bg-light: #f8fafc;
+                        --card-bg: #ffffff;
+                        --accent-blue: #0d6efd;
+                        --border-color: #e2e8f0;
+                        --text-dark: #334155;
+                        --text-muted: #64748b;
+                        --input-bg: #ffffff;
+                    }
 
-                        body {
-                            font-family: 'Inter', sans-serif !important;
-                            background-color: var(--bg-dark) !important;
-                            color: #fff;
-                        }
+                    body {
+                        font-family: 'Inter', sans-serif !important;
+                        background-color: var(--bg-light) !important;
+                        color: var(--text-dark);
+                    }
 
-                        #layoutSidenav_content {
-                            background-image: radial-gradient(circle at top right, rgba(124, 77, 255, 0.05), transparent);
-                        }
+                    #layoutSidenav_content {
+                        background-color: #f4f7f6;
+                    }
 
-                        /* Form Container Style */
-                        .update-form-container {
-                            background: var(--card-glass);
-                            backdrop-filter: blur(15px);
-                            border: 1px solid var(--border-glass);
-                            border-radius: 24px;
-                            padding: 40px;
-                            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-                            animation: fadeInUp 0.6s ease-out;
-                            margin-bottom: 50px;
-                        }
+                    /* Form Container Style */
+                    .update-form-container {
+                        background: var(--card-bg);
+                        border: 1px solid var(--border-color);
+                        border-radius: 16px;
+                        padding: 40px;
+                        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                        margin-bottom: 50px;
+                    }
 
-                        @keyframes fadeInUp {
-                            from {
-                                opacity: 0;
-                                transform: translateY(30px);
-                            }
+                    /* Input Styling */
+                    .form-label {
+                        font-weight: 700;
+                        font-size: 0.8rem;
+                        color: var(--text-dark);
+                        margin-bottom: 8px;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                    }
 
-                            to {
-                                opacity: 1;
-                                transform: translateY(0);
-                            }
-                        }
+                    .form-control,
+                    .form-select {
+                        background-color: var(--input-bg) !important;
+                        border: 1px solid var(--border-color) !important;
+                        color: var(--text-dark) !important;
+                        border-radius: 10px !important;
+                        padding: 10px 15px !important;
+                        transition: all 0.2s ease !important;
+                    }
 
-                        /* Input Styling */
-                        .form-label {
-                            font-weight: 600;
-                            font-size: 0.85rem;
-                            color: var(--text-muted);
-                            margin-bottom: 8px;
-                            text-transform: uppercase;
-                            letter-spacing: 0.5px;
-                        }
+                    .form-control:focus,
+                    .form-select:focus {
+                        border-color: var(--accent-blue) !important;
+                        box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1) !important;
+                        outline: none;
+                    }
 
-                        .form-control,
-                        .form-select {
-                            background-color: var(--input-bg) !important;
-                            border: 1px solid var(--border-glass) !important;
-                            color: #fff !important;
-                            border-radius: 12px !important;
-                            padding: 12px 15px !important;
-                            transition: all 0.3s ease !important;
-                        }
+                    /* Avatar Preview Section */
+                    .avatar-upload-section {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        border: 2px dashed var(--border-color);
+                        border-radius: 16px;
+                        padding: 20px;
+                        transition: 0.3s;
+                        background: #f8fafc;
+                    }
 
-                        .form-control:focus,
-                        .form-select:focus {
-                            background-color: rgba(255, 255, 255, 0.08) !important;
-                            border-color: var(--accent-purple) !important;
-                            box-shadow: 0 0 0 4px rgba(124, 77, 255, 0.15) !important;
-                            outline: none;
-                        }
+                    #avatarPreview {
+                        width: 130px;
+                        height: 130px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        border: 4px solid #fff;
+                        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                        margin-bottom: 15px;
+                    }
 
-                        /* Avatar Preview Section */
-                        .avatar-upload-section {
-                            display: flex;
-                            flex-direction: column;
-                            align-items: center;
-                            justify-content: center;
-                            border: 2px dashed var(--border-glass);
-                            border-radius: 20px;
-                            padding: 20px;
-                            transition: 0.3s;
-                            background: rgba(255, 255, 255, 0.01);
-                        }
+                    /* Buttons */
+                    .btn-update {
+                        background: #ffc107;
+                        border: none;
+                        color: #000;
+                        font-weight: 700;
+                        padding: 12px 30px;
+                        border-radius: 10px;
+                        box-shadow: 0 4px 10px rgba(255, 193, 7, 0.2);
+                        transition: all 0.3s;
+                        width: 100%;
+                    }
 
-                        .avatar-upload-section:hover {
-                            border-color: var(--accent-purple);
-                            background: rgba(124, 77, 255, 0.02);
-                        }
+                    .btn-update:hover {
+                        background: #ffca2c;
+                        transform: translateY(-2px);
+                    }
 
-                        #avatarPreview {
-                            width: 150px;
-                            height: 150px;
-                            object-fit: cover;
-                            border-radius: 50%;
-                            border: 3px solid var(--accent-purple);
-                            box-shadow: 0 0 15px rgba(124, 77, 255, 0.3);
-                            margin-bottom: 15px;
-                        }
+                    .btn-cancel {
+                        background: #f1f5f9;
+                        border: 1px solid var(--border-color);
+                        color: var(--text-dark);
+                        padding: 12px 30px;
+                        border-radius: 10px;
+                        transition: 0.3s;
+                        text-decoration: none;
+                        display: inline-block;
+                        text-align: center;
+                        width: 100%;
+                    }
 
-                        /* Buttons */
-                        .btn-update {
-                            background: linear-gradient(135deg, #ffca28 0%, #ff8f00 100%);
-                            border: none;
-                            color: #000;
-                            font-weight: 700;
-                            padding: 12px 30px;
-                            border-radius: 12px;
-                            text-transform: uppercase;
-                            letter-spacing: 1px;
-                            transition: all 0.3s;
-                            width: 100%;
-                        }
-
-                        .btn-update:hover {
-                            transform: translateY(-3px);
-                            box-shadow: 0 10px 20px rgba(255, 143, 0, 0.3);
-                            filter: brightness(1.1);
-                        }
-
-                        .btn-cancel {
-                            background: rgba(255, 255, 255, 0.05);
-                            border: 1px solid var(--border-glass);
-                            color: #fff;
-                            padding: 12px 30px;
-                            border-radius: 12px;
-                            transition: 0.3s;
-                            text-decoration: none;
-                            display: inline-block;
-                            text-align: center;
-                            width: 100%;
-                        }
-
-                        .btn-cancel:hover {
-                            background: rgba(255, 255, 255, 0.1);
-                            color: #fff;
-                        }
-                    </style>
+                    .btn-cancel:hover {
+                        background: #e2e8f0;
+                    }
+                </style>
 
                     <script>
                         $(document).ready(() => {

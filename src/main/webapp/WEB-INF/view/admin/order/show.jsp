@@ -18,90 +18,152 @@
 
     <style>
         :root {
-            --bg-dark: #0f111a;
-            --card-glass: rgba(255, 255, 255, 0.03);
-            --accent-purple: #7c4dff;
-            --border-glass: rgba(255, 255, 255, 0.1);
-            --text-muted: #94a3b8;
-            --money-green: #10b981;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --accent-blue: #0d6efd;
+            --border-color: #e2e8f0;
+            --text-dark: #334155;
+            --text-muted: #64748b;
         }
 
         body {
             font-family: 'Inter', sans-serif !important;
-            background-color: var(--bg-dark) !important;
-            color: #fff;
+            background-color: var(--bg-light) !important;
+            color: var(--text-dark);
         }
 
         #layoutSidenav_content {
-            background-image: radial-gradient(circle at top right, rgba(124, 77, 255, 0.05), transparent);
+            background-color: #f4f7f6;
         }
 
-        /* Container & Table Style */
+        /* Breadcrumb Style */
+        .breadcrumb {
+            background: var(--card-bg);
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .breadcrumb-item a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: var(--accent-blue) !important;
+            font-weight: 600;
+        }
+
+        /* Table Card Container */
         .table-container {
-            background: var(--card-glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--border-glass);
-            border-radius: 24px;
-            padding: 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            animation: fadeInUp 0.6s ease-out;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
         }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Custom Table Styling */
+        .table {
+            color: var(--text-dark) !important;
+            vertical-align: middle;
         }
 
-        .table { color: #e2e8f0 !important; border-color: var(--border-glass) !important; vertical-align: middle; }
         .table thead th {
-            background: rgba(124, 77, 255, 0.1);
-            color: var(--accent-purple);
+            background: #f8fafc;
+            color: var(--text-muted);
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 1px;
             font-weight: 700;
-            padding: 18px;
-            border: none;
+            padding: 15px;
+            border-bottom: 2px solid var(--border-color) !important;
         }
 
-        .table tbody tr { transition: 0.3s; border-bottom: 1px solid var(--border-glass); }
-        .table tbody tr:hover { background: rgba(255, 255, 255, 0.02) !important; }
-
-        /* Price Highlight */
-        .price-text { color: var(--money-green); font-weight: 700; font-size: 1.05rem; }
-
-        /* Order Status Badges */
-        .status-badge {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            display: inline-block;
-        }
-        .status-pending { background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3); }
-        .status-completed { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); }
-        .status-shipping { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
-        .status-cancelled { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
-
-        /* Buttons */
-        .btn-action { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; border-radius: 10px; margin: 0 3px; transition: 0.3s; }
-        .btn-action:hover { transform: translateY(-3px); }
-
-        /* Pagination Style */
-        .pagination .page-link {
-            background: rgba(255, 255, 255, 0.03) !important;
-            border: 1px solid var(--border-glass) !important;
-            color: #fff !important;
-            margin: 0 4px;
-            border-radius: 10px !important;
-            padding: 10px 18px;
+        .table tbody tr {
+            border-bottom: 1px solid var(--border-color);
             transition: 0.3s;
         }
+
+        .table tbody tr:hover {
+            background: #f1f5f9 !important;
+        }
+
+        .table td {
+            padding: 15px;
+        }
+
+        /* Badge Status Styling */
+        .badge {
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        /* Buttons & Actions */
+        .btn-create {
+            background: var(--accent-blue);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2);
+        }
+
+        .btn-create:hover {
+            background: #0b5ed7;
+            transform: translateY(-2px);
+        }
+
+        .btn-action {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: 0.3s;
+            margin: 0 2px;
+        }
+
+        /* Pagination Styling */
+        .pagination .page-item .page-link {
+            background: #ffffff !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-muted) !important;
+            border-radius: 8px !important;
+            padding: 8px 16px;
+            font-weight: 600;
+        }
+
         .pagination .page-item.active .page-link {
-            background: linear-gradient(135deg, var(--accent-purple) 0%, #a259ff 100%) !important;
+            background: var(--accent-blue) !important;
+            color: #fff !important;
+            border-color: var(--accent-blue) !important;
+        }
+
+        /* Modal Light Style */
+        .modal-content {
+            background: #ffffff !important;
+            border-radius: 20px !important;
             border: none !important;
-            box-shadow: 0 0 15px rgba(124, 77, 255, 0.4);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header h5 {
+            color: var(--text-dark) !important;
+        }
+
+        .modal-body p.text-white {
+            color: var(--text-dark) !important;
+        }
+
+        .modal-footer .btn-secondary {
+            background: #f1f5f9 !important;
+            color: var(--text-dark) !important;
+            border: 1px solid var(--border-color) !important;
         }
     </style>
 </head>
@@ -118,6 +180,29 @@
                         <li class="breadcrumb-item"><a href="/admin" class="text-decoration-none" style="color: var(--text-muted);">Dashboard</a></li>
                         <li class="breadcrumb-item active">Đơn hàng</li>
                     </ol>
+
+                    <div class="table-container mb-4">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-md-4">
+                                <select class="form-select" id="adminStatusFilter">
+                                    <option value="">-- Tất cả trạng thái --</option>
+                                    <option value="UNPAID">💳 Chưa thanh toán (UNPAID)</option>
+                                    <option value="PENDING">🕒 Chờ xử lý (PENDING)</option>
+                                    <option value="SHIPPING">🚚 Đang giao hàng (SHIPPING)</option>
+                                    <option value="COMPLETE">✅ Hoàn thành (COMPLETE)</option>
+                                    <option value="CANCEL">❌ Đã hủy (CANCEL)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8 d-flex gap-2">
+                                <button class="btn btn-primary px-4 fw-bold" id="adminBtnFilterOrder">
+                                    Lọc đơn hàng
+                                </button>
+                                <button class="btn btn-outline-secondary" id="adminBtnRefreshOrder" title="Làm mới">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="table-container mb-5">
                         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -147,7 +232,7 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <div class="me-2" style="width: 32px; height: 32px; background: rgba(255,255,255,0.05); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                                    <div class="me-2" style="width: 32px; height: 32px; background: #f8fafc; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-color);">
                                                         <i class="fas fa-user-circle text-muted"></i>
                                                     </div>
                                                     <span>${order.user.fullName}</span>
@@ -176,9 +261,14 @@
                                                 <a href="/admin/order/update/${order.id}" class="btn-action btn btn-outline-warning" title="Cập nhật">
                                                     <i class="fas fa-pen-to-square"></i>
                                                 </a>
-                                                <a href="/admin/order/delete/${order.id}" class="btn-action btn btn-outline-danger" title="Hủy đơn">
-                                                    <i class="fas fa-trash-can"></i>
-                                                </a>
+                                                <button 
+                                                    class="btn btn-action btn-outline-danger btn-delete-order" 
+                                                    title="Xóa"
+                                                    data-id="${order.id}"
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#deleteOrderModal">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -188,24 +278,22 @@
 
                         <nav aria-label="Page navigation" class="mt-4">
                             <ul class="pagination justify-content-center">
-                                <li class="page-item ${currentOrder <= 1 ? 'disabled' : ''}">
-                                    <a class="page-link" href="/admin/order?page=${currentOrder - 1}">
+                                <li class="page-item ${currentPage <= 1 ? 'disabled' : ''}">
+                                    <a class="page-link" href="/admin/order?page=${currentPage - 1}${queryString}">
                                         <i class="fas fa-chevron-left"></i>
                                     </a>
                                 </li>
-
-                                <c:if test="${totalOrder > 0}">
-                                    <c:forEach begin="0" end="${totalOrder - 1}" varStatus="loop">
-                                        <li class="page-item ${(loop.index + 1) eq currentOrder ? 'active' : ''}">
-                                            <a class="page-link" href="/admin/order?page=${loop.index + 1}">
+                                <c:if test="${totalPages > 0}">
+                                    <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
+                                        <li class="page-item ${(loop.index + 1) eq currentPage ? 'active' : ''}">
+                                            <a class="page-link" href="/admin/order?page=${loop.index + 1}${queryString}">
                                                 ${loop.index + 1}
                                             </a>
                                         </li>
                                     </c:forEach>
                                 </c:if>
-
-                                <li class="page-item ${currentOrder >= totalOrder ? 'disabled' : ''}">
-                                    <a class="page-link" href="/admin/order?page=${currentOrder + 1}">
+                                <li class="page-item ${currentPage >= totalPages ? 'disabled' : ''}">
+                                    <a class="page-link" href="/admin/order?page=${currentPage + 1}${queryString}">
                                         <i class="fas fa-chevron-right"></i>
                                     </a>
                                 </li>
@@ -218,7 +306,72 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="/js/scripts.js"></script>
+
+    <div class="modal fade" id="deleteOrderModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pt-4 px-4">
+                    <h5 class="modal-title fw-bold" id="deleteModalLabel">Xác nhận xóa đơn hàng</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-4 py-3">
+                    <div class="text-center mb-4">
+                        <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 rounded-circle mb-3" style="width: 80px; height: 80px;">
+                            <i class="fas fa-file-invoice-dollar text-danger fs-1"></i>
+                        </div>
+                        <p class="mb-1 fw-bold fs-5">Bạn có chắc chắn muốn xóa đơn hàng này?</p>
+                        <p class="text-muted">Mã đơn hàng: <span id="displayOrderId" class="badge bg-secondary"></span>. Dữ liệu liên quan sẽ bị xóa vĩnh viễn.</p>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pb-4 px-4 gap-2">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <form action="/admin/order/delete" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        <input type="hidden" name="id" id="inputOrderId" />
+                        <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">XÁC NHẬN XÓA</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Xử lý Modal xóa đơn hàng
+            $('.btn-delete-order').click(function() {
+                const orderId = $(this).data('id');
+                $('#displayOrderId').text(orderId);
+                $('#inputOrderId').val(orderId);
+            });
+
+            // Lấy tham số từ URL để đổ lại vào dropdown
+            const params = new URLSearchParams(window.location.search);
+            if (params.has('status')) $('#adminStatusFilter').val(params.get('status'));
+
+            // Xử lý nút Lọc
+            $('#adminBtnFilterOrder').click(function () {
+                const status = $('#adminStatusFilter').val();
+                const currentUrl = new URL(window.location.href);
+                const searchParams = currentUrl.searchParams;
+
+                searchParams.set('page', '1');
+                if (status && status !== '') {
+                    searchParams.set('status', status);
+                } else {
+                    searchParams.delete('status');
+                }
+
+                window.location.href = currentUrl.toString();
+            });
+
+            // Xử lý nút Refresh
+            $('#adminBtnRefreshOrder').click(function () {
+                window.location.href = '/admin/order';
+            });
+        });
+    </script>
 </body>
 
 </html>

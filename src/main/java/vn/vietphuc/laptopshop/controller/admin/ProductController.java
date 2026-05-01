@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import vn.vietphuc.laptopshop.domain.Product;
+import vn.vietphuc.laptopshop.domain.dto.ProductCriteriaDTO;
 import vn.vietphuc.laptopshop.service.ProductService;
 import vn.vietphuc.laptopshop.service.UploadService;
 
@@ -43,28 +45,29 @@ public class ProductController {
     }
 
     @GetMapping("/admin/product")
-    public String getProduct(Model model,
-            @RequestParam("page") Optional<String> pageOptional) {
+    public String getProduct(Model model, ProductCriteriaDTO productCriteriaDTO, HttpServletRequest request) {
         int page = 1;
         try {
-            if (pageOptional.isPresent()) {
-                // convert String to int
-                page = Integer.parseInt(pageOptional.get());
-
-            } else {
-                // page = 1 ;
+            if (productCriteriaDTO.getPage().isPresent()) {
+                page = Integer.parseInt(productCriteriaDTO.getPage().get());
             }
         } catch (Exception e) {
             // page = 1;
-            // TODO: handle exception
         }
 
-        Pageable pageable = PageRequest.of(page - 1, 4);
-        Page<Product> prs = this.productService.fetchProducts(pageable);
+        Pageable pageable = PageRequest.of(page - 1, 5);
+        Page<Product> prs = this.productService.fetchProductsWithSpec(pageable, productCriteriaDTO);
         List<Product> listProducts = prs.getContent();
+
+        String qs = request.getQueryString();
+        if (qs != null && !qs.isBlank()) {
+            qs = qs.replace("page=" + page, "");
+        }
+
         model.addAttribute("products", listProducts);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", prs.getTotalPages());
+        model.addAttribute("queryString", qs);
         return "admin/product/show";
     }
 

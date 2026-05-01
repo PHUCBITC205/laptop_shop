@@ -4,16 +4,19 @@
 <style>
     /* Định nghĩa các biến màu sắc hiện đại */
     :root {
-        --sidebar-bg: #1a1c23;
-        --accent-color: #7c4dff; /* Màu tím hiện đại */
-        --hover-bg: rgba(124, 77, 255, 0.15);
-        --text-muted: #9e9e9e;
-        --transition-speed: 0.4s;
+        /* Chuyển sang tông màu sáng chuyên nghiệp */
+        --sidebar-bg: #ffffff;
+        --accent-color: #0d6efd; /* Blue primary */
+        --hover-bg: #f1f5f9;
+        --text-muted: #64748b;
+        --text-dark: #334155;
+        --transition-speed: 0.3s;
     }
 
     #layoutSidenav_nav {
         background-color: var(--sidebar-bg);
-        box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3);
+        border-right: 1px solid #e2e8f0;
+        box-shadow: none;
     }
 
     .sb-sidenav-dark {
@@ -27,20 +30,19 @@
     }
 
     .nav-link {
-        color: rgba(255, 255, 255, 0.7) !important;
-        margin: 8px 15px;
-        border-radius: 12px !important;
-        transition: all var(--transition-speed) cubic-bezier(0.4, 0, 0.2, 1) !important; /* Cải tiến từ transition cũ [cite: 2] */
-        padding: 12px 15px !important;
-        animation: fadeInUp 0.5s ease-out forwards;
+        color: var(--text-dark) !important;
+        margin: 5px 15px;
+        border-radius: 8px !important;
+        transition: all var(--transition-speed) ease !important;
+        padding: 10px 15px !important;
+        font-weight: 500;
     }
 
     /* Tinh chỉnh hiệu ứng Hover */
     .nav-link:hover {
-        background-color: var(--hover-bg) !important; /* Sáng hơn so với bản cũ [cite: 3] */
-        color: #fff !important;
-        transform: translateX(8px) scale(1.02) !important; /* Di chuyển xa hơn và phóng to nhẹ [cite: 4] */
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        background-color: var(--hover-bg) !important;
+        color: var(--accent-color) !important;
+        transform: translateX(5px) !important;
     }
 
     /* Hiệu ứng xoay nhẹ icon khi hover */
@@ -67,13 +69,13 @@
 
     /* Sidebar Footer phong cách mới */
     .sb-sidenav-footer {
-        background-color: rgba(0, 0, 0, 0.2) !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+        background-color: #f8fafc !important;
+        border-top: 1px solid #e2e8f0 !important;
         padding: 1rem 1.5rem !important;
     }
 
     .footer-user-name {
-        color: #fff;
+        color: var(--text-dark);
         font-weight: 600;
         display: block;
         margin-top: 4px;

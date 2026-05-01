@@ -260,6 +260,9 @@
         //sort order
         let sortValue = $('input[name="radio-sort"]:checked').val();
 
+        //keyword search
+        let nameSearch = $('#nameSearch').val();
+
         const currentUrl = new URL(window.location.href);
         const searchParams = currentUrl.searchParams;
 
@@ -267,11 +270,11 @@
         searchParams.set('page', '1');
         searchParams.set('sort', sortValue);
 
-
         //reset 
         searchParams.delete('factory');
         searchParams.delete('target');
         searchParams.delete('price');
+        searchParams.delete('name');
 
         if (factoryArr.length > 0) {
             searchParams.set('factory', factoryArr.join(','));
@@ -282,9 +285,32 @@
         if (priceArr.length > 0) {
             searchParams.set('price', priceArr.join(','));
         }
+        if (nameSearch.trim() !== '') {
+            searchParams.set('name', nameSearch.trim());
+        }
 
         // Update the URL and reload the page
         window.location.href = currentUrl.toString();
+    });
+
+    //handle refresh filters
+    $('#btnRefresh').click(function (event) {
+        event.preventDefault();
+        window.location.href = '/products';
+    });
+
+    //handle search icon click
+    $('#btnSearch').click(function (event) {
+        event.preventDefault();
+        $('#btnFilter').click();
+    });
+
+    //handle enter key in search input
+    $('#nameSearch').keypress(function (event) {
+        if (event.which == 13) { // Enter key
+            event.preventDefault();
+            $('#btnFilter').click();
+        }
     });
 
     //handle auto checkbox after page loading
@@ -319,6 +345,12 @@
     if (params.has('sort')) {
         const sort = params.get('sort');
         $(`input[type="radio"][name="radio-sort"][value="${sort}"]`).prop('checked', true);
+    }
+
+    // Set input for 'name'
+    if (params.has('name')) {
+        const name = params.get('name');
+        $(`#nameSearch`).val(name);
     }
 
 })(jQuery);

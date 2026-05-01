@@ -17,46 +17,40 @@
 
     <style>
         :root {
-            --bg-dark: #0f111a;
-            --card-glass: rgba(255, 255, 255, 0.03);
-            --accent-purple: #7c4dff;
-            --border-glass: rgba(255, 255, 255, 0.1);
-            --text-muted: #94a3b8;
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
+            --accent-blue: #0d6efd;
+            --border-color: #e2e8f0;
+            --text-dark: #334155;
+            --text-muted: #64748b;
             --success-green: #10b981;
         }
 
         body {
             font-family: 'Inter', sans-serif !important;
-            background-color: var(--bg-dark) !important;
-            color: #fff;
+            background-color: var(--bg-light) !important;
+            color: var(--text-dark);
         }
 
         #layoutSidenav_content {
-            background-image: radial-gradient(circle at top right, rgba(124, 77, 255, 0.05), transparent);
+            background-color: #f4f7f6;
         }
 
         /* Container & Animation */
         .showcase-container {
-            background: var(--card-glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--border-glass);
-            border-radius: 28px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             padding: 40px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-            animation: slideUpFade 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             margin-bottom: 50px;
-        }
-
-        @keyframes slideUpFade {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Image Section */
         .product-image-box {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-glass);
-            border-radius: 20px;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
             padding: 20px;
             position: relative;
             overflow: hidden;
@@ -70,7 +64,7 @@
             max-width: 100%;
             height: auto;
             object-fit: contain;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
             transition: transform 0.5s ease;
         }
 
@@ -84,9 +78,7 @@
             font-weight: 800;
             letter-spacing: -1px;
             margin-bottom: 10px;
-            background: linear-gradient(to right, #fff, var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-dark);
         }
 
         .price-tag {
@@ -106,16 +98,15 @@
         }
 
         .spec-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-glass);
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
             padding: 15px;
-            border-radius: 16px;
+            border-radius: 12px;
             transition: 0.3s;
         }
 
         .spec-item:hover {
-            background: rgba(124, 77, 255, 0.05);
-            border-color: var(--accent-purple);
+            border-color: var(--accent-blue);
         }
 
         .spec-label {
@@ -125,29 +116,31 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 5px;
+            font-weight: 700;
         }
 
         .spec-value {
             font-weight: 600;
             font-size: 1rem;
+            color: var(--text-dark);
         }
 
         /* Description Box */
         .desc-box {
             margin-top: 30px;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 16px;
-            border-left: 4px solid var(--accent-purple);
+            background: #f8fafc;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-blue);
         }
 
         /* Action Buttons */
         .btn-back {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-glass);
-            color: #fff;
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
             padding: 12px 30px;
-            border-radius: 12px;
+            border-radius: 10px;
             font-weight: 600;
             transition: 0.3s;
             text-decoration: none;
@@ -156,13 +149,13 @@
         }
 
         .btn-back:hover {
-            background: var(--accent-purple);
+            background: #e2e8f0;
             transform: translateX(-5px);
-            color: #fff;
         }
 
         .badge-id {
-            background: var(--accent-purple);
+            background: var(--accent-blue);
+            color: #fff;
             font-size: 0.8rem;
             padding: 5px 12px;
             border-radius: 20px;

@@ -112,12 +112,12 @@
 
                     <div class="col-lg-4 col-md-6">
                         <h4 class="mb-4">Shop Information</h4>
-                        <div class="d-flex flex-column">
-                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>About Us</a>
-                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Warranty Policy</a>
-                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Privacy Policy</a>
-                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Terms of Use</a>
-                            <a class="btn-link" href="#"><i class="fas fa-angle-right me-2"></i>Store System</a>
+                        <div class="d-flex flex-column gap-2">
+                            <div class="text-secondary"><i class="me-2 text-primary"></i>About Us</div>
+                            <div class="text-secondary"><i class="me-2 text-primary"></i>Warranty Policy</div>
+                            <div class="text-secondary"><i class="me-2 text-primary"></i>Privacy Policy</div>
+                            <div class="text-secondary"><i class="me-2 text-primary"></i>Terms of Use</div>
+                            <div class="text-secondary"><i class="me-2 text-primary"></i>Store System</div>
                         </div>
                     </div>
 
@@ -125,7 +125,7 @@
                         <h4 class="mb-4">Contact Us</h4>
                         <div class="contact-item">
                             <i class="fa fa-map-marker-alt"></i>
-                            <span>46/23 Dung Si Thanh Khe, Da Nang</span>
+                            <span>City Da Nang</span>
                         </div>
                         <div class="contact-item">
                             <i class="fa fa-phone-alt"></i>

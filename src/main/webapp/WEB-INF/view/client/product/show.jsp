@@ -67,6 +67,16 @@
                                 <div class="row g-4 fruite">
                                     <div class="col-12 col-md-4">
                                         <div class="row g-4">
+                                            <div class="col-12">
+                                                <div class="mb-2"><b>Search Products</b></div>
+                                                <div class="input-group mb-4">
+                                                    <input type="text" class="form-control p-3" placeholder="Search by name..."
+                                                        id="nameSearch">
+                                                    <span class="input-group-text bg-primary text-white px-3" id="btnSearch" style="cursor: pointer;">
+                                                        <i class="fa fa-search"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
                                             <div class="col-12" id="factoryFilter">
                                                 <div class="mb-2"><b>Manufacturer</b></div>
                                                 <div class="form-check form-check-inline">
@@ -187,11 +197,16 @@
                                                 </div>
 
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12 d-flex gap-2">
                                                 <button
-                                                    class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4"
+                                                    class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 flex-grow-1"
                                                     id="btnFilter">
-                                                    Filter Products
+                                                    Filter
+                                                </button>
+                                                <button
+                                                    class="btn border-danger rounded-pill px-4 py-3 text-danger text-uppercase mb-4"
+                                                    id="btnRefresh">
+                                                    <i class="fas fa-sync-alt"></i>
                                                 </button>
                                             </div>
                                         </div>

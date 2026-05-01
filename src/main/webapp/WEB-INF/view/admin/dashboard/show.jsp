@@ -15,20 +15,16 @@
             <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
                 rel="stylesheet">
-            <jsp:include page="/WEB-INF/view/client/layout/favicon.jsp" />
-
-            <style>
+            <jsp:include page="/WEB-INF/view/client/layout/favicon.jsp" />            <style>
                 body {
                     font-family: 'Inter', sans-serif !important;
-                    background-color: #0f111a !important;
-                    /* Tối hơn một chút để nổi bật Card */
+                    background-color: #f8fafc !important;
                 }
 
                 /* Tổng thể layout content */
                 #layoutSidenav_content {
-                    background-color: #12141a;
-                    /* Nền tối sâu đồng bộ */
-                    background-image: radial-gradient(circle at top right, rgba(124, 77, 255, 0.05), transparent);
+                    background-color: #f4f7f6;
+                    background-image: none;
                 }
 
                 .container-fluid {
@@ -36,163 +32,105 @@
                 }
 
                 h1.mt-4 {
-                    color: #fff;
+                    color: #1e293b;
                     font-weight: 800;
-                    letter-spacing: -1px;
+                    letter-spacing: -0.5px;
                     margin-bottom: 0.5rem;
                 }
 
                 .breadcrumb {
-                    background: rgba(255, 255, 255, 0.05);
+                    background: #ffffff;
                     padding: 10px 20px;
                     border-radius: 10px;
-                    border: 1px solid rgba(255, 255, 255, 0.1);
+                    border: 1px solid #e2e8f0;
                 }
 
                 .breadcrumb-item.active {
-                    color: #7c4dff !important;
+                    color: #0d6efd !important;
                     font-weight: 500;
                 }
 
-                /* Thẻ Card Thống Kê Modern */
-                /* Tinh chỉnh lại thẻ Card để không bị che chữ */
+                /* Thẻ Card Thống Kê Modern Light */
                 .stat-card {
-                    border: none !important;
-                    border-radius: 20px !important;
+                    border: 1px solid #e2e8f0 !important;
+                    border-radius: 16px !important;
                     overflow: hidden;
-                    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                    position: relative;
-                    z-index: 1;
-                    /* Thay height cố định bằng min-height */
-                    min-height: 170px;
+                    transition: all 0.3s ease;
+                    min-height: 160px;
                     display: flex;
                     flex-direction: column;
-                    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                    background: #ffffff !important;
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
                 }
 
                 .stat-card:hover {
-                    transform: translateY(-8px);
-                    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+                    transform: translateY(-5px);
+                    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
                 }
 
                 .stat-card .card-body {
-                    padding: 1.25rem 1.5rem;
-                    /* Giảm nhẹ padding trên dưới */
+                    padding: 1.5rem;
                     flex-grow: 1;
-                    /* Để body chiếm hết không gian còn lại */
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
-                    /* Căn giữa nội dung theo chiều dọc */
                     position: relative;
                 }
 
-                /* Icon chìm phía sau - Chỉnh lại vị trí để không đè chữ */
                 .stat-card i.bg-icon {
                     position: absolute;
-                    right: 15px;
+                    right: 20px;
                     top: 50%;
-                    transform: translateY(-50%) rotate(-15deg);
-                    font-size: 4rem;
-                    opacity: 0.12;
-                    transition: all 0.4s ease;
-                    pointer-events: none;
-                    /* Tránh việc icon chắn click vào link */
-                }
-
-                .stat-card:hover i.bg-icon {
-                    transform: translateY(-50%) rotate(0deg) scale(1.1);
+                    transform: translateY(-50%);
+                    font-size: 3rem;
                     opacity: 0.2;
-                }
-
-                .stat-value {
-                    font-size: 2.8rem;
-                    /* Tăng kích thước số cho nổi bật */
-                    font-weight: 800;
-                    line-height: 1.1;
-                    margin: 5px 0 0 0;
-                }
-
-                .stat-label {
-                    font-size: 0.85rem;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    font-weight: 600;
-                    opacity: 0.8;
-                }
-
-                /* Footer của Card - Đảm bảo luôn nằm dưới cùng và rõ ràng */
-                .stat-card .card-footer {
-                    background: rgba(0, 0, 0, 0.15) !important;
-                    border: none !important;
-                    padding: 0.75rem 1.5rem !important;
-                    backdrop-filter: blur(5px);
-                }
-
-                .stat-card .card-footer a {
-                    font-size: 0.85rem;
-                    font-weight: 500;
-                    transition: all 0.3s;
-                }
-
-                .stat-card .card-footer:hover a {
-                    letter-spacing: 0.5px;
-                }
-
-                /* Gradients cho từng loại card */
-                .card-user {
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                }
-
-                .card-product {
-                    background: linear-gradient(135deg, #ff6b6b 0%, #ee0979 100%);
-                }
-
-                .card-order {
-                    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
                 }
 
                 .stat-value {
                     font-size: 2.5rem;
                     font-weight: 800;
                     line-height: 1;
+                    color: #1e293b;
                     margin-top: 10px;
                 }
 
                 .stat-label {
-                    font-size: 0.9rem;
+                    font-size: 0.85rem;
                     text-transform: uppercase;
                     letter-spacing: 1px;
-                    opacity: 0.9;
+                    font-weight: 700;
+                    color: #64748b;
                 }
 
                 /* Footer của Card */
                 .stat-card .card-footer {
-                    background: rgba(0, 0, 0, 0.1) !important;
-                    border: none !important;
+                    background: #f8fafc !important;
+                    border-top: 1px solid #e2e8f0 !important;
                     padding: 0.8rem 1.5rem !important;
                 }
 
                 .stat-card .card-footer a {
-                    font-weight: 500;
-                    letter-spacing: 0.5px;
+                    font-weight: 600;
+                    color: #0d6efd !important;
+                    text-decoration: none;
                 }
 
-                /* Animation vào trang */
-                @keyframes slideUpFade {
-                    from {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
+                /* Accent colors for icons and values */
+                .card-user i.bg-icon { color: #3b82f6; opacity: 0.4; }
+                .card-product i.bg-icon { color: #f43f5e; opacity: 0.4; }
+                .card-order i.bg-icon { color: #10b981; opacity: 0.4; }
 
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
+                .card-user { border-top: 4px solid #3b82f6 !important; }
+                .card-product { border-top: 4px solid #f43f5e !important; }
+                .card-order { border-top: 4px solid #10b981 !important; }
+
+                @keyframes slideUpFade {
+                    from { opacity: 0; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
 
                 .animate-in {
-                    animation: slideUpFade 0.6s ease forwards;
+                    animation: slideUpFade 0.5s ease forwards;
                 }
 
                 .delay-1 {
