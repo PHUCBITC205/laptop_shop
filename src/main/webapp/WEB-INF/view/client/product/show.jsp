@@ -124,19 +124,17 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="target-2"
                                                         value="SINHVIEN-VANPHONG">
-                                                    <label class="form-check-label" for="target-2">Sinh viên - văn
-                                                        phòng</label>
+                                                    <label class="form-check-label" for="target-2">Student - Office</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="target-3"
                                                         value="THIET-KE-DO-HOA">
-                                                    <label class="form-check-label" for="target-3">Thiết kế đồ
-                                                        họa</label>
+                                                    <label class="form-check-label" for="target-3">Graphics Design</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="target-4"
                                                         value="MONG-NHE">
-                                                    <label class="form-check-label" for="target-4">Mỏng nhẹ</label>
+                                                    <label class="form-check-label" for="target-4">Thin & Light</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="target-5"
@@ -158,15 +156,13 @@
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="price-3"
                                                         value="10-15-trieu">
-                                                    <label class="form-check-label" for="price-3">Từ 10 - 15
-                                                        million</label>
+                                                    <label class="form-check-label" for="price-3">10 - 15 million</label>
                                                 </div>
 
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="price-4"
                                                         value="15-20-trieu">
-                                                    <label class="form-check-label" for="price-4">Từ 15 - 20
-                                                        million</label>
+                                                    <label class="form-check-label" for="price-4">15 - 20 million</label>
                                                 </div>
 
                                                 <div class="form-check form-check-inline">
@@ -324,15 +320,7 @@
 
 
                     <!-- JavaScript Libraries -->
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-                    <script src="/client/lib/easing/easing.min.js"></script>
-                    <script src="/client/lib/waypoints/waypoints.min.js"></script>
-                    <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
-                    <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
-
-                    <!-- Template Javascript -->
-                    <script src="/client/js/main.js"></script>
+                    <jsp:include page="../layout/scripts.jsp" />
 
                     <script>
                         $(document).ready(function () {
@@ -340,6 +328,22 @@
                                 event.preventDefault(); 
                                 
                                 var form = $(this);
+                                var isLoggedIn = $('#isLoggedInFlag').length > 0;
+                                
+                                if (!isLoggedIn) {
+                                    // Extract ID from form action or a hidden input if exists
+                                    var action = form.attr('action');
+                                    var productId = action.substring(action.lastIndexOf('/') + 1);
+                                    GuestCart.add(productId, 1);
+                                    
+                                    var toast = $('<div style="position: fixed; top: 100px; right: 20px; z-index: 9999; background: #81c408; color: white; padding: 15px 25px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none;">' + 
+                                                '<i class="fa fa-check-circle me-2"></i> Added to guest cart!' + 
+                                                '</div>');
+                                    $('body').append(toast);
+                                    toast.fadeIn().delay(2000).fadeOut(function() { $(this).remove(); });
+                                    return;
+                                }
+
                                 var url = form.attr('action');
                                 var apiUrl = url.replace('/add-product-to-cart/', '/api/add-product-to-cart/')
                                                 .replace('/add-product-to-cartALL/', '/api/add-product-to-cart/');
@@ -349,6 +353,10 @@
                                     url: apiUrl,
                                     data: form.serialize(), 
                                     success: function (response) {
+                                        if (isNaN(response)) {
+                                            window.location.href = '/login';
+                                            return;
+                                        }
                                         $('#showCartId').text(response);
                                         
                                         var toast = $('<div style="position: fixed; top: 100px; right: 20px; z-index: 9999; background: #81c408; color: white; padding: 15px 25px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none;">' + 

@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.http.ResponseEntity;
+import vn.vietphuc.laptopshop.domain.dto.CartItemDTO;
+import java.util.Collections;
+import java.util.stream.Collectors;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -116,11 +120,47 @@ public class ItemController {
         return "redirect:/product/" + id;
     }
 
+    @PostMapping("/api/sync-cart")
+    @ResponseBody
+    public ResponseEntity<Integer> syncCart(@RequestBody List<CartItemDTO> cartItems, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        String email = (String) session.getAttribute("email");
+        if (email != null && cartItems != null) {
+            for (CartItemDTO item : cartItems) {
+                this.productService.handleAddProductToCart(email, item.getProductId(), session, item.getQuantity());
+            }
+        }
+        int cartSum = session.getAttribute("sum") != null ? (int) session.getAttribute("sum") : 0;
+        return ResponseEntity.ok(cartSum);
+    }
+
+    @PostMapping("/api/products/details")
+    @ResponseBody
+    public ResponseEntity<List<Product>> getProductsDetails(@RequestBody List<Long> ids) {
+        List<Product> products = new ArrayList<>();
+        if (ids != null) {
+            for (Long id : ids) {
+                this.productService.fetchProductByIdAndNotDeleted(id).ifPresent(products::add);
+            }
+        }
+        return ResponseEntity.ok(products);
+    }
+
     @GetMapping("/cart")
     public String getCartPage(Model model, HttpServletRequest request) {
-        User currentUser = new User();
         HttpSession session = request.getSession(false);
-        long id = (long) session.getAttribute("id");
+        Object userIdObj = session.getAttribute("id");
+
+        if (userIdObj == null) {
+            // Guest mode
+            model.addAttribute("cartDetails", new ArrayList<>());
+            model.addAttribute("totalPrice", 0);
+            model.addAttribute("cart", null);
+            return "client/cart/show";
+        }
+
+        long id = (long) userIdObj;
+        User currentUser = new User();
         currentUser.setId(id);
 
         Cart cart = this.productService.fetchByUser(currentUser);
@@ -146,9 +186,15 @@ public class ItemController {
 
     @GetMapping("/checkout")
     public String getCheckOutPage(Model model, HttpServletRequest request) {
-        User currentUser = new User();// null
         HttpSession session = request.getSession(false);
-        long id = (long) session.getAttribute("id");
+        Object userIdObj = session.getAttribute("id");
+
+        if (userIdObj == null) {
+            return "redirect:/login";
+        }
+
+        long id = (long) userIdObj;
+        User currentUser = new User();// null
         currentUser.setId(id);
 
         Cart cart = this.productService.fetchByUser(currentUser);

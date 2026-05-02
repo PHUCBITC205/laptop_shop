@@ -12,21 +12,31 @@
                         <span class="fa fa-bars text-primary"></span>
                     </button>
                     <div class="collapse navbar-collapse bg-white justify-content-between mx-5" id="navbarCollapse">
-                        <div class="navbar-nav">
+                    <meta name="_csrf" content="${_csrf.token}" />
+                    <meta name="_csrf_header" content="${_csrf.headerName}" />
+                    <div class="navbar-nav">
                             <a href="/" class="nav-item nav-link active">Home</a>
                             <a href="/products" class="nav-item nav-link">Products</a>
 
                         </div>
                         <div class="d-flex m-3 me-0">
+                            <a href="/cart" class="position-relative me-4 my-auto">
+                                <i class="fa fa-shopping-bag fa-2x"></i>
+                                <span id="showCartId"
+                                    class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
+                                    style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
+                                    ${not empty sessionScope.sum ? sessionScope.sum : 0}
+                                </span>
+                            </a>
+
                             <c:if test="${not empty pageContext.request.userPrincipal}">
-                                <a href="/cart" class="position-relative me-4 my-auto">
-                                    <i class="fa fa-shopping-bag fa-2x"></i>
-                                    <span id="showCartId"
-                                        class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                        style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
-                                        ${sessionScope.sum}
-                                    </span>
-                                </a>
+                                <div id="isLoggedInFlag" style="display:none;"></div>
+                                <c:if test="${sessionScope.justLoggedIn}">
+                                    <div id="justLoggedInFlag" style="display:none;"></div>
+                                    <%-- Clear the flag after reading it --%>
+                                    <c:remove var="justLoggedIn" scope="session" />
+                                </c:if>
+
                                 <div class="dropdown my-auto">
                                     <a href="#" class="dropdown" role="button" id="dropdownMenuLink"
                                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-toggle="dropdown"

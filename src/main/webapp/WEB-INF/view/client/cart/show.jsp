@@ -73,8 +73,8 @@
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <c:if test="${ empty cartDetails}">
+                                    <tbody id="cartTableBody">
+                                        <c:if test="${ empty cartDetails && not empty pageContext.request.userPrincipal}">
                                             <tr>
                                                 <td colspan="6">
                                                     Your shopping cart is empty
@@ -82,7 +82,6 @@
                                             </tr>
                                         </c:if>
                                         <c:forEach var="cartDetail" items="${cartDetails}" varStatus="status">
-
                                             <tr>
                                                 <th scope="row">
                                                     <div class="d-flex align-items-center">
@@ -132,11 +131,9 @@
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <%-- Hidden form for actual deletion --%>
                                                     <form method="post" action="/delete-cart-product/${cartDetail.id}" id="deleteForm-${cartDetail.id}">
                                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                     </form>
-                                                    <%-- Button triggers modal --%>
                                                     <button type="button"
                                                         class="btn btn-md rounded-circle bg-light border mt-4 btn-delete-cart"
                                                         data-cart-id="${cartDetail.id}"
@@ -147,12 +144,10 @@
                                                 </td>
                                             </tr>
                                         </c:forEach>
-
                                     </tbody>
                                 </table>
                             </div>
-                            <c:if test="${not empty cartDetails}">
-                                <div class="mt-5 row g-4 justify-content-start">
+                                <div id="cartSummarySection" class="mt-5 row g-4 justify-content-start" style="${empty cartDetails && not empty pageContext.request.userPrincipal ? 'display:none;' : ''}">
                                     <div class="col-12 col-md-8">
                                         <div class="bg-light rounded">
                                             <div class="p-4">
@@ -160,7 +155,7 @@
                                                 </h1>
                                                 <div class="d-flex justify-content-between mb-4">
                                                     <h5 class="mb-0 me-4">Subtotal:</h5>
-                                                    <p class="mb-0" data-cart-total-price="${totalPrice}">
+                                                    <p class="mb-0" id="cartTotalPrice" data-cart-total-price="${totalPrice}">
                                                         <fmt:formatNumber type="number" value="${totalPrice}" /> đ
                                                     </p>
                                                 </div>
@@ -174,40 +169,47 @@
                                             <div
                                                 class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
                                                 <h5 class="mb-0 ps-4 me-4">Total Amount</h5>
-                                                <p class="mb-0 pe-4" data-cart-total-price="${totalPrice}">
+                                                <p class="mb-0 pe-4" id="cartTotalAmount" data-cart-total-price="${totalPrice}">
                                                     <fmt:formatNumber type="number" value="${totalPrice}" /> đ
                                                 </p>
                                             </div>
-                                            <form:form action="/confirm-checkout" method="post" modelAttribute="cart">
-                                                <input type="hidden" name="${_csrf.parameterName}"
-                                                    value="${_csrf.token}" />
-                                                <div style="display: none;">
-                                                    <c:forEach var="cartDetail" items="${cart.cartDetails}"
-                                                        varStatus="status">
-                                                        <div class="mb-3">
-                                                            <div class="form-group">
-                                                                <label>Id:</label>
-                                                                <form:input class="form-control" type="text"
-                                                                    value="${cartDetail.id}"
-                                                                    path="cartDetails[${status.index}].id" />
+                                            
+                                            <c:if test="${not empty pageContext.request.userPrincipal}">
+                                                <form:form action="/confirm-checkout" method="post" modelAttribute="cart">
+                                                    <input type="hidden" name="${_csrf.parameterName}"
+                                                        value="${_csrf.token}" />
+                                                    <div style="display: none;">
+                                                        <c:forEach var="cartDetail" items="${cart.cartDetails}"
+                                                            varStatus="status">
+                                                            <div class="mb-3">
+                                                                <div class="form-group">
+                                                                    <label>Id:</label>
+                                                                    <form:input class="form-control" type="text"
+                                                                        value="${cartDetail.id}"
+                                                                        path="cartDetails[${status.index}].id" />
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Quantity:</label>
+                                                                    <form:input class="form-control" type="text"
+                                                                        value="${cartDetail.quantity}"
+                                                                        path="cartDetails[${status.index}].quantity" />
+                                                                </div>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label>Quantity:</label>
-                                                                <form:input class="form-control" type="text"
-                                                                    value="${cartDetail.quantity}"
-                                                                    path="cartDetails[${status.index}].quantity" />
-                                                            </div>
-                                                        </div>
-                                                    </c:forEach>
-                                                </div>
-                                                <button
-                                                    class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4">Checkout
-                                                </button>
-                                            </form:form>
+                                                        </c:forEach>
+                                                    </div>
+                                                    <button
+                                                        class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4">Checkout
+                                                    </button>
+                                                </form:form>
+                                            </c:if>
+                                            <c:if test="${empty pageContext.request.userPrincipal}">
+                                                <a href="/checkout" id="guestCheckoutBtn"
+                                                    class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4 d-inline-block">Checkout
+                                                </a>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </div>
-                            </c:if>
                         </div>
                     </div>
                     <!-- Cart Page End -->
@@ -219,18 +221,7 @@
                     <!-- Back to Top -->
                     <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
                             class="fa fa-arrow-up"></i></a>
-
-
-                    <!-- JavaScript Libraries -->
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-                    <script src="/client/lib/easing/easing.min.js"></script>
-                    <script src="/client/lib/waypoints/waypoints.min.js"></script>
-                    <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
-                    <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
-
-                    <!-- Template Javascript -->
-                    <script src="/client/js/main.js"></script>
+                    <jsp:include page="../layout/scripts.jsp" />
 
                     <!-- Delete Confirmation Modal -->
                     <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -241,21 +232,21 @@
                                         <div style="background: rgba(255,255,255,0.2); border-radius: 50%; width:42px; height:42px; display:flex; align-items:center; justify-content:center;">
                                             <i class="fa fa-trash" style="color: #fff; font-size: 1.1rem;"></i>
                                         </div>
-                                        <h5 class="modal-title mb-0" id="deleteModalLabel" style="color: #fff; font-weight: 700;">Xác nhận xóa</h5>
+                                        <h5 class="modal-title mb-0" id="deleteModalLabel" style="color: #fff; font-weight: 700;">Confirm Removal</h5>
                                     </div>
                                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body" style="padding: 2rem;">
-                                    <p class="mb-1" style="color: #555;">Bạn có chắc muốn xóa sản phẩm</p>
+                                    <p class="mb-1" style="color: #555;">Are you sure you want to remove</p>
                                     <p id="deleteProductName" class="fw-bold" style="color: #222; font-size: 1rem;"></p>
-                                    <p class="mb-0 small" style="color: #999;">khỏi giỏ hàng? Hành động này không thể hoàn tác.</p>
+                                    <p class="mb-0 small" style="color: #999;">from your cart? This action cannot be undone.</p>
                                 </div>
                                 <div class="modal-footer" style="border: none; padding: 1rem 2rem 1.5rem; gap: 0.75rem;">
                                     <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal"
-                                        style="border-radius: 8px;">Hủy bỏ</button>
+                                        style="border-radius: 8px;">Cancel</button>
                                     <button type="button" id="confirmDeleteBtn" class="btn px-4 fw-bold"
                                         style="background: linear-gradient(135deg, #ff6b6b, #ee5a24); color: #fff; border-radius: 8px; border: none;">
-                                        <i class="fa fa-trash me-2"></i>Xóa
+                                        <i class="fa fa-trash me-2"></i>Delete
                                     </button>
                                 </div>
                             </div>
@@ -267,19 +258,144 @@
                             var deleteModal = document.getElementById('deleteConfirmModal');
                             var confirmBtn  = document.getElementById('confirmDeleteBtn');
                             var currentFormId = null;
+                            var currentGuestProductId = null;
 
                             deleteModal.addEventListener('show.bs.modal', function(event) {
                                 var trigger = event.relatedTarget;
                                 var cartId  = trigger.getAttribute('data-cart-id');
+                                var guestId = trigger.getAttribute('data-guest-id');
                                 var name    = trigger.getAttribute('data-product-name');
-                                currentFormId = 'deleteForm-' + cartId;
+                                
+                                if (cartId) {
+                                    currentFormId = 'deleteForm-' + cartId;
+                                    currentGuestProductId = null;
+                                } else {
+                                    currentFormId = null;
+                                    currentGuestProductId = guestId;
+                                }
                                 document.getElementById('deleteProductName').textContent = '"' + name + '"';
                             });
 
                             confirmBtn.addEventListener('click', function() {
                                 if (currentFormId) {
                                     document.getElementById(currentFormId).submit();
+                                } else if (currentGuestProductId) {
+                                    GuestCart.remove(parseInt(currentGuestProductId));
+                                    location.reload();
                                 }
+                            });
+
+                            // Render guest cart if not logged in
+                            if ($('#isLoggedInFlag').length === 0) {
+                                var guestCart = GuestCart.get();
+                                if (guestCart.length === 0) {
+                                    $('#cartTableBody').html('<tr><td colspan="6" class="text-center py-5">Your shopping cart is empty</td></tr>');
+                                    $('#cartSummarySection').hide();
+                                } else {
+                                    var productIds = guestCart.map(item => parseInt(item.productId));
+                                    var csrfToken = $("meta[name='_csrf']").attr("content");
+                                    
+                                    $.ajax({
+                                        url: '/api/products/details',
+                                        type: 'POST',
+                                        contentType: 'application/json',
+                                        data: JSON.stringify(productIds),
+                                        beforeSend: function(xhr) {
+                                            xhr.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+                                        },
+                                        success: function(products) {
+                                            if (!products || products.length === 0) {
+                                                $('#cartTableBody').html('<tr><td colspan="6" class="text-center py-5">Your products are no longer available</td></tr>');
+                                                $('#cartSummarySection').hide();
+                                                return;
+                                            }
+                                            
+                                            var html = '';
+                                            var total = 0;
+                                            products.forEach(product => {
+                                                var guestItem = guestCart.find(item => item.productId == product.id);
+                                                var quantity = guestItem ? guestItem.quantity : 1;
+                                                var itemTotal = product.price * quantity;
+                                                total += itemTotal;
+                                                
+                                                html += `
+                                                    <tr>
+                                                        <th scope="row">
+                                                            <div class="d-flex align-items-center">
+                                                                <img src="/images/product/\${product.image}"
+                                                                    class="img-fluid me-5 rounded-circle"
+                                                                    style="width: 80px; height: 80px;" alt="">
+                                                            </div>
+                                                        </th>
+                                                        <td>
+                                                            <p class="mb-0 mt-4">
+                                                                <a href="/product/\${product.id}" target="_blank">\${product.name}</a>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="mb-0 mt-4">\${new Intl.NumberFormat().format(product.price)} đ</p>
+                                                        </td>
+                                                        <td>
+                                                            <div class="input-group quantity mt-4" style="width: 100px;">
+                                                                <div class="input-group-btn">
+                                                                    <button class="btn btn-sm btn-minus rounded-circle bg-light border">
+                                                                        <i class="fa fa-minus"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <input type="text" class="form-control form-control-sm text-center border-0" 
+                                                                    value="\${quantity}" readonly
+                                                                    data-guest-id="\${product.id}"
+                                                                    data-cart-detail-price="\${product.price}">
+                                                                <div class="input-group-btn">
+                                                                    <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                                                        <i class="fa fa-plus"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <p class="mb-0 mt-4" data-cart-detail-id="\${product.id}">\${new Intl.NumberFormat().format(itemTotal)} đ</p>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-md rounded-circle bg-light border mt-4"
+                                                                data-guest-id="\${product.id}"
+                                                                data-product-name="\${product.name}"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                                                <i class="fa fa-times text-danger"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                `;
+                                            });
+                                            $('#cartTableBody').html(html);
+                                            $('#cartTotalPrice').text(new Intl.NumberFormat().format(total) + ' đ');
+                                            $('#cartTotalAmount').text(new Intl.NumberFormat().format(total) + ' đ');
+                                            $('#cartSummarySection').show();
+                                        },
+                                        error: function() {
+                                            $('#cartTableBody').html('<tr><td colspan="6" class="text-center py-5 text-danger">Error loading cart details.</td></tr>');
+                                        }
+                                    });
+                                }
+                            }
+
+                            // Guest Checkout Handler
+                            $('#guestCheckoutBtn').on('click', function(e) {
+                                e.preventDefault();
+                                Swal.fire({
+                                    title: 'Login Required',
+                                    text: 'Please login to proceed with your payment. Your cart will be saved automatically.',
+                                    icon: 'info',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#81c408',
+                                    cancelButtonColor: '#6c757d',
+                                    confirmButtonText: 'Login Now',
+                                    cancelButtonText: 'Continue Shopping'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        window.location.href = '/login';
+                                    }
+                                });
                             });
                         });
                     </script>

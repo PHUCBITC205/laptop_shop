@@ -267,15 +267,7 @@
 
 
                     <!-- JavaScript Libraries -->
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-                    <script src="/client/lib/easing/easing.min.js"></script>
-                    <script src="/client/lib/waypoints/waypoints.min.js"></script>
-                    <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
-                    <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
-
-                    <!-- Template Javascript -->
-                    <script src="/client/js/main.js"></script>
+                    <jsp:include page="../layout/scripts.jsp" />
 
                     <script>
                         $(document).ready(function () {
@@ -283,6 +275,21 @@
                                 event.preventDefault(); 
                                 
                                 var form = $(this);
+                                var isLoggedIn = $('#isLoggedInFlag').length > 0;
+                                
+                                if (!isLoggedIn) {
+                                    var productId = form.find('input[name="id"]').val();
+                                    var quantity = form.find('input[name="quantity"]').val();
+                                    GuestCart.add(productId, quantity);
+                                    
+                                    var toast = $('<div style="position: fixed; top: 100px; right: 20px; z-index: 9999; background: #81c408; color: white; padding: 15px 25px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none;">' + 
+                                                '<i class="fa fa-check-circle me-2"></i> Added to guest cart!' + 
+                                                '</div>');
+                                    $('body').append(toast);
+                                    toast.fadeIn().delay(2000).fadeOut(function() { $(this).remove(); });
+                                    return;
+                                }
+
                                 var url = form.attr('action');
                                 // Chuyển sang API endpoint
                                 var apiUrl = "/api/add-product-from-view-detail";
@@ -292,6 +299,10 @@
                                     url: apiUrl,
                                     data: form.serialize(), 
                                     success: function (response) {
+                                        if (isNaN(response)) {
+                                            window.location.href = '/login';
+                                            return;
+                                        }
                                         $('#showCartId').text(response);
                                         
                                         var toast = $('<div style="position: fixed; top: 100px; right: 20px; z-index: 9999; background: #81c408; color: white; padding: 15px 25px; border-radius: 5px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none;">' + 

@@ -19,6 +19,7 @@
                     href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
                     rel="stylesheet">
 
+
                 <!-- Icon Font Stylesheet -->
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
@@ -35,7 +36,6 @@
                 <!-- Template Stylesheet -->
                 <link href="/client/css/style.css" rel="stylesheet">
                 <jsp:include page="/WEB-INF/view/client/layout/favicon.jsp" />
-                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
             </head>
 
@@ -202,7 +202,7 @@
 
                                             <form id="cancelForm${order.id}" action="${pageContext.request.contextPath}/cancel-order/${order.id}" method="post">
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                                <button type="button" class="btn btn-outline-danger btn-sm" onclick="confirmCancel(${order.id})">
+                                                <button type="button" class="btn btn-outline-danger btn-sm" onclick="confirmCancel('${order.id}')">
                                                     <i class="fas fa-times me-1"></i>Cancel Order
                                                 </button>
                                             </form>
@@ -212,7 +212,7 @@
                                             <form id="codForm${order.id}" action="${pageContext.request.contextPath}/change-payment-to-cod" method="post" class="d-inline">
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                 <input type="hidden" name="id" value="${order.id}" />
-                                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="confirmCOD(${order.id})">
+                                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="confirmCOD('${order.id}')">
                                                     <i class="fas fa-exchange-alt me-1"></i>Change to COD
                                                 </button>
                                             </form>
@@ -299,23 +299,12 @@
 
 
                 <jsp:include page="../layout/footer.jsp" />
+                <jsp:include page="../layout/scripts.jsp" />
 
 
                 <!-- Back to Top -->
                 <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
                         class="fa fa-arrow-up"></i></a>
-
-
-                <!-- JavaScript Libraries -->
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-                <script src="/client/lib/easing/easing.min.js"></script>
-                <script src="/client/lib/waypoints/waypoints.min.js"></script>
-                <script src="/client/lib/lightbox/js/lightbox.min.js"></script>
-                <script src="/client/lib/owlcarousel/owl.carousel.min.js"></script>
-
-                <!-- Template Javascript -->
-                <script src="/client/js/main.js"></script>
 
                 <script>
                     function confirmCancel(orderId) {

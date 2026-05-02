@@ -22,6 +22,7 @@ public class Product {
     private long id;
 
     @OneToMany(mappedBy = "product")
+    @com.fasterxml.jackson.annotation.JsonIgnore
     List<OrderDetail> orderDetails;
 
     @NotNull
