@@ -2,13 +2,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Quên mật khẩu - Laptopshop</title>
+    <title>Forgot Password - Laptopshop</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -139,8 +139,8 @@
                     <span>LAPTOPSHOP</span>
                 </a>
 
-                <h3 class="fw-bold mb-1" style="color: var(--text-dark);">Quên mật khẩu?</h3>
-                <p class="text-muted small mb-4">Nhập email đăng ký để nhận hướng dẫn khôi phục mật khẩu.</p>
+                <h3 class="fw-bold mb-1" style="color: var(--text-dark);">Forgot Password?</h3>
+                <p class="text-muted small mb-4">Enter your registered email to receive recovery instructions.</p>
 
                 <form action="/forgot-password" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -159,18 +159,18 @@
                     </c:if>
 
                     <div class="mb-4">
-                        <label class="form-label">Email đăng ký</label>
+                        <label class="form-label">Registered Email</label>
                         <input type="email" name="email" class="form-control" 
                                placeholder="name@example.com" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-submit w-100">
-                        Gửi yêu cầu khôi phục
+                        Send Recovery Request
                     </button>
 
                     <div class="text-center mt-4">
-                        <p class="small text-muted">Nhớ ra mật khẩu? 
-                            <a href="/login" class="text-primary fw-bold text-decoration-none">Quay lại đăng nhập</a>
+                        <p class="small text-muted">Remember your password? 
+                            <a href="/login" class="text-primary fw-bold text-decoration-none">Back to Login</a>
                         </p>
                     </div>
                 </form>
@@ -180,8 +180,8 @@
         <section class="login-image-section d-none d-lg-block">
             <div class="h-100 w-100 d-flex flex-column justify-content-end p-5 text-white"
                 style="position: relative; z-index: 1;">
-                <h2 class="fw-bold">Bảo mật tài khoản của bạn</h2>
-                <p class="opacity-75">Chúng tôi sẽ giúp bạn lấy lại quyền truy cập một cách nhanh chóng và an toàn nhất.</p>
+                <h2 class="fw-bold">Secure Your Account</h2>
+                <p class="opacity-75">We will help you regain access quickly and safely.</p>
             </div>
         </section>
     </div>

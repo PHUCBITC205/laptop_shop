@@ -2,13 +2,13 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
         <!DOCTYPE html>
-        <html lang="vi">
+        <html lang="en">
 
         <head>
             <meta charset="utf-8" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-            <title>Đặt lại mật khẩu - Laptopshop</title>
+            <title>Reset Password - Laptopshop</title>
 
             <!-- Favicon -->
             <jsp:include page="/WEB-INF/view/client/layout/favicon.jsp" />
@@ -137,32 +137,31 @@
                             <span>LAPTOPSHOP</span>
                         </a>
 
-                        <h3 class="fw-bold mb-1" style="color: var(--text-dark);">Thiết lập mật khẩu mới</h3>
-                        <p class="text-muted small mb-4">Vui lòng nhập mật khẩu mới để hoàn tất việc khôi phục tài
-                            khoản.</p>
+                        <h3 class="fw-bold mb-1" style="color: var(--text-dark);">Set New Password</h3>
+                        <p class="text-muted small mb-4">Please enter your new password to complete the account recovery process.</p>
 
                         <form action="/reset-password" method="post">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             <input type="hidden" name="token" value="${token}" />
 
                             <div class="mb-4">
-                                <label class="form-label">Mật khẩu mới</label>
+                                <label class="form-label">New Password</label>
                                 <div class="position-relative">
                                     <input type="password" name="password" class="form-control" placeholder="••••••••"
                                         required minlength="6">
                                 </div>
                                 <div class="form-text mt-2" style="font-size: 12px;">
-                                    <i class="fa-solid fa-circle-info me-1"></i> Mật khẩu nên có ít nhất 6 ký tự.
+                                    <i class="fa-solid fa-circle-info me-1"></i> Password should be at least 6 characters.
                                 </div>
                             </div>
 
                             <button type="submit" class="btn btn-primary btn-submit w-100">
-                                Xác nhận thay đổi
+                                Confirm Changes
                             </button>
 
                             <div class="text-center mt-4">
                                 <a href="/login" class="text-decoration-none text-muted small">
-                                    <i class="fa-solid fa-arrow-left me-1"></i> Quay lại đăng nhập
+                                    <i class="fa-solid fa-arrow-left me-1"></i> Back to Login
                                 </a>
                             </div>
                         </form>
@@ -172,9 +171,8 @@
                 <section class="login-image-section d-none d-lg-block">
                     <div class="h-100 w-100 d-flex flex-column justify-content-end p-5 text-white"
                         style="position: relative; z-index: 1;">
-                        <h2 class="fw-bold">Bảo vệ tài khoản của bạn</h2>
-                        <p class="opacity-75">Sử dụng mật khẩu mạnh để tăng cường tính bảo mật cho thông tin cá nhân của
-                            bạn tại LaptopShop.</p>
+                        <h2 class="fw-bold">Protect Your Account</h2>
+                        <p class="opacity-75">Use a strong password to enhance the security of your personal information at LaptopShop.</p>
                     </div>
                 </section>
             </div>

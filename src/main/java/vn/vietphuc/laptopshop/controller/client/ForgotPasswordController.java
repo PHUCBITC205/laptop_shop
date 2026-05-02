@@ -55,30 +55,30 @@ public class ForgotPasswordController {
                     + "<h1 style='margin: 0; font-size: 24px;'>LaptopShop</h1>"
                     + "</div>"
                     + "<div style='padding: 30px; color: #333; line-height: 1.6;'>"
-                    + "<h2>Yêu cầu đặt lại mật khẩu</h2>"
-                    + "<p>Chào bạn,</p>"
-                    + "<p>Chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn tại <b>LaptopShop</b>. Vui lòng bấm vào nút bên dưới để tiến hành đặt lại mật khẩu:</p>"
+                    + "<h2>Password Reset Request</h2>"
+                    + "<p>Hello,</p>"
+                    + "<p>We received a request to reset the password for your account at <b>LaptopShop</b>. Please click the button below to proceed with resetting your password:</p>"
                     + "<div style='text-align: center; margin: 30px 0;'>"
                     + "<a href='" + resetLink
-                    + "' style='background-color: #764ba2; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>Đặt lại mật khẩu</a>"
+                    + "' style='background-color: #764ba2; color: white; padding: 15px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block;'>Reset Password</a>"
                     + "</div>"
-                    + "<p>Nếu bạn không gửi yêu cầu này, vui lòng bỏ qua email này. Link sẽ hết hạn sau một thời gian ngắn.</p>"
+                    + "<p>If you did not request this, please ignore this email. The link will expire in a short period of time.</p>"
                     + "<hr style='border: none; border-top: 1px solid #eee; margin: 20px 0;'>"
-                    + "<p style='font-size: 12px; color: #777;'>Đây là email tự động, vui lòng không trả lời email này.</p>"
+                    + "<p style='font-size: 12px; color: #777;'>This is an automated email, please do not reply.</p>"
                     + "</div>"
                     + "<div style='background-color: #f9f9f9; padding: 15px; text-align: center; font-size: 12px; color: #999;'>"
-                    + "&copy; 2024 LaptopShop. All rights reserved."
+                    + "&copy; 2026 LaptopShop. All rights reserved."
                     + "</div>"
                     + "</div>";
 
             try {
-                this.emailService.sendHtmlEmail(user.getEmail(), "Đặt lại mật khẩu - LaptopShop", emailContent);
-                model.addAttribute("message", "Link đặt lại mật khẩu đã được gửi vào email của bạn.");
+                this.emailService.sendHtmlEmail(user.getEmail(), "Password Reset - LaptopShop", emailContent);
+                model.addAttribute("message", "A password reset link has been sent to your email.");
             } catch (Exception e) {
-                model.addAttribute("error", "Lỗi khi gửi email: " + e.getMessage());
+                model.addAttribute("error", "Error sending email: " + e.getMessage());
             }
         } else {
-            model.addAttribute("error", "Không tìm thấy tài khoản với email này.");
+            model.addAttribute("error", "No account found with this email.");
         }
         return "client/auth/forgot-password";
     }
@@ -88,7 +88,7 @@ public class ForgotPasswordController {
     public String showResetPasswordForm(@RequestParam("token") String token, Model model) {
         User user = userService.getUserByResetPasswordToken(token);
         if (user == null) {
-            model.addAttribute("error", "Token không hợp lệ hoặc đã hết hạn.");
+            model.addAttribute("error", "Invalid or expired token.");
             return "client/auth/forgot-password";
         }
         model.addAttribute("token", token);

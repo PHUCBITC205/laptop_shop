@@ -299,66 +299,73 @@
                             </div>
 
                             <div class="row mt-4">
-                                <!-- Revenue Card -->
-                                <div class="col-xl-4 col-md-6 mb-4">
-                                    <div class="card stat-card card-order animate-in delay-1" style="border-top: 4px solid #f59e0b !important;">
-                                        <div class="card-body">
-                                            <div style="position: relative; z-index: 2;">
-                                                <div class="stat-label">Total Revenue</div>
-                                                <div class="stat-value" id="displayTotalRevenue">0 VNĐ</div>
+                                <!-- LEFT: Chart Section -->
+                                <div class="col-lg-8">
+                                    <div class="table-container mb-4 animate-in" style="height: calc(100% - 1.5rem);">
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <h3 class="m-0" style="font-weight: 700; color: var(--text-main);">Revenue Trends</h3>
+                                                <span id="demoBadge" style="display:none; font-size: 0.7rem; background: #f1f5f9; color: #64748b; border: 1px dashed #94a3b8; padding: 2px 10px; border-radius: 20px; font-weight: 600;">Simulation Data</span>
                                             </div>
-                                            <i class="fas fa-hand-holding-usd bg-icon" style="color: #f59e0b; opacity: 0.4;"></i>
                                         </div>
-                                        <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <span class="small text-muted">Successful orders</span>
-                                            <div class="small text-muted"><i class="fas fa-chart-line"></i></div>
+                                        <div style="height: 400px; position: relative;">
+                                            <canvas id="revenueLineChart"></canvas>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-xl-4 col-md-6 mb-4">
-                                    <div class="card stat-card card-user animate-in delay-2">
-                                        <div class="card-body">
-                                            <div style="position: relative; z-index: 2;">
-                                                <div class="stat-label">Total Users</div>
-                                                <div class="stat-value">${countUser}</div>
+                                <!-- RIGHT: Stat Cards -->
+                                <div class="col-lg-4">
+                                    <div class="row g-4">
+                                        <!-- Revenue Card -->
+                                        <div class="col-12">
+                                            <div class="card stat-card card-order animate-in delay-1" style="border-top: 4px solid #f59e0b !important; margin-bottom: 0;">
+                                                <div class="card-body">
+                                                    <div style="position: relative; z-index: 2;">
+                                                        <div class="stat-label">Total Revenue</div>
+                                                        <div class="stat-value" id="displayTotalRevenue">0 VNĐ</div>
+                                                    </div>
+                                                    <i class="fas fa-hand-holding-usd bg-icon" style="color: #f59e0b; opacity: 0.4;"></i>
+                                                </div>
+                                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                                    <span class="small text-muted">Successful orders</span>
+                                                    <div class="small text-muted"><i class="fas fa-chart-line"></i></div>
+                                                </div>
                                             </div>
-                                            <i class="fas fa-users bg-icon"></i>
                                         </div>
-                                        <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <a class="small stretched-link text-decoration-none" href="/admin/user">View details</a>
-                                            <div class="small text-muted"><i class="fas fa-chevron-right"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="col-xl-4 col-md-6 mb-4">
-                                    <div class="card stat-card card-product animate-in delay-3">
-                                        <div class="card-body">
-                                            <div style="position: relative; z-index: 2;">
-                                                <div class="stat-label">Available Products</div>
-                                                <div class="stat-value">${countProduct}</div>
+                                        <div class="col-12">
+                                            <div class="card stat-card card-user animate-in delay-2" style="margin-bottom: 0;">
+                                                <div class="card-body">
+                                                    <div style="position: relative; z-index: 2;">
+                                                        <div class="stat-label">Total Users</div>
+                                                        <div class="stat-value">${countUser}</div>
+                                                    </div>
+                                                    <i class="fas fa-users bg-icon"></i>
+                                                </div>
+                                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                                    <a class="small stretched-link text-decoration-none" href="/admin/user">View details</a>
+                                                    <div class="small text-muted"><i class="fas fa-chevron-right"></i></div>
+                                                </div>
                                             </div>
-                                            <i class="fas fa-box-open bg-icon"></i>
                                         </div>
-                                        <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <a class="small stretched-link text-decoration-none" href="/admin/product">Manage inventory</a>
-                                            <div class="small text-muted"><i class="fas fa-chevron-right"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Chart Section -->
-                            <div class="table-container mb-5 animate-in">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <h3 class="m-0" style="font-weight: 700; color: var(--text-main);">Revenue Trends</h3>
-                                        <span id="demoBadge" style="display:none; font-size: 0.7rem; background: #f1f5f9; color: #64748b; border: 1px dashed #94a3b8; padding: 2px 10px; border-radius: 20px; font-weight: 600;">Simulation Data</span>
+                                        <div class="col-12">
+                                            <div class="card stat-card card-product animate-in delay-3" style="margin-bottom: 0;">
+                                                <div class="card-body">
+                                                    <div style="position: relative; z-index: 2;">
+                                                        <div class="stat-label">Available Products</div>
+                                                        <div class="stat-value">${countProduct}</div>
+                                                    </div>
+                                                    <i class="fas fa-box-open bg-icon"></i>
+                                                </div>
+                                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                                    <a class="small stretched-link text-decoration-none" href="/admin/product">Manage inventory</a>
+                                                    <div class="small text-muted"><i class="fas fa-chevron-right"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div style="height: 350px;">
-                                    <canvas id="revenueLineChart"></canvas>
                                 </div>
                             </div>
 
@@ -457,31 +464,54 @@
                                     const demoLabels = [];
                                     const demoValues = [];
 
-                                    // Tạo phân phối doanh thu ngẫu nhiên nhưng hợp lý trong 15 ngày
                                     const days = 15;
-                                    // Trọng số dao động để đường line trông tự nhiên
                                     const weights = [0.4, 0.7, 0.5, 0.9, 0.6, 1.2, 0.8, 1.0, 0.75, 1.1, 0.65, 0.85, 1.3, 0.9, 1.5];
-                                    const totalWeight = weights.reduce((a, b) => a + b, 0);
+                                    
+                                    // Phân phối doanh thu hợp lý
+                                    let remainingRevenue = totalRev;
+                                    let distributedDays = days;
+                                    
+                                    // Nếu có dữ liệu thực của hôm nay, trừ ra trước khi phân phối cho các ngày cũ
+                                    if (labels.length === 1) {
+                                        remainingRevenue -= values[0];
+                                        distributedDays = days - 1;
+                                    }
 
-                                    for (let i = days - 1; i >= 0; i--) {
+                                    const subWeights = weights.slice(0, distributedDays);
+                                    const totalWeight = subWeights.reduce((a, b) => a + b, 0);
+
+                                    for (let i = 0; i < distributedDays; i++) {
                                         const d = new Date(today);
-                                        d.setDate(d.getDate() - i);
-                                        const dateStr = d.toISOString().split('T')[0];
-                                        demoLabels.push(dateStr);
-                                        const dayRevenue = Math.round((totalRev / totalWeight) * weights[days - 1 - i]);
+                                        d.setDate(d.getDate() - (days - 1 - i));
+                                        demoLabels.push(d.toISOString().split('T')[0]);
+                                        const dayRevenue = Math.round((remainingRevenue / totalWeight) * subWeights[i]);
                                         demoValues.push(dayRevenue);
                                     }
 
-                                    // Ghi đè điểm ngày hôm nay bằng doanh thu thực nếu có
+                                    // Thêm ngày hôm nay (dữ liệu thực)
                                     if (labels.length === 1) {
-                                        const todayStr = new Date().toISOString().split('T')[0];
-                                        const idx = demoLabels.indexOf(todayStr);
-                                        if (idx !== -1) demoValues[idx] = values[0];
+                                        demoLabels.push(new Date().toISOString().split('T')[0]);
+                                        demoValues.push(values[0]);
+                                    } else {
+                                        // Nếu không có dữ liệu thực nào, thêm ngày hôm nay mô phỏng nốt
+                                        const d = new Date(today);
+                                        demoLabels.push(d.toISOString().split('T')[0]);
+                                        const dayRevenue = Math.round((totalRev / (totalWeight + weights[days-1])) * weights[days-1]);
+                                        demoValues.push(dayRevenue);
                                     }
 
                                     chartLabels = demoLabels;
                                     chartValues = demoValues;
                                 }
+
+                                // Chuyển đổi sang dữ liệu tích lũy (Cumulative) để điểm cuối cùng khớp với Tổng doanh thu
+                                let cumulativeValues = [];
+                                let sum = 0;
+                                for (let val of chartValues) {
+                                    sum += val;
+                                    cumulativeValues.push(sum);
+                                }
+                                chartValues = cumulativeValues;
 
                                 if (revenueChart) {
                                     revenueChart.destroy();
@@ -497,19 +527,26 @@
                                     data: {
                                         labels: chartLabels,
                                         datasets: [{
-                                            label: 'Doanh thu (VNĐ)',
+                                            label: 'Cumulative Revenue (VNĐ)',
                                             data: chartValues,
-                                            borderColor: isDemoMode ? '#94a3b8' : '#4e73df',
-                                            borderWidth: 2.5,
-                                            borderDash: isDemoMode ? [6, 4] : [],
-                                            fill: false,
-                                            tension: 0.3,
-                                            pointRadius: isDemoMode ? 3 : 5,
-                                            pointBackgroundColor: isDemoMode ? '#94a3b8' : '#4e73df',
-                                            pointBorderColor: '#fff',
+                                            borderColor: '#6366f1',
+                                            backgroundColor: (context) => {
+                                                const chart = context.chart;
+                                                const {ctx, chartArea} = chart;
+                                                if (!chartArea) return null;
+                                                const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+                                                gradient.addColorStop(0, 'rgba(99, 102, 241, 0.2)');
+                                                gradient.addColorStop(1, 'rgba(99, 102, 241, 0)');
+                                                return gradient;
+                                            },
+                                            borderWidth: 3,
+                                            tension: 0.4,
+                                            fill: true,
+                                            pointBackgroundColor: '#fff',
+                                            pointBorderColor: '#6366f1',
                                             pointBorderWidth: 2,
-                                            pointHitRadius: 10,
-                                            pointHoverRadius: 6,
+                                            pointRadius: 4,
+                                            pointHoverRadius: 6
                                         }]
                                     },
                                     options: {
@@ -529,7 +566,7 @@
                                                 caretPadding: 10,
                                                 callbacks: {
                                                     label: function(context) {
-                                                        return 'Doanh thu: ' + formatCurrency(context.raw);
+                                                        return 'Total to date: ' + formatCurrency(context.raw);
                                                     }
                                                 }
                                             }
