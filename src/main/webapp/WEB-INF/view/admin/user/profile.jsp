@@ -9,7 +9,7 @@
                 <meta charset="utf-8" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <title>Hồ sơ cá nhân - Laptopshop</title>
+                <title>Profile - Laptopshop</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
@@ -145,7 +145,7 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Hồ sơ cá nhân</h1>
+                                <h1 class="mt-4">Personal Profile</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin" class="text-decoration-none"
                                             style="color: var(--text-muted);">Dashboard</a></li>
@@ -155,6 +155,11 @@
                                 <div class="row justify-content-center">
                                     <div class="col-lg-8">
                                         <div class="profile-card mb-5">
+                                            <c:if test="${not empty success}">
+                                                <div
+                                                    class="alert alert-success border-0 bg-success bg-opacity-25 text-white mb-4">
+                                                    ${success}</div>
+                                            </c:if>
                                             <form:form method="post" action="/admin/profile" modelAttribute="newUser"
                                                 enctype="multipart/form-data">
                                                 <form:hidden path="id" />
@@ -166,7 +171,7 @@
                                                         id="avatarPreview">
                                                     <div class="mt-3">
                                                         <label for="avatarFile" class="btn btn-outline-light btn-sm">
-                                                            <i class="fas fa-camera me-2"></i>Đổi ảnh đại diện
+                                                            <i class="fas fa-camera me-2"></i>Change Avatar
                                                         </label>
                                                         <input type="file" id="avatarFile" name="phucvietFile"
                                                             class="d-none" accept="image/*"
@@ -181,30 +186,30 @@
                                                             disabled="true" />
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Vai trò</label>
+                                                        <label class="form-label">Role</label>
                                                         <input type="text" class="form-control"
                                                             value="${newUser.role.name}" disabled />
                                                     </div>
                                                     <div class="col-md-12">
-                                                        <label class="form-label">Họ và tên</label>
+                                                        <label class="form-label">Full Name</label>
                                                         <form:input path="fullName" type="text" class="form-control" />
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Số điện thoại</label>
+                                                        <label class="form-label">Phone Number</label>
                                                         <form:input path="phone" type="text" class="form-control" />
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <label class="form-label">Địa chỉ</label>
+                                                        <label class="form-label">Address</label>
                                                         <form:input path="address" type="text" class="form-control" />
                                                     </div>
                                                 </div>
 
                                                 <div class="d-flex justify-content-around align-items-center mt-5">
                                                     <a href="/admin" class="btn btn-secondary me-2">
-                                                        <i class="fas fa-times me-2"></i>Hủy
+                                                        <i class="fas fa-times me-2"></i>Cancel
                                                     </a>
                                                     <button type="submit" class="btn btn-primary">
-                                                        <i class="fas fa-save me-2"></i>Lưu thay đổi
+                                                        <i class="fas fa-save me-2"></i>Save Changes
                                                     </button>
                                                 </div>
                                             </form:form>

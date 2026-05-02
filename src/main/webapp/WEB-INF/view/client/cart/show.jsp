@@ -74,7 +74,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="cartTableBody">
-                                        <c:if test="${ empty cartDetails && not empty pageContext.request.userPrincipal}">
+                                        <c:if test="${ empty cartDetails and not empty pageContext.request.userPrincipal}">
                                             <tr>
                                                 <td colspan="6">
                                                     Your shopping cart is empty
@@ -147,7 +147,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                                <div id="cartSummarySection" class="mt-5 row g-4 justify-content-start" style="${empty cartDetails && not empty pageContext.request.userPrincipal ? 'display:none;' : ''}">
+                                <div id="cartSummarySection" class="mt-5 row g-4 justify-content-start">
                                     <div class="col-12 col-md-8">
                                         <div class="bg-light rounded">
                                             <div class="p-4">

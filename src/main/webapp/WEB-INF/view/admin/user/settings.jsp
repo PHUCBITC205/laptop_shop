@@ -9,7 +9,7 @@
                 <meta charset="utf-8" />
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-                <title>Cài đặt - Laptopshop</title>
+                <title>Settings - Laptopshop</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
                 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap"
@@ -108,7 +108,7 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Cài đặt tài khoản</h1>
+                                <h1 class="mt-4">Account Settings</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin" class="text-decoration-none"
                                             style="color: var(--text-muted);">Dashboard</a></li>
@@ -118,7 +118,7 @@
                                 <div class="row justify-content-center">
                                     <div class="col-lg-6">
                                         <div class="settings-card mb-5">
-                                            <h4 class="mb-4"><i class="fas fa-lock me-2"></i>Đổi mật khẩu</h4>
+                                            <h4 class="mb-4"><i class="fas fa-lock me-2"></i>Change Password</h4>
 
                                             <c:if test="${not empty success}">
                                                 <div
@@ -135,23 +135,22 @@
                                                 <input type="hidden" name="${_csrf.parameterName}"
                                                     value="${_csrf.token}" />
                                                 <div class="mb-3">
-                                                    <label class="form-label">Mật khẩu hiện tại</label>
+                                                    <label class="form-label">Current Password</label>
                                                     <input type="password" name="currentPassword" class="form-control"
                                                         required />
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">Mật khẩu mới</label>
+                                                    <label class="form-label">New Password</label>
                                                     <input type="password" name="newPassword" class="form-control"
                                                         required />
                                                 </div>
                                                 <div class="mb-4">
-                                                    <label class="form-label">Xác nhận mật khẩu mới</label>
+                                                    <label class="form-label">Confirm New Password</label>
                                                     <input type="password" name="confirmPassword" class="form-control"
                                                         required />
                                                 </div>
                                                 <div class="d-flex justify-content-end">
-                                                    <button type="submit" class="btn btn-primary">Cập nhật mật
-                                                        khẩu</button>
+                                                    <button type="submit" class="btn btn-primary">Update Password</button>
                                                 </div>
                                             </form>
                                         </div>

@@ -22,6 +22,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import jakarta.servlet.http.HttpSession;
 
 import jakarta.validation.Valid;
 
@@ -166,7 +169,7 @@ public class UserController {
             this.userSevice.deleteAUser(phucxo.getId());
         } catch (Exception e) {
             model.addAttribute("error",
-                    "Tài khoản này đang có dữ liệu liên quan (giỏ hàng, đơn hàng...) nên không thể xóa!");
+                    "This account has related data (cart, orders...) and cannot be deleted!");
             model.addAttribute("deleteUser", phucxo.getId()); // Trả lại ID để hiển thị
             return "admin/user/delete";
         }
@@ -183,7 +186,9 @@ public class UserController {
 
     @PostMapping("/admin/profile")
     public String postUpdateProfile(Model model, @ModelAttribute("newUser") User phucxo,
-            @RequestParam("phucvietFile") MultipartFile file) {
+            @RequestParam("phucvietFile") MultipartFile file,
+            RedirectAttributes redirectAttributes,
+            HttpSession session) {
         User currentUser = this.userSevice.getUserById(phucxo.getId());
         if (currentUser != null) {
             if (!file.isEmpty()) {
@@ -194,6 +199,9 @@ public class UserController {
             currentUser.setFullName(phucxo.getFullName());
             currentUser.setPhone(phucxo.getPhone());
             this.userSevice.handlSaveUser(currentUser);
+            session.setAttribute("fullName", currentUser.getFullName());
+            session.setAttribute("avatar", currentUser.getAvatar());
+            redirectAttributes.addFlashAttribute("success", "Profile updated successfully!");
         }
         return "redirect:/admin/profile";
     }
@@ -216,12 +224,12 @@ public class UserController {
                 String hashPassword = this.passwordEncoder.encode(newPassword);
                 currentUser.setPassword(hashPassword);
                 this.userSevice.handlSaveUser(currentUser);
-                model.addAttribute("success", "Đổi mật khẩu thành công!");
+                model.addAttribute("success", "Password changed successfully!");
             } else {
-                model.addAttribute("error", "Mật khẩu mới và xác nhận mật khẩu không khớp!");
+                model.addAttribute("error", "New password and confirmation do not match!");
             }
         } else {
-            model.addAttribute("error", "Mật khẩu hiện tại không chính xác!");
+            model.addAttribute("error", "Current password is incorrect!");
         }
         return "admin/user/settings";
     }
