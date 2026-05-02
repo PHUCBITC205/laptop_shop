@@ -128,6 +128,25 @@
                                 color: #ffc107 !important;
                                 font-weight: 700;
                             }
+
+                            .btn-cancel {
+                                background: #fff;
+                                border: 1px solid #e2e8f0;
+                                color: #64748b;
+                                padding: 12px 30px;
+                                border-radius: 12px;
+                                font-weight: 600;
+                                transition: 0.3s;
+                                text-decoration: none;
+                                display: inline-block;
+                            }
+
+                            .btn-cancel:hover {
+                                background: #f1f5f9;
+                                color: #ffc107 !important;
+                                border-color: #ffc107;
+                                transform: translateY(-2px);
+                            }
                         </style>
 
                         <script>
@@ -245,23 +264,23 @@
                                                                     <form:input type="text" class="form-control" path="ram" />
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label class="form-label">Ổ cứng (Storage)</label>
+                                                                     <label class="form-label">Storage</label>
                                                                     <form:input type="text" class="form-control" path="storage" />
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label class="form-label">GPU (Card đồ họa)</label>
+                                                                     <label class="form-label">GPU</label>
                                                                     <form:input type="text" class="form-control" path="gpu" />
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label class="form-label">Màn hình (Display)</label>
+                                                                     <label class="form-label">Display</label>
                                                                     <form:input type="text" class="form-control" path="screen" />
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label class="form-label">Pin (Battery)</label>
+                                                                     <label class="form-label">Battery</label>
                                                                     <form:input type="text" class="form-control" path="battery" />
                                                                 </div>
                                                                 <div class="col-md-6">
-                                                                    <label class="form-label">Trọng lượng (Weight)</label>
+                                                                     <label class="form-label">Weight</label>
                                                                     <form:input type="text" class="form-control" path="weight" />
                                                                 </div>
 
@@ -279,36 +298,24 @@
                                                                 <div class="col-md-4">
                                                                     <label class="form-label">Brand</label>
                                                                     <form:select class="form-select" path="factory">
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="APPLE">Apple (MacBook)
-                                                                        </form:option>
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="ASUS">Asus</form:option>
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="LENOVO">Lenovo</form:option>
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="DELL">Dell</form:option>
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="LG">LG</form:option>
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="ACER">Acer</form:option>
+                                                                        <form:option value="APPLE">Apple (MacBook)</form:option>
+                                                                        <form:option value="ASUS">Asus</form:option>
+                                                                        <form:option value="LENOVO">Lenovo</form:option>
+                                                                        <form:option value="DELL">Dell</form:option>
+                                                                        <form:option value="LG">LG</form:option>
+                                                                        <form:option value="ACER">Acer</form:option>
                                                                     </form:select>
                                                                 </div>
 
                                                                 <div class="col-md-4">
-                                                                    <label class="form-label">Segment</label>
-                                                                    <form:select class="form-select" path="target">
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="GAMING">Gaming</form:option>
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="SINHVIEN-VANPHONG">Student - Office</form:option>
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="THIET-KE-DO-HOA">Graphic Design</form:option>
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="MONG-NHE">Thin & Light</form:option>
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="DOANH-NHAN">Business</form:option>
+                                                                    <label class="form-label">Segment</label>                                                                    <form:select class="form-select" path="target">
+                                                                        <form:option value="GAMING">Gaming</form:option>
+                                                                        <form:option value="STUDENT-OFFICE">Student - Office</form:option>
+                                                                        <form:option value="GRAPHIC-DESIGN">Graphic Design</form:option>
+                                                                        <form:option value="THIN-LIGHT">Thin & Light</form:option>
+                                                                        <form:option value="BUSINESS">Business</form:option>
                                                                     </form:select>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -329,9 +336,7 @@
 
                                                         <div class="col-12 mt-5 text-end border-top pt-4"
                                                             style="border-color: var(--border-glass) !important;">
-                                                            <a href="/admin/product"
-                                                                class="btn btn-outline-secondary me-3 px-4 py-2"
-                                                                style="border-radius: 12px; color: #fff; border-color: var(--border-glass);">Cancel</a>
+                                                             <a href="/admin/product" class="btn-cancel me-3">Cancel</a>
                                                             <button type="submit" class="btn btn-update-now">Save Changes</button>
                                                         </div>
                                                     </form:form>

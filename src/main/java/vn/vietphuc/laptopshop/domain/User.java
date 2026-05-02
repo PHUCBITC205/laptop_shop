@@ -35,17 +35,16 @@ public class User {
     private long id;
 
     @NotNull
-    @Email
-    @Email(message = "Email không hợp lệ ", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    @Email(message = "Invalid email address", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
 
     @NotNull
-    @Size(min = 2, message = "Password phải có tối thiểu 2 kí tự ")
+    @Size(min = 2, message = "Password must be at least 2 characters")
     // @StrongPassword(message = "Password phải có 8 kí tự ")
     private String password;
 
     @NotNull
-    @Size(min = 3, message = "FullName phải có tối thiểu 3 kí tự ")
+    @Size(min = 3, message = "Full name must be at least 3 characters")
     private String fullName;
 
     private String address;
@@ -54,6 +53,16 @@ public class User {
     private String avatar;
 
     private String resetPasswordToken;
+
+    private boolean deleted = false;
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 
     // role id
     // user many --> to one --> role

@@ -54,15 +54,15 @@ public class UserSevice {
     }
 
     public Page<User> getAllUser(Pageable page) {
-        return this.userRepository.findAll(page);
+        return this.userRepository.findAllByDeletedFalse(page);
     }
 
     public User getUserById(long id) {
-        return this.userRepository.findById(id);
+        return this.userRepository.findByIdAndDeletedFalse(id);
     }
 
     public List<User> getAllUserByEmail(String email) {
-        return this.userRepository.findOneByEmail(email);
+        return this.userRepository.findOneByEmailAndDeletedFalse(email);
     }
 
     public User handlSaveUser(User user) {
@@ -72,7 +72,11 @@ public class UserSevice {
     }
 
     public void deleteAUser(long id) {
-        this.userRepository.deleteById(id);
+        User user = this.getUserById(id);
+        if (user != null) {
+            user.setDeleted(true);
+            this.userRepository.save(user);
+        }
     }
 
     public Role getRoleByName(String name) {
@@ -88,20 +92,20 @@ public class UserSevice {
     }
 
     public boolean checkEmailExits(String email) {
-        return this.userRepository.existsByEmail(email);
+        return this.userRepository.existsByEmailAndDeletedFalse(email);
     }
 
     public User getUserByEmail(String email) {
-        return this.userRepository.findByEmail(email);
+        return this.userRepository.findByEmailAndDeletedFalse(email);
     }
 
     public User getUserByResetPasswordToken(String token) {
-        return this.userRepository.findByResetPasswordToken(token);
+        return this.userRepository.findByResetPasswordTokenAndDeletedFalse(token);
     }
 
     // Đếm số lượng count trong mỗi thành phần
     public long countUser() {
-        return this.userRepository.count();
+        return this.userRepository.countByDeletedFalse();
     }
 
     public long countProduct() {

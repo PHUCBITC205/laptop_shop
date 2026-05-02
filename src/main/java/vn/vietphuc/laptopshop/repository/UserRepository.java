@@ -16,16 +16,19 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     void deleteById(long id);
 
-    List<User> findOneByEmail(String email);
+    List<User> findOneByEmailAndDeletedFalse(String email);
 
-    List<User> findAll();
+    List<User> findAllByDeletedFalse();
+    
+    org.springframework.data.domain.Page<User> findAllByDeletedFalse(org.springframework.data.domain.Pageable page);
 
-    User findById(long id);
+    User findByIdAndDeletedFalse(long id);
 
-    boolean existsByEmail(String email);
+    boolean existsByEmailAndDeletedFalse(String email);
 
-    User findByEmail(String email);
+    User findByEmailAndDeletedFalse(String email);
 
-    User findByResetPasswordToken(String token);
+    User findByResetPasswordTokenAndDeletedFalse(String token);
 
+    long countByDeletedFalse();
 }

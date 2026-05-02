@@ -25,25 +25,25 @@ public class Product {
     List<OrderDetail> orderDetails;
 
     @NotNull
-    @NotEmpty(message = "Tên sản phẩm không được để trống ")
+    @NotEmpty(message = "Product name cannot be empty")
     private String name;
 
-    @NotNull(message = "Giá thành không được để trống")
-    @DecimalMin(value = "0", inclusive = false, message = "Price phải lớn hơn 0 ")
+    @NotNull(message = "Price cannot be empty")
+    @DecimalMin(value = "0", inclusive = false, message = "Price must be greater than 0")
     private Double price;
     private String image;
 
     @NotNull
-    @NotEmpty(message = "DetailDesc không được để trống ")
+    @NotEmpty(message = "Detailed description cannot be empty")
     @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
 
     @NotNull
-    @NotEmpty(message = "ShortDesc không được để trống")
+    @NotEmpty(message = "Short description cannot be empty")
     private String shortDesc;
 
-    @NotNull(message = "Số lượng không được để trống")
-    @Min(value = 1, message = "Quantity phải lớn hơn hoặc bằng 1  ")
+    @NotNull(message = "Quantity cannot be empty")
+    @Min(value = 1, message = "Quantity must be at least 1")
     private Long quantity;
     private long sold;
     private String factory;
@@ -56,6 +56,15 @@ public class Product {
     private String screen;
     private String battery;
     private String weight;
+    private boolean deleted = false;
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 
     public String getName() {
         return name;

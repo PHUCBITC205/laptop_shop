@@ -149,11 +149,11 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Quản lý đơn hàng</h1>
+                    <h1 class="mt-4">Order Management</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="/admin/order">Đơn hàng</a></li>
-                        <li class="breadcrumb-item active">Xác nhận hủy</li>
+                        <li class="breadcrumb-item"><a href="/admin/order">Orders</a></li>
+                        <li class="breadcrumb-item active">Confirm Deletion</li>
                     </ol>
 
                     <div class="delete-card">
@@ -161,16 +161,16 @@
                             <i class="fas fa-exclamation-circle"></i>
                         </div>
                         
-                        <h2 class="delete-title">Xác nhận hủy đơn hàng?</h2>
+                        <h2 class="delete-title">Confirm Delete Order?</h2>
                         <div class="mt-2">
-                            <span class="text-muted">Mã đơn hàng:</span> 
+                            <span class="text-muted">Order ID:</span> 
                             <span class="order-id-badge">${id}</span>
                         </div>
 
                         <p class="alert-text">
-                            Hành động này sẽ loại bỏ đơn hàng khỏi hệ thống. 
-                            Dữ liệu sau khi xóa <strong>không thể khôi phục</strong>. 
-                            Bạn có chắc chắn muốn thực hiện?
+                            This action will remove the order from the system. 
+                            Deleted data <strong>cannot be recovered</strong>. 
+                            Are you sure you want to proceed?
                         </p>
 
                         <div class="d-flex justify-content-center gap-3">
@@ -179,10 +179,10 @@
                                     <form:input value="${id}" type="hidden" path="id" />
                                 </div>
                                 <a href="/admin/order" class="btn-cancel-action">
-                                    <i class="fas fa-arrow-left me-2"></i>Quay lại
+                                    <i class="fas fa-arrow-left me-2"></i>Back
                                 </a>
                                 <button type="submit" class="btn-confirm-delete">
-                                    <i class="fas fa-trash-alt me-2"></i>Xác nhận xóa
+                                    <i class="fas fa-trash-alt me-2"></i>Confirm Delete
                                 </button>
                             </form:form>
                         </div>

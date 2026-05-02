@@ -1,6 +1,7 @@
 package vn.vietphuc.laptopshop.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,10 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
 
     Page<Product> findAll(Pageable page); // Nó sẽ được trả về danh sách sản phẩm
 
+    Page<Product> findAllByDeletedFalse(Pageable page);
+
+    Optional<Product> findByIdAndDeletedFalse(long id);
+
     Page<Product> findAll(Specification<Product> spec, Pageable page); // Nó sẽ được trả
                                                                        // về
                                                                        // danh sách sản
@@ -29,7 +34,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
 
     // Optional<Product> findById(long id);
 
-    List<Product> findTop10ByFactoryAndIdNot(String factory, long id);
+    List<Product> findTop10ByFactoryAndIdNotAndDeletedFalse(String factory, long id);
 
     @Query("SELECT DISTINCT p.factory FROM Product p")
     List<String> findDistinctFactories();

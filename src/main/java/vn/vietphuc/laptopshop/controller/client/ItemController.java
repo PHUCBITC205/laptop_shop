@@ -50,13 +50,16 @@ public class ItemController {
 
     @GetMapping("/product/{id}")
     public String getProductPage(Model model, @PathVariable long id) {
-
-        Product pr = this.productService.fetchProductById(id).get();
-        List<Product> relatedProducts = this.productService.fetchRelatedProducts(pr.getFactory(), id);
-        model.addAttribute("product", pr);
-        model.addAttribute("relatedProducts", relatedProducts);
-        model.addAttribute("id", id);
-        return "client/product/detail";
+        Optional<Product> prOptional = this.productService.fetchProductByIdAndNotDeleted(id);
+        if (prOptional.isPresent()) {
+            Product pr = prOptional.get();
+            List<Product> relatedProducts = this.productService.fetchRelatedProducts(pr.getFactory(), id);
+            model.addAttribute("product", pr);
+            model.addAttribute("relatedProducts", relatedProducts);
+            model.addAttribute("id", id);
+            return "client/product/detail";
+        }
+        return "redirect:/"; // Hoặc trang 404
     }
 
     @PostMapping("/add-product-to-cart/{id}")

@@ -38,6 +38,15 @@ public class Order {
     private LocalDateTime shippingDate;
     private LocalDateTime completeDate;
     private LocalDateTime cancelDate;
+    private boolean deleted = false;
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 
     public String getPaymentMethod() {
         return paymentMethod;

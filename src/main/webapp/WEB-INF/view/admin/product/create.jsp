@@ -122,6 +122,25 @@
                             color: var(--accent-blue) !important;
                             font-weight: 700;
                         }
+
+                        .btn-cancel {
+                            background: #fff;
+                            border: 1px solid #e2e8f0;
+                            color: #64748b;
+                            padding: 12px 30px;
+                            border-radius: 12px;
+                            font-weight: 600;
+                            transition: 0.3s;
+                            text-decoration: none;
+                            display: inline-block;
+                        }
+
+                        .btn-cancel:hover {
+                            background: #f1f5f9;
+                            color: var(--accent-blue) !important;
+                            border-color: var(--accent-blue);
+                            transform: translateY(-2px);
+                        }
                     </style>
 
                     <script>
@@ -175,7 +194,7 @@
                                                                     <form:input type="text"
                                                                         class="form-control ${status.error ? 'is-invalid' : ''}"
                                                                         path="name"
-                                                                        placeholder="Ví dụ: MacBook Pro M3 2024" />
+                                                                        placeholder="Ex: MacBook Pro M3 2024" />
                                                                     <form:errors path="name"
                                                                         cssClass="invalid-feedback" />
                                                                 </spring:bind>
@@ -198,7 +217,7 @@
                                                                     <form:textarea rows="4"
                                                                         class="form-control ${status.error ? 'is-invalid' : ''}"
                                                                         path="detailDesc"
-                                                                        placeholder="Những đặc điểm nổi bật" />
+                                                                        placeholder="Outstanding features" />
                                                                     <form:errors path="detailDesc"
                                                                         cssClass="invalid-feedback" />
                                                                 </spring:bind>
@@ -210,7 +229,7 @@
                                                                     <form:input type="text"
                                                                         class="form-control ${status.error ? 'is-invalid' : ''}"
                                                                         path="shortDesc"
-                                                                        placeholder="Nhập cấu hình chi tiết (CPU, RAM, SSD...)" />
+                                                                        placeholder="Enter detailed specs (CPU, RAM, SSD...)" />
                                                                     <form:errors path="shortDesc"
                                                                         cssClass="invalid-feedback" />
                                                                 </spring:bind>
@@ -230,23 +249,23 @@
                                                                 <form:input type="text" class="form-control" path="ram" placeholder="Ex: 16GB DDR5 5200MHz" />
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <label class="form-label">Ổ cứng (Storage)</label>
+                                                                <label class="form-label">Storage</label>
                                                                 <form:input type="text" class="form-control" path="storage" placeholder="Ex: 512GB SSD NVMe" />
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <label class="form-label">GPU (Card đồ họa)</label>
+                                                                <label class="form-label">GPU</label>
                                                                 <form:input type="text" class="form-control" path="gpu" placeholder="Ex: NVIDIA RTX 4060 8GB" />
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <label class="form-label">Màn hình (Display)</label>
+                                                                <label class="form-label">Display</label>
                                                                 <form:input type="text" class="form-control" path="screen" placeholder="Ex: 15.6 inch QHD 165Hz" />
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <label class="form-label">Pin (Battery)</label>
+                                                                <label class="form-label">Battery</label>
                                                                 <form:input type="text" class="form-control" path="battery" placeholder="Ex: 4-cell, 90Wh" />
                                                             </div>
                                                             <div class="col-md-6">
-                                                                <label class="form-label">Trọng lượng (Weight)</label>
+                                                                <label class="form-label">Weight</label>
                                                                 <form:input type="text" class="form-control" path="weight" placeholder="Ex: 2.1 kg" />
                                                             </div>
 
@@ -264,35 +283,23 @@
                                                             <div class="col-md-4">
                                                                 <label class="form-label">Manufacturer</label>
                                                                 <form:select class="form-select" path="factory">
-                                                                    <form:option style="background-color:#2B2C39;"
-                                                                        value="Apple(Macbook)">Apple (Macbook)
-                                                                    </form:option>
-                                                                    <form:option style="background-color:#2B2C39;"
-                                                                        value="Asus">Asus</form:option>
-                                                                    <form:option style="background-color:#2B2C39;"
-                                                                        value="Lenovo">Lenovo</form:option>
-                                                                    <form:option style="background-color:#2B2C39;"
-                                                                        value="Dell">Dell</form:option>
-                                                                    <form:option style="background-color:#2B2C39;"
-                                                                        value="LG">LG</form:option>
-                                                                    <form:option style="background-color:#2B2C39;"
-                                                                        value="Acer">Acer</form:option>
+                                                                    <form:option value="APPLE">Apple (Macbook)</form:option>
+                                                                    <form:option value="ASUS">Asus</form:option>
+                                                                    <form:option value="LENOVO">Lenovo</form:option>
+                                                                    <form:option value="DELL">Dell</form:option>
+                                                                    <form:option value="LG">LG</form:option>
+                                                                    <form:option value="ACER">Acer</form:option>
                                                                 </form:select>
                                                             </div>
 
                                                             <div class="col-md-4">
                                                                 <label class="form-label">Category (Target)</label>
                                                                 <form:select class="form-select" path="target">
-                                                                    <form:option style="background-color:#2B2C39;"
-                                                                        value="Gamming">Gaming</form:option>
-                                                                    <form:option style="background-color:#2B2C39;"
-                                                                        value="Sinh viên - văn phòng">Student - Office</form:option>
-                                                                    <form:option style="background-color:#2B2C39;"
-                                                                        value="Thiết kế đồ họa">Graphic Design</form:option>
-                                                                    <form:option style="background-color:#2B2C39;"
-                                                                        value="Mỏng nhẹ">Thin & Light</form:option>
-                                                                    <form:option style="background-color:#2B2C39;"
-                                                                        value="Doanh nhân">Business</form:option>
+                                                                    <form:option value="GAMING">Gaming</form:option>
+                                                                    <form:option value="STUDENT-OFFICE">Student - Office</form:option>
+                                                                    <form:option value="GRAPHIC-DESIGN">Graphic Design</form:option>
+                                                                    <form:option value="THIN-LIGHT">Thin & Light</form:option>
+                                                                    <form:option value="BUSINESS">Business</form:option>
                                                                 </form:select>
                                                             </div>
                                                         </div>
@@ -317,9 +324,7 @@
 
                                                     <div class="col-12 mt-5 text-end border-top pt-4 d-flex justify-content-around align-items-center"
                                                         style="border-color: var(--border-glass) !important;">
-                                                        <a href="/admin/product"
-                                                            class="btn btn-outline-secondary me-3 px-4 py-2"
-                                                            style="border-radius: 12px; color: #fff;">Cancel</a>
+                                                         <a href="/admin/product" class="btn-cancel me-3">Cancel</a>
                                                         <button type="submit" class="btn btn-submit">Confirm Add Product</button>
                                                     </div>
                                                 </form:form>

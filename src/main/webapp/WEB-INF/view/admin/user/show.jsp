@@ -302,8 +302,8 @@
                                     <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 rounded-circle mb-3" style="width: 80px; height: 80px;">
                                         <i class="fas fa-exclamation-triangle text-danger fs-1"></i>
                                     </div>
-                                    <p class="mb-1 fw-bold fs-5">Are you sure you want to delete?</p>
-                                    <p class="text-muted">This action will permanently delete the account with ID <span id="displayUserId" class="badge bg-secondary"></span>. This cannot be undone.</p>
+                                    <p class="mb-1 fw-bold fs-5">Confirm User Deactivation</p>
+                                    <p class="text-muted">This action will deactivate the account with ID <span id="displayUserId" class="badge bg-secondary"></span>. They will no longer be able to log in.</p>
                                 </div>
                             </div>
                             <div class="modal-footer border-0 pb-4 px-4 gap-2">

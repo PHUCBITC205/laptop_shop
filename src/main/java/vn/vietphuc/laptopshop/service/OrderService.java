@@ -32,14 +32,14 @@ public class OrderService {
     }
 
     public Page<Order> fetchOrder(Pageable pageable) {
-        return this.orderRepository.findAll(pageable);
+        return this.orderRepository.findAllByDeletedFalse(pageable);
     }
 
     public Page<Order> fetchOrdersWithSpec(Pageable pageable, String status) {
-        if (status == null || status.isBlank()) {
-            return this.orderRepository.findAll(pageable);
+        Specification<Order> spec = (root, query, cb) -> cb.equal(root.get("deleted"), false);
+        if (status != null && !status.isBlank()) {
+            spec = spec.and((root, query, cb) -> cb.equal(root.get("status"), status));
         }
-        Specification<Order> spec = (root, query, cb) -> cb.equal(root.get("status"), status);
         return this.orderRepository.findAll(spec, pageable);
     }
 
@@ -105,25 +105,20 @@ public class OrderService {
     }
 
     public void deleteOrderById(long id) {
-        // delete order detail
         Optional<Order> orderOptional = this.fetchOrderById(id);
         if (orderOptional.isPresent()) {
             Order order = orderOptional.get();
-            List<OrderDetail> orderDetails = order.getOrderDetails();
-            for (OrderDetail orderDetail : orderDetails) {
-                this.orderDetailRepository.deleteById(orderDetail.getId());
-            }
+            order.setDeleted(true);
+            this.orderRepository.save(order);
         }
-
-        this.orderRepository.deleteById(id);
     }
 
     public List<Order> fetchOrderByUser(User user) {
-        return this.orderRepository.findByUser(user);
+        return this.orderRepository.findByUserAndDeletedFalse(user);
     }
 
     public Page<Order> fetchOrderByUser(User user, Pageable pageable) {
-        return this.orderRepository.findByUser(user, pageable);
+        return this.orderRepository.findByUserAndDeletedFalse(user, pageable);
     }
 
     public Double calculateRevenue(List<String> brands, LocalDateTime start, LocalDateTime end, boolean isAllTime) {

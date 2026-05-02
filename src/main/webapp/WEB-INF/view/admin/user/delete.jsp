@@ -153,11 +153,11 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Quản lý người dùng</h1>
+                                <h1 class="mt-4">User Management</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item"><a href="/admin/user">Người dùng</a></li>
-                                    <li class="breadcrumb-item active">Xác nhận xóa</li>
+                                    <li class="breadcrumb-item"><a href="/admin/user">Users</a></li>
+                                    <li class="breadcrumb-item active">Confirm Deletion</li>
                                 </ol>
 
                                 <div class="delete-container">
@@ -165,7 +165,7 @@
                                         <i class="fas fa-exclamation-triangle"></i>
                                     </div>
 
-                                    <h2 class="delete-title">Xác nhận xóa người dùng?</h2>
+                                    <h2 class="delete-title">Confirm Delete User?</h2>
                                     <c:if test="${not empty error}">
                                         <div class="alert alert-danger" role="alert">
                                             ${error}
@@ -173,9 +173,9 @@
                                     </c:if>
 
                                     <p class="delete-subtitle">
-                                        Xóa vĩnh viễn tài khoản có mã
+                                        Deactivate the account with ID
                                         <span class="user-id-badge">${deleteUser}</span>.
-                                        <br>Hành động này <strong>không thể hoàn tác</strong>.
+                                        <br>This user will no longer be able to log in or access the system.
                                     </p>
 
                                     <div class="d-flex justify-content-center">
@@ -183,8 +183,8 @@
                                             <div style="display: none;">
                                                 <form:input type="text" path="id" />
                                             </div>
-                                            <a href="/admin/user" class="btn-cancel-delete">Hủy bỏ</a>
-                                            <button type="submit" class="btn-confirm-delete">Xác nhận xóa</button>
+                                            <a href="/admin/user" class="btn-cancel-delete">Cancel</a>
+                                            <button type="submit" class="btn-confirm-delete">Confirm Delete</button>
                                         </form:form>
                                     </div>
                                 </div>

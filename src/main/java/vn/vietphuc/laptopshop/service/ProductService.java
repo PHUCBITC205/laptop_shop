@@ -62,7 +62,7 @@ public class ProductService {
     }
 
     public Page<Product> fetchProducts(Pageable page) {
-        return this.productRepository.findAll(page);
+        return this.productRepository.findAllByDeletedFalse(page);
     }
 
     // Case 1 :
@@ -71,10 +71,10 @@ public class ProductService {
                 && productCriteriaDTO.getFactory() == null
                 && productCriteriaDTO.getPrice() == null
                 && productCriteriaDTO.getName() == null) {
-            return this.productRepository.findAll(page);
+            return this.productRepository.findAllByDeletedFalse(page);
         }
 
-        Specification<Product> combinedSpec = Specification.where(null);
+        Specification<Product> combinedSpec = Specification.where(ProductSpecs.isNotDeleted());
 
         if (productCriteriaDTO.getName() != null && productCriteriaDTO.getName().isPresent()) {
             Specification<Product> currentSpecs = ProductSpecs.nameLike(productCriteriaDTO.getName().get());
@@ -223,6 +223,10 @@ public class ProductService {
         return this.productRepository.findById(id);
     }
 
+    public Optional<Product> fetchProductByIdAndNotDeleted(long id) {
+        return this.productRepository.findByIdAndDeletedFalse(id);
+    }
+
     public Order fetchOrderById(long id) {
         return this.orderRepository.findById(id).orElse(null);
     }
@@ -241,11 +245,16 @@ public class ProductService {
     }
 
     public List<Product> fetchRelatedProducts(String factory, long id) {
-        return this.productRepository.findTop10ByFactoryAndIdNot(factory, id);
+        return this.productRepository.findTop10ByFactoryAndIdNotAndDeletedFalse(factory, id);
     }
 
     public void deleteProduct(long id) {
-        this.productRepository.deleteById(id);
+        Optional<Product> prOptional = this.productRepository.findById(id);
+        if (prOptional.isPresent()) {
+            Product pr = prOptional.get();
+            pr.setDeleted(true);
+            this.productRepository.save(pr);
+        }
     }
 
     public Cart fetchByUser(User user) {

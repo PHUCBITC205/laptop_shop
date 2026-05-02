@@ -50,4 +50,8 @@ public class ProductSpecs {
                 root.get(Product_.PRICE), min, max);
     }
 
+    public static Specification<Product> isNotDeleted() {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("deleted"), false);
+    }
+
 }
