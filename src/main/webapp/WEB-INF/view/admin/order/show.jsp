@@ -175,7 +175,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Quản lý đơn hàng</h1>
+                    <h1 class="mt-4">Manage Orders</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="/admin" class="text-decoration-none" style="color: var(--text-muted);">Dashboard</a></li>
                         <li class="breadcrumb-item active">Đơn hàng</li>

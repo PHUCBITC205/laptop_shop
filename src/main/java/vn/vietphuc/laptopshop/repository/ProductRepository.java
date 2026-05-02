@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import vn.vietphuc.laptopshop.domain.Product;
 
+import org.springframework.data.jpa.repository.Query;
+
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpecificationExecutor<Product> {
     void deleteById(long id);
@@ -28,4 +30,7 @@ public interface ProductRepository extends JpaRepository<Product, Long>, JpaSpec
     // Optional<Product> findById(long id);
 
     List<Product> findTop10ByFactoryAndIdNot(String factory, long id);
+
+    @Query("SELECT DISTINCT p.factory FROM Product p")
+    List<String> findDistinctFactories();
 }

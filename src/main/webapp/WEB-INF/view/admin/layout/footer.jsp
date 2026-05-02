@@ -59,21 +59,9 @@
     <div class="container-fluid px-4">
         <div class="d-flex align-items-center justify-content-between small">
             <div class="copyright-text">
-                Copyright &copy; <span class="brand-highlight">Phucxo IT</span> 2026 
+                Copyright &copy; <span class="brand-highlight">HUY CAO</span> 2026 
                 <span class="ms-2 d-none d-sm-inline">&middot; All rights reserved</span>
-            </div>
-
-            <div class="d-flex gap-2">
-                <a href="#" target="_blank" class="footer-link">
-                    <i class="fas fa-globe me-2"></i>
-                    <span>Website</span>
-                </a>
-                <span class="text-muted d-flex align-items-center">&middot;</span>
-                <a href="#" target="_blank" class="footer-link">
-                    <i class="fab fa-youtube me-2"></i>
-                    <span>Youtube channel</span>
-                </a>
-            </div>
+            </div>    
         </div>
     </div>
 </footer>

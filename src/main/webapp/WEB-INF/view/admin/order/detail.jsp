@@ -129,8 +129,8 @@
                         <li class="breadcrumb-item active">Mã đơn ${id}</li>
                     </ol>
 
-                    <div class="row mb-4">
-                        <div class="col-md-4">
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-6">
                             <div class="detail-container h-100 mb-0">
                                 <h4 class="mb-4" style="color: var(--accent-purple); font-weight: 700;">
                                     <i class="fas fa-user-tag me-2"></i>Thông tin nhận hàng
@@ -153,7 +153,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="detail-container h-100 mb-0">
                                 <h4 class="mb-4" style="color: var(--money-green); font-weight: 700;">
                                     <i class="fas fa-credit-card me-2"></i>Thanh toán
@@ -174,45 +174,6 @@
                                         <fmt:formatNumber type="number" value="${orders.totalPrice}" /> đ
                                     </span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="detail-container h-100 mb-0">
-                                <h4 class="mb-4" style="color: #fbbf24; font-weight: 700;">
-                                    <i class="fas fa-clock-rotate-left me-2"></i>Lịch sử trạng thái
-                                </h4>
-                                <ul class="list-unstyled mb-0" style="font-size: 0.85rem;">
-                                    <c:if test="${not empty orders.orderDate}">
-                                        <li class="mb-2 pb-2 border-bottom border-secondary">
-                                            <div class="text-muted small"><fmt:formatDate value="${orders.orderDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></div>
-                                            <div class="fw-bold">🆕 Đã đặt đơn</div>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${not empty orders.pendingDate}">
-                                        <li class="mb-2 pb-2 border-bottom border-secondary">
-                                            <div class="text-muted small"><fmt:formatDate value="${orders.pendingDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></div>
-                                            <div class="fw-bold text-warning">🕒 Chờ xác nhận</div>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${not empty orders.shippingDate}">
-                                        <li class="mb-2 pb-2 border-bottom border-secondary">
-                                            <div class="text-muted small"><fmt:formatDate value="${orders.shippingDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></div>
-                                            <div class="fw-bold text-info">🚚 Đang giao hàng</div>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${not empty orders.completeDate}">
-                                        <li class="mb-2 pb-2 border-bottom border-secondary">
-                                            <div class="text-muted small"><fmt:formatDate value="${orders.completeDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></div>
-                                            <div class="fw-bold text-success">✅ Hoàn thành</div>
-                                        </li>
-                                    </c:if>
-                                    <c:if test="${not empty orders.cancelDate}">
-                                        <li class="mb-0">
-                                            <div class="text-muted small"><fmt:formatDate value="${orders.cancelDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></div>
-                                            <div class="fw-bold text-danger">❌ Đã hủy</div>
-                                        </li>
-                                    </c:if>
-                                </ul>
                             </div>
                         </div>
                     </div>

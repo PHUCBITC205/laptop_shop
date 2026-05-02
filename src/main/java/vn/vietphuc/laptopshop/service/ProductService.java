@@ -402,4 +402,8 @@ public class ProductService {
         return null;
     }
 
+    public List<String> getFactories() {
+        return this.productRepository.findDistinctFactories();
+    }
+
 }

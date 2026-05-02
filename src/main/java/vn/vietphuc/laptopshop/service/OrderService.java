@@ -57,7 +57,7 @@ public class OrderService {
                 order.setPendingDate(LocalDateTime.now());
             } else if (status.equals("SHIPPING")) {
                 order.setShippingDate(LocalDateTime.now());
-            } else if (status.equals("SUCCESS")) {
+            } else if (status.equals("SUCCESS") || status.equals("COMPLETE")) {
                 order.setCompleteDate(LocalDateTime.now());
             } else if (status.equals("CANCEL")) {
                 order.setCancelDate(LocalDateTime.now());
@@ -94,5 +94,13 @@ public class OrderService {
 
     public List<Order> fetchOrderByUser(User user) {
         return this.orderRepository.findByUser(user);
+    }
+
+    public Double calculateRevenue(List<String> brands, LocalDateTime start, LocalDateTime end, boolean isAllTime) {
+        return this.orderDetailRepository.sumRevenue(brands, start, end, isAllTime);
+    }
+
+    public List<Object[]> getRevenueData(List<String> brands, LocalDateTime start, LocalDateTime end, boolean isAllTime, String format) {
+        return this.orderDetailRepository.getRevenueData(brands, start, end, isAllTime, format);
     }
 }

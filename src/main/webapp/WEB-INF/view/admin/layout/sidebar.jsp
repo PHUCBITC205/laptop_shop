@@ -36,6 +36,9 @@
         transition: all var(--transition-speed) ease !important;
         padding: 10px 15px !important;
         font-weight: 500;
+        display: flex !important;
+        align-items: center;
+        gap: 10px;
     }
 
     /* Tinh chỉnh hiệu ứng Hover */
@@ -55,6 +58,9 @@
     .sb-nav-link-icon {
         transition: color 0.3s ease;
         font-size: 1.1rem;
+        width: 20px;
+        text-align: center;
+        flex-shrink: 0;
     }
 
     .sb-sidenav-menu-heading {
@@ -86,19 +92,24 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <div class="sb-sidenav-menu-heading">Quản trị hệ thống</div> <a class="nav-link" href="/admin" style="animation-delay: 0.1s;"> <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="sb-sidenav-menu-heading">Quản trị hệ thống</div>
+                <a class="nav-link" href="/admin" style="animation-delay: 0.1s;">
+                    <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
                     Dashboard
                 </a>
 
-                <a class="nav-link" href="/admin/user" style="animation-delay: 0.2s;"> <div class="sb-nav-link-icon"><i class="fas fa-user-shield"></i></div>
+                <a class="nav-link" href="/admin/user" style="animation-delay: 0.2s;">
+                    <div class="sb-nav-link-icon"><i class="fas fa-user-shield"></i></div>
                     Người dùng
                 </a>
 
-                <a class="nav-link" href="/admin/product" style="animation-delay: 0.3s;"> <div class="sb-nav-link-icon"><i class="fas fa-shopping-bag"></i></div>
+                <a class="nav-link" href="/admin/product" style="animation-delay: 0.3s;">
+                    <div class="sb-nav-link-icon"><i class="fas fa-shopping-bag"></i></div>
                     Sản phẩm
                 </a>
 
-                <a class="nav-link" href="/admin/order" style="animation-delay: 0.4s;"> <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <a class="nav-link" href="/admin/order" style="animation-delay: 0.4s;">
+                    <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
                     Đơn hàng
                 </a>
             </div>

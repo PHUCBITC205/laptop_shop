@@ -132,13 +132,18 @@
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <form method="post" action="/delete-cart-product/${cartDetail.id}">
-                                                        <input type="hidden" name="${_csrf.parameterName}"
-                                                            value="${_csrf.token}" />
-                                                        <button class="btn btn-md rounded-circle bg-light border mt-4">
-                                                            <i class="fa fa-times text-danger"></i>
-                                                        </button>
+                                                    <%-- Hidden form for actual deletion --%>
+                                                    <form method="post" action="/delete-cart-product/${cartDetail.id}" id="deleteForm-${cartDetail.id}">
+                                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                     </form>
+                                                    <%-- Button triggers modal --%>
+                                                    <button type="button"
+                                                        class="btn btn-md rounded-circle bg-light border mt-4 btn-delete-cart"
+                                                        data-cart-id="${cartDetail.id}"
+                                                        data-product-name="${cartDetail.product.name}"
+                                                        data-bs-toggle="modal" data-bs-target="#deleteConfirmModal">
+                                                        <i class="fa fa-times text-danger"></i>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -226,6 +231,59 @@
 
                     <!-- Template Javascript -->
                     <script src="/client/js/main.js"></script>
+
+                    <!-- Delete Confirmation Modal -->
+                    <div class="modal fade" id="deleteConfirmModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content" style="border-radius: 16px; overflow: hidden; border: none; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+                                <div class="modal-header" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24); border: none; padding: 1.5rem 2rem;">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div style="background: rgba(255,255,255,0.2); border-radius: 50%; width:42px; height:42px; display:flex; align-items:center; justify-content:center;">
+                                            <i class="fa fa-trash" style="color: #fff; font-size: 1.1rem;"></i>
+                                        </div>
+                                        <h5 class="modal-title mb-0" id="deleteModalLabel" style="color: #fff; font-weight: 700;">Xác nhận xóa</h5>
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body" style="padding: 2rem;">
+                                    <p class="mb-1" style="color: #555;">Bạn có chắc muốn xóa sản phẩm</p>
+                                    <p id="deleteProductName" class="fw-bold" style="color: #222; font-size: 1rem;"></p>
+                                    <p class="mb-0 small" style="color: #999;">khỏi giỏ hàng? Hành động này không thể hoàn tác.</p>
+                                </div>
+                                <div class="modal-footer" style="border: none; padding: 1rem 2rem 1.5rem; gap: 0.75rem;">
+                                    <button type="button" class="btn btn-outline-secondary px-4" data-bs-dismiss="modal"
+                                        style="border-radius: 8px;">Hủy bỏ</button>
+                                    <button type="button" id="confirmDeleteBtn" class="btn px-4 fw-bold"
+                                        style="background: linear-gradient(135deg, #ff6b6b, #ee5a24); color: #fff; border-radius: 8px; border: none;">
+                                        <i class="fa fa-trash me-2"></i>Xóa
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            var deleteModal = document.getElementById('deleteConfirmModal');
+                            var confirmBtn  = document.getElementById('confirmDeleteBtn');
+                            var currentFormId = null;
+
+                            deleteModal.addEventListener('show.bs.modal', function(event) {
+                                var trigger = event.relatedTarget;
+                                var cartId  = trigger.getAttribute('data-cart-id');
+                                var name    = trigger.getAttribute('data-product-name');
+                                currentFormId = 'deleteForm-' + cartId;
+                                document.getElementById('deleteProductName').textContent = '"' + name + '"';
+                            });
+
+                            confirmBtn.addEventListener('click', function() {
+                                if (currentFormId) {
+                                    document.getElementById(currentFormId).submit();
+                                }
+                            });
+                        });
+                    </script>
+
                 </body>
 
                 </html>
