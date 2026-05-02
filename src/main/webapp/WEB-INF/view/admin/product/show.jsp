@@ -167,10 +167,10 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Quản lý sản phẩm</h1>
+                    <h1 class="mt-4">Product Management</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Sản phẩm</li>
+                        <li class="breadcrumb-item active">Products</li>
                     </ol>
 
                         <div class="table-container mb-4">
@@ -181,12 +181,12 @@
                                             <i class="fas fa-search"></i>
                                         </span>
                                         <input type="text" class="form-control" 
-                                               id="adminNameSearch" placeholder="Tìm theo tên sản phẩm...">
+                                               id="adminNameSearch" placeholder="Search by product name...">
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-select" id="adminFactoryFilter">
-                                        <option value="">-- Tất cả hãng --</option>
+                                        <option value="">-- All Brands --</option>
                                         <option value="APPLE">Apple</option>
                                         <option value="ASUS">Asus</option>
                                         <option value="LENOVO">Lenovo</option>
@@ -197,13 +197,13 @@
                                 </div>
                                 <div class="col-md-5 d-flex gap-2">
                                     <button class="btn btn-primary px-4 fw-bold" id="adminBtnFilter">
-                                        Lọc dữ liệu
+                                        Filter Data
                                     </button>
-                                    <button class="btn btn-outline-secondary" id="adminBtnRefresh" title="Làm mới">
+                                    <button class="btn btn-outline-secondary" id="adminBtnRefresh" title="Refresh">
                                         <i class="fas fa-sync-alt"></i>
                                     </button>
                                     <a href="/admin/product/create" class="btn btn-create ms-auto">
-                                        <i class="fas fa-plus-circle me-2"></i>Thêm mới
+                                        <i class="fas fa-plus-circle me-2"></i>Add New
                                     </a>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@
 
                         <div class="table-container">
                             <div class="d-flex justify-content-between align-items-center mb-4">
-                                <h3 class="m-0" style="font-weight: 700;">Danh sách Laptop</h3>
+                                <h3 class="m-0" style="font-weight: 700;">Laptop List</h3>
                             </div>
 
                         <div class="table-responsive">
@@ -219,10 +219,10 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Giá thành</th>
-                                        <th>Hãng sản xuất</th>
-                                        <th class="text-center">Thao tác</th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Manufacturer</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -237,15 +237,15 @@
                                             </td>
                                             <td><span class="factory-badge">${product.factory}</span></td>
                                             <td class="text-center">
-                                                <a href="/admin/product/${product.id}" class="btn-action btn btn-outline-info" title="Xem">
+                                                <a href="/admin/product/${product.id}" class="btn-action btn btn-outline-info" title="View">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-                                                <a href="/admin/product/update/${product.id}" class="btn-action btn btn-outline-warning" title="Sửa">
+                                                <a href="/admin/product/update/${product.id}" class="btn-action btn btn-outline-warning" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <button 
                                                     class="btn-action btn btn-outline-danger btn-delete-product" 
-                                                    title="Xóa"
+                                                    title="Delete"
                                                     data-id="${product.id}"
                                                     data-bs-toggle="modal" 
                                                     data-bs-target="#deleteProductModal">
@@ -293,7 +293,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-0 pt-4 px-4">
-                    <h5 class="modal-title fw-bold" id="deleteModalLabel">Xác nhận xóa sản phẩm</h5>
+                    <h5 class="modal-title fw-bold" id="deleteModalLabel">Confirm Product Deletion</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body px-4 py-3">
@@ -301,16 +301,16 @@
                         <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 rounded-circle mb-3" style="width: 80px; height: 80px;">
                             <i class="fas fa-laptop-code text-danger fs-1"></i>
                         </div>
-                        <p class="mb-1 fw-bold fs-5">Bạn có chắc chắn muốn xóa sản phẩm này?</p>
-                        <p class="text-muted">Mã sản phẩm: <span id="displayProductId" class="badge bg-secondary"></span>. Hành động này không thể hoàn tác.</p>
+                        <p class="mb-1 fw-bold fs-5">Are you sure you want to delete this product?</p>
+                        <p class="text-muted">Product ID: <span id="displayProductId" class="badge bg-secondary"></span>. This action cannot be undone.</p>
                     </div>
                 </div>
                 <div class="modal-footer border-0 pb-4 px-4 gap-2">
-                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
                     <form action="/admin/product/delete" method="post">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <input type="hidden" name="id" id="inputProductId" />
-                        <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">XÁC NHẬN XÓA</button>
+                        <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">CONFIRM DELETE</button>
                     </form>
                 </div>
             </div>

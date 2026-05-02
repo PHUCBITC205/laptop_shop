@@ -122,33 +122,33 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Chi tiết đơn hàng</h1>
+                    <h1 class="mt-4">Order Details</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="/admin/order">Đơn hàng</a></li>
-                        <li class="breadcrumb-item active">Mã đơn ${id}</li>
+                        <li class="breadcrumb-item"><a href="/admin/order">Orders</a></li>
+                        <li class="breadcrumb-item active">Order ID: ${id}</li>
                     </ol>
 
                     <div class="row g-4 mb-5">
                         <div class="col-md-6">
                             <div class="detail-container h-100 mb-0">
                                 <h4 class="mb-4" style="color: var(--accent-purple); font-weight: 700;">
-                                    <i class="fas fa-user-tag me-2"></i>Thông tin nhận hàng
+                                    <i class="fas fa-user-tag me-2"></i>Shipping Information
                                 </h4>
                                 <div class="mb-3">
-                                    <label class="small text-muted text-uppercase d-block">Họ tên người nhận</label>
+                                    <label class="small text-muted text-uppercase d-block">Receiver Name</label>
                                     <span class="fw-bold">${orders.receiverName}</span>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="small text-muted text-uppercase d-block">Số điện thoại</label>
+                                    <label class="small text-muted text-uppercase d-block">Phone Number</label>
                                     <span class="fw-bold">${orders.receiverPhone}</span>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="small text-muted text-uppercase d-block">Địa chỉ</label>
+                                    <label class="small text-muted text-uppercase d-block">Address</label>
                                     <span class="fw-bold">${orders.receiverAddress}</span>
                                 </div>
                                 <div class="mb-0">
-                                    <label class="small text-muted text-uppercase d-block">Người đặt</label>
+                                    <label class="small text-muted text-uppercase d-block">Ordered By</label>
                                     <span class="fw-bold">${orders.user.fullName} (${orders.user.email})</span>
                                 </div>
                             </div>
@@ -156,20 +156,20 @@
                         <div class="col-md-6">
                             <div class="detail-container h-100 mb-0">
                                 <h4 class="mb-4" style="color: var(--money-green); font-weight: 700;">
-                                    <i class="fas fa-credit-card me-2"></i>Thanh toán
+                                    <i class="fas fa-credit-card me-2"></i>Payment
                                 </h4>
                                 <div class="mb-3">
-                                    <label class="small text-muted text-uppercase d-block">Phương thức</label>
+                                    <label class="small text-muted text-uppercase d-block">Payment Method</label>
                                     <span class="fw-bold badge bg-secondary">${orders.paymentMethod}</span>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="small text-muted text-uppercase d-block">Trạng thái</label>
+                                    <label class="small text-muted text-uppercase d-block">Status</label>
                                     <span class="fw-bold ${orders.paymentStatus == 'PAYMENT_SUCCESS' ? 'text-success' : 'text-danger'}">
                                         ${orders.paymentStatus}
                                     </span>
                                 </div>
                                 <div class="mb-0">
-                                    <label class="small text-muted text-uppercase d-block">Tổng tiền</label>
+                                    <label class="small text-muted text-uppercase d-block">Total Amount</label>
                                     <span class="fw-bold fs-4 price-text">
                                         <fmt:formatNumber type="number" value="${orders.totalPrice}" /> đ
                                     </span>
@@ -182,10 +182,10 @@
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <h3 style="font-weight: 800; letter-spacing: -0.5px;">
                                 <i class="fas fa-receipt text-purple me-2" style="color: var(--accent-purple);"></i>
-                                Danh sách sản phẩm mua
+                                Purchased Items
                             </h3>
                             <a href="/admin/order/update/${orders.id}" class="btn btn-warning btn-sm fw-bold">
-                                <i class="fas fa-pen me-1"></i> Sửa đơn hàng
+                                <i class="fas fa-pen me-1"></i> Edit Order
                             </a>
                         </div>
 
@@ -193,11 +193,11 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th style="width: 120px;">Sản phẩm</th>
-                                        <th>Tên máy</th>
-                                        <th>Đơn giá</th>
-                                        <th>Số lượng</th>
-                                        <th class="text-end">Thành tiền</th>
+                                        <th style="width: 120px;">Product</th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th class="text-end">Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -212,14 +212,14 @@
                                                 <a href="/product/${order.product.id}" target="_blank" class="product-link">
                                                     ${order.product.name}
                                                 </a>
-                                                <div class="small text-muted mt-1">Hãng: ${order.product.factory}</div>
+                                                <div class="small text-muted mt-1">Brand: ${order.product.factory}</div>
                                             </td>
                                             <td>
                                                 <span class="price-text">
                                                     <fmt:formatNumber type="number" value="${order.product.price}" /> đ
                                                 </span>
                                             </td>
-                                            <td class="fw-bold">${order.quantity} chiếc</td>
+                                            <td class="fw-bold">${order.quantity} units</td>
                                             <td class="text-end">
                                                 <span class="total-item-text">
                                                     <fmt:formatNumber type="number" value="${order.quantity * order.price}" /> đ
@@ -233,7 +233,7 @@
 
                         <div class="text-start">
                             <a href="/admin/order" class="btn-back-modern">
-                                <i class="fas fa-arrow-left me-2"></i> Quay lại quản lý đơn
+                                <i class="fas fa-arrow-left me-2"></i> Back to Orders
                             </a>
                         </div>
                     </div>

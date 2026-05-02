@@ -140,10 +140,10 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Quản lý người dùng</h1>
+                                <h1 class="mt-4">User Management</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Thêm mới thành viên</li>
+                                    <li class="breadcrumb-item active">Add New User</li>
                                 </ol>
 
                                 <div class="row justify-content-center">
@@ -156,7 +156,7 @@
                                                     <i class="fas fa-user-plus text-purple fa-xl"
                                                         style="color: var(--accent-purple);"></i>
                                                 </div>
-                                                <h3 class="m-0" style="font-weight: 800;">Tạo tài khoản mới</h3>
+                                                <h3 class="m-0" style="font-weight: 800;">Create New Account</h3>
                                             </div>
 
                                             <form:form method="post" action="/admin/user/create"
@@ -196,21 +196,21 @@
                                                     <label class="form-label">Full Name</label>
                                                     <form:input type="text"
                                                         class="form-control ${not empty errorFullName ? 'is-invalid' : ''}"
-                                                        path="fullName" placeholder="Nhập họ tên đầy đủ" />
+                                                        path="fullName" placeholder="Enter full name" />
                                                     ${errorFullName}
                                                 </div>
 
                                                 <div class="col-md-8">
                                                     <label class="form-label">Address</label>
                                                     <form:input type="text" class="form-control" path="address"
-                                                        placeholder="Địa chỉ thường trú" />
+                                                        placeholder="Home address" />
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <label class="form-label">System Role</label>
                                                     <form:select class="form-select" path="role.name">
-                                                        <form:option style="background-color:#2B2C39;" value="ADMIN">ADMIN (Quản trị viên)</form:option>
-                                                        <form:option style="background-color:#2B2C39;" value="USER">USER (Khách hàng)</form:option>
+                                                        <form:option style="background-color:#2B2C39;" value="ADMIN">ADMIN (Administrator)</form:option>
+                                                        <form:option style="background-color:#2B2C39;" value="USER">USER (Customer)</form:option>
                                                     </form:select>
                                                 </div>
 
@@ -227,12 +227,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-8 text-md-start">
-                                                                <label for="avatarFile" class="form-label">Tải lên ảnh
-                                                                    đại diện</label>
+                                                                <label for="avatarFile" class="form-label">Upload Profile Picture</label>
                                                                 <input class="form-control" type="file" id="avatarFile"
                                                                     accept=".png, .jpg, .jpeg" name="phucvietFile" />
-                                                                <p class="small text-muted mt-2">Dung lượng tối đa 2MB.
-                                                                    Hỗ trợ định dạng JPG, PNG.</p>
+                                                                <p class="small text-muted mt-2">Max size 2MB.
+                                                                    Supports JPG, PNG.</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -243,12 +242,12 @@
                                                     <div class="d-flex gap-3 justify-content-around flex-wrap">
                                                         <a href="/admin/user"
                                                             class="btn btn-outline-secondary px-3 py-2 w-auto">
-                                                            Hủy
+                                                            Cancel
                                                         </a>
 
                                                         <button type="submit"
                                                             class="btn btn-create-submit px-3 py-2 w-auto">
-                                                            Tạo
+                                                            Create
                                                         </button>
                                                     </div>
 

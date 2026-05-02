@@ -94,7 +94,7 @@
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
                 <div class="user-info d-flex align-items-center">
                     <span class="user-name-display">
-                        Xin chào,
+                        Hello,
                         <c:out value="${pageContext.request.userPrincipal.name}" />
                     </span>
                 </div>
@@ -108,10 +108,9 @@
                         <i class="fas fa-user-circle fa-lg"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/"><i class="fas fa-home me-2"></i>Trang chủ</a></li>
-                         <li><a class="dropdown-item" href="/admin/profile"><i class="fas fa-id-card me-2"></i>Hồ sơ cá
-                                nhân</a></li>
-                        <li><a class="dropdown-item" href="/admin/settings"><i class="fas fa-cog me-2"></i>Cài đặt</a>
+                        <li><a class="dropdown-item" href="/"><i class="fas fa-home me-2"></i>Home Page</a></li>
+                         <li><a class="dropdown-item" href="/admin/profile"><i class="fas fa-id-card me-2"></i>My Profile</a></li>
+                        <li><a class="dropdown-item" href="/admin/settings"><i class="fas fa-cog me-2"></i>Settings</a>
                         </li>
                        
                         
@@ -122,7 +121,7 @@
                             <form method="post" action="/logout">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <button class="dropdown-item text-danger">
-                                    <i class="fas fa-sign-out-alt me-2"></i>Đăng xuất
+                                    <i class="fas fa-sign-out-alt me-2"></i>Logout
                                 </button>
                             </form>
                         </li>

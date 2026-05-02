@@ -105,6 +105,7 @@ public class OrderController {
     @PostMapping("/admin/order/update")
     public String handleUpdateOrder(@ModelAttribute("newOrder") Order order) {
         this.orderService.updateOrderStatus(order.getId(), order.getStatus());
+        this.orderService.updatePaymentStatus(order.getId(), order.getPaymentStatus());
         this.orderService.updateOrderInfo(order.getId(), order.getReceiverName(), order.getReceiverAddress(),
                 order.getReceiverPhone());
         return "redirect:/admin/order";

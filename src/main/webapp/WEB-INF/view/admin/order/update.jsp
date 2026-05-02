@@ -156,11 +156,11 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Quản lý đơn hàng</h1>
+                    <h1 class="mt-4">Order Management</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="/admin" class="text-decoration-none" style="color: var(--text-muted);">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="/admin/order" class="text-decoration-none" style="color: var(--text-muted);">Đơn hàng</a></li>
-                        <li class="breadcrumb-item active">Cập nhật trạng thái</li>
+                        <li class="breadcrumb-item"><a href="/admin/order" class="text-decoration-none" style="color: var(--text-muted);">Orders</a></li>
+                        <li class="breadcrumb-item active">Update Status</li>
                     </ol>
 
                     <div class="update-container">
@@ -168,63 +168,78 @@
                             <div class="icon-box me-3" style="background: rgba(255, 202, 40, 0.1); padding: 12px; border-radius: 12px;">
                                 <i class="fas fa-truck-ramp-box text-warning fa-xl"></i>
                             </div>
-                            <h3 class="m-0" style="font-weight: 800; letter-spacing: -0.5px;">Cập nhật đơn hàng</h3>
+                            <h3 class="m-0" style="font-weight: 800; letter-spacing: -0.5px;">Update Order</h3>
                         </div>
 
                         <div class="order-summary-bar">
                             <div class="summary-item">
-                                <label>Mã đơn hàng</label>
+                                <label>Order ID</label>
                                 <span>${newOrder.id}</span>
                             </div>
-                            <div class="summary-item">
-                                <label>Tổng thanh toán</label>
-                                <span class="price-highlight">
-                                    <fmt:formatNumber type="number" value="${newOrder.totalPrice}" /> VNĐ
-                                </span>
-                            </div>
+                             <div class="summary-item">
+                                 <label>Method</label>
+                                 <span class="badge ${newOrder.paymentMethod eq 'VIETQR' ? 'bg-info text-dark' : 'bg-light text-muted'}">
+                                     ${newOrder.paymentMethod}
+                                 </span>
+                             </div>
+                             <div class="summary-item">
+                                 <label>Total Payment</label>
+                                 <span class="price-highlight">
+                                     <fmt:formatNumber type="number" value="${newOrder.totalPrice}" /> VNĐ
+                                 </span>
+                             </div>
                         </div>
 
                         <form:form action="/admin/order/update" method="post" modelAttribute="newOrder" class="row g-4">
                             <div class="col-md-6">
-                                <label class="form-label">Tên khách hàng / Vai trò</label>
+                                <label class="form-label">Customer Name / Role</label>
                                 <form:input type="text" class="form-control" path="user.role.name" disabled="true" />
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label">Tên người nhận</label>
+                                <label class="form-label">Receiver Name</label>
                                 <form:input type="text" class="form-control" path="receiverName" />
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label">Số điện thoại</label>
+                                <label class="form-label">Phone Number</label>
                                 <form:input type="text" class="form-control" path="receiverPhone" />
                             </div>
 
                             <div class="col-12">
-                                <label class="form-label">Địa chỉ nhận hàng</label>
+                                <label class="form-label">Shipping Address</label>
                                 <form:textarea class="form-control" path="receiverAddress" rows="2" />
                             </div>
 
-                            <div class="col-md-12">
-                                <label class="form-label">Trạng thái xử lý</label>
-                                <form:select class="form-select" path="status">
-                                    <form:option value="UNPAID" class="bg-black">💳 Chưa thanh toán (UNPAID)</form:option>
-                                    <form:option value="PENDING" class="bg-black">🕒 Chờ xử lý (PENDING)</form:option>
-                                    <form:option value="SHIPPING" class="bg-black">🚚 Đang giao hàng (SHIPPING)</form:option>
-                                    <form:option value="COMPLETE" class="bg-black">✅ Hoàn thành (COMPLETE)</form:option>
-                                    <form:option value="CANCEL" class="bg-black">❌ Hủy đơn (CANCEL)</form:option>
-                                </form:select>
-                            </div>
+                            <div class="col-md-6">
+                                 <label class="form-label">Shipping Status</label>
+                                 <form:select class="form-select" path="status">
+                                     <form:option value="UNPAID">💳 Unpaid (UNPAID)</form:option>
+                                     <form:option value="PENDING">🕒 Pending (PENDING)</form:option>
+                                     <form:option value="SHIPPING">🚚 Shipping (SHIPPING)</form:option>
+                                     <form:option value="COMPLETE">✅ Completed (COMPLETE)</form:option>
+                                     <form:option value="CANCEL">❌ Canceled (CANCEL)</form:option>
+                                 </form:select>
+                             </div>
+
+                             <div class="col-md-6">
+                                 <label class="form-label">Payment Status</label>
+                                 <form:select class="form-select" path="paymentStatus">
+                                     <form:option value="PAYMENT_UNPAID">❌ Unpaid (UNPAID)</form:option>
+                                     <form:option value="PAYMENT_PENDING">⏳ Pending Confirmation (PENDING)</form:option>
+                                     <form:option value="PAYMENT_SUCCESS">✅ Paid (SUCCESS)</form:option>
+                                 </form:select>
+                             </div>
 
                             <form:input type="hidden" path="id" />
 
                             <div class="col-12 mt-5">
                                 <div class="row g-3 d-flex justify-content-center align-items-center">
                                     <div class="col-sm-6 ">
-                                        <a href="/admin/order" class="btn-cancel">Hủy bỏ</a>
+                                        <a href="/admin/order" class="btn-cancel">Cancel</a>
                                     </div>
                                     <div class="col-sm-6">
-                                        <button type="submit" class="btn btn-update-order">Cập nhật đơn hàng</button>
+                                        <button type="submit" class="btn btn-update-order">Update Order</button>
                                     </div>
                                 </div>
                             </div>

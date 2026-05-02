@@ -7,7 +7,7 @@
 
             <head>
                 <meta charset="utf-8">
-                <title>Thanh toán VietQR - Laptopshop</title>
+                <title>VietQR Payment - Laptopshop</title>
                 <meta content="width=device-width, initial-scale=1.0" name="viewport">
                 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
@@ -54,20 +54,20 @@
                 <div class="container py-5">
                     <div class="payment-card bg-white">
                         <div class="p-4 text-center border-bottom">
-                            <h4 class="fw-bold mb-0 text-primary">Thanh toán qua VietQR</h4>
+                            <h4 class="fw-bold mb-0 text-primary">Pay via VietQR</h4>
                         </div>
                         
                         <div class="qr-container">
-                            <p class="text-muted mb-4">Quét mã QR bằng ứng dụng ngân hàng để thanh toán</p>
+                            <p class="text-muted mb-4">Scan the QR code with your banking app to pay</p>
                             <!-- VietQR API URL -->
                             <img src="https://img.vietqr.io/image/BIDV-7290288010-compact2.png?amount=${order.totalPrice}&addInfo=LAPTOP${order.id}&accountName=CAO%20MINH%20NHAT" 
                                  class="qr-image mb-4" alt="VietQR Payment">
                             
                             <div class="alert alert-info text-start" style="font-size: 0.9rem;">
-                                <div class="mb-2"><strong>Ngân hàng:</strong> BIDV (Ngân hàng Đầu tư và Phát triển Việt Nam)</div>
-                                <div class="mb-2"><strong>Chủ tài khoản:</strong> CAO MINH NHAT</div>
-                                <div class="mb-2"><strong>Số tiền:</strong> <fmt:formatNumber value="${order.totalPrice}" type="number" /> đ</div>
-                                <div><strong>Nội dung:</strong> LAPTOP${order.id}</div>
+                                <div class="mb-2"><strong>Bank:</strong> BIDV (Bank for Investment and Development of Vietnam)</div>
+                                <div class="mb-2"><strong>Account Holder:</strong> CAO MINH NHAT</div>
+                                <div class="mb-2"><strong>Amount:</strong> <fmt:formatNumber value="${order.totalPrice}" type="number" /> VNĐ</div>
+                                <div><strong>Reference:</strong> LAPTOP${order.id}</div>
                             </div>
                         </div>
 
@@ -76,11 +76,11 @@
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                 <input type="hidden" name="id" value="${order.id}" />
                                 <button type="submit" class="btn-confirm w-100 mb-3">
-                                    <i class="fas fa-check-circle me-2"></i>Tôi đã chuyển khoản thành công
+                                    <i class="fas fa-check-circle me-2"></i>I have transferred successfully
                                 </button>
                             </form>
                             <a href="/" class="text-muted" style="text-decoration: none; font-size: 0.85rem;">
-                                <i class="fas fa-arrow-left me-1"></i> Quay lại trang chủ
+                                <i class="fas fa-arrow-left me-1"></i> Back to Home
                             </a>
                         </div>
                     </div>

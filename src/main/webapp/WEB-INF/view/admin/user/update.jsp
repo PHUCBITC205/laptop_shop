@@ -157,10 +157,10 @@
                         <div id="layoutSidenav_content">
                             <main>
                                 <div class="container-fluid px-4">
-                                    <h1 class="mt-4">Quản lý người dùng</h1>
+                                    <h1 class="mt-4">User Management</h1>
                                     <ol class="breadcrumb mb-4">
                                         <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                        <li class="breadcrumb-item active">Cập nhật thông tin</li>
+                                        <li class="breadcrumb-item active">Update User Info</li>
                                     </ol>
 
                                     <div class="row justify-content-center">
@@ -171,7 +171,7 @@
                                                         style="background: rgba(255, 202, 40, 0.1); padding: 10px; border-radius: 12px;">
                                                         <i class="fas fa-user-edit text-warning fa-2x"></i>
                                                     </div>
-                                                    <h3 class="m-0" style="font-weight: 800;">Chỉnh sửa tài khoản</h3>
+                                                    <h3 class="m-0" style="font-weight: 800;">Edit User Account</h3>
                                                 </div>
 
                                                 <form:form method="post" action="/admin/user/update"
@@ -179,13 +179,13 @@
                                                     <div class="row">
                                                         <div class="col-lg-4 text-center mb-4 mb-lg-0">
                                                             <div class="avatar-upload-section h-100">
-                                                                <label class="form-label">Ảnh đại diện</label>
+                                                                <label class="form-label">Profile Picture</label>
                                                                 <img src="/images/avatar/${newUser.avatar}"
                                                                     alt="avatar preview" id="avatarPreview">
                                                                 <input class="form-control form-control-sm" type="file"
                                                                     id="avatarFile" accept=".png, .jpg, .jpeg"
                                                                     name="phucvietFile" />
-                                                                <p class="small text-muted mt-2">Định dạng hỗ trợ: PNG,
+                                                                <p class="small text-muted mt-2">Supported: PNG,
                                                                     JPG, JPEG</p>
                                                             </div>
                                                         </div>
@@ -240,8 +240,7 @@
                                                                             cssClass="invalid-feedback" />
                                                                     </spring:bind>
                                                                     <small class="text-muted"><i
-                                                                            class="fas fa-info-circle me-1"></i>Để trống
-                                                                        nếu không muốn thay đổi mật khẩu.</small>
+                                                                            class="fas fa-info-circle me-1"></i>Leave blank if you don't want to change the password.</small>
                                                                 </div>
 
                                                                 <div class="col-md-8">
@@ -260,20 +259,19 @@
                                                                     <label class="form-label">System Role</label>
                                                                     <form:select class="form-select" path="role.name">
                                                                         <form:option style="background-color:#2B2C39;"
-                                                                            value="ADMIN">ADMIN (Quản trị)</form:option>
+                                                                            value="ADMIN">ADMIN (Administrator)</form:option>
                                                                         <form:option style="background-color:#2B2C39;"
-                                                                            value="USER">USER (Người dùng)</form:option>
+                                                                            value="USER">USER (Customer)</form:option>
                                                                     </form:select>
                                                                 </div>
                                                             </div>
 
                                                             <div class="row mt-5 g-3">
                                                                 <div class="col-6">
-                                                                    <a href="/admin/user" class="btn-cancel">Hủy bỏ</a>
+                                                                    <a href="/admin/user" class="btn-cancel">Cancel</a>
                                                                 </div>
                                                                 <div class="col-6">
-                                                                    <button type="submit" class="btn btn-update">Cập
-                                                                        nhật ngay</button>
+                                                                    <button type="submit" class="btn btn-update">Update Now</button>
                                                                 </div>
                                                             </div>
                                                         </div>

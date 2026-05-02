@@ -43,27 +43,27 @@
         <div class="row g-4">
             <div class="col-12">
                 <div class="bg-light rounded h-100 p-4">
-                    <h2>Trang cá nhân</h2>
+                    <h2>User Profile</h2>
                     <hr>
                     <div class="row">
                         <div class="col-md-3">
-                                <h4>Ảnh đại diện</h4>
+                                <h4>Profile Picture</h4>
                                 <hr>
                                 <img src="/images/avatar/${user.avatar}" alt="Avatar" class="img-fluid"
                                     style="width: 150px; height: 150px; border-radius: 50%;" />
                             </div>
                             <div class="col-md-5">
-                                <h4>Thông tin chi tiết</h4>
+                                <h4>Personal Details</h4>
                                 <hr>
                                 <form:form method="post" action="/user/profile" modelAttribute="user"
                                     enctype="multipart/form-data">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                     <div class="mb-3">
-                                        <label class="form-label">Cập nhật ảnh đại diện:</label>
+                                        <label class="form-label">Update Profile Picture:</label>
                                         <input class="form-control" type="file" name="avatarFile" />
                                     </div>
                                     <div class="mb-3">
-                                        <label for="fullName" class="form-label">Họ và tên</label>
+                                        <label for="fullName" class="form-label">Full Name</label>
                                         <form:input type="text" class="form-control" id="fullName" path="fullName" />
                                     </div>
                                     <div class="mb-3">
@@ -72,40 +72,37 @@
                                             readonly="true" />
                                     </div>
                                     <div class="mb-3">
-                                        <label for="address" class="form-label">Địa chỉ</label>
+                                        <label for="address" class="form-label">Address</label>
                                         <form:input type="text" class="form-control" id="address" path="address" />
                                     </div>
                                     <div class="mb-3">
-                                        <label for="phone" class="form-label">Số điện thoại</label>
+                                        <label for="phone" class="form-label">Phone Number</label>
                                         <form:input type="text" class="form-control" id="phone" path="phone" />
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                    <button type="submit" class="btn btn-primary">Update</button>
                                 </form:form>
                             </div>
                             <div class="col-md-4">
-                                <h4>Thay đổi mật khẩu</h4>
+                                <h4>Change Password</h4>
                                 <hr>
                                 <form method="post" action="/user/change-password">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                     <div class="mb-3">
-                                        <label for="oldPassword" class="form-label">Mật khẩu cũ</label>
+                                        <label for="oldPassword" class="form-label">Old Password</label>
                                         <input type="password" class="form-control" id="oldPassword"
                                             name="oldPassword">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="newPassword" class="form-label">Mật khẩu
-                                            mới</label>
+                                        <label for="newPassword" class="form-label">New Password</label>
                                         <input type="password" class="form-control" id="newPassword"
                                             name="newPassword">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="confirmPassword" class="form-label">Xác nhận mật
-                                            khẩu</label>
+                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
                                         <input type="password" class="form-control" id="confirmPassword"
                                             name="confirmPassword">
                                     </div>
-                                    <button type="submit" class="btn btn-warning">Đổi mật
-                                        khẩu</button>
+                                    <button type="submit" class="btn btn-warning">Change Password</button>
                                 </form>
                             </div>
                     </div>

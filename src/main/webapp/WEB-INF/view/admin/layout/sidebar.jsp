@@ -92,7 +92,7 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
-                <div class="sb-sidenav-menu-heading">Quản trị hệ thống</div>
+                <div class="sb-sidenav-menu-heading">System Management</div>
                 <a class="nav-link" href="/admin" style="animation-delay: 0.1s;">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
                     Dashboard
@@ -100,23 +100,23 @@
 
                 <a class="nav-link" href="/admin/user" style="animation-delay: 0.2s;">
                     <div class="sb-nav-link-icon"><i class="fas fa-user-shield"></i></div>
-                    Người dùng
+                    Users
                 </a>
 
                 <a class="nav-link" href="/admin/product" style="animation-delay: 0.3s;">
                     <div class="sb-nav-link-icon"><i class="fas fa-shopping-bag"></i></div>
-                    Sản phẩm
+                    Products
                 </a>
 
                 <a class="nav-link" href="/admin/order" style="animation-delay: 0.4s;">
                     <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                    Đơn hàng
+                    Orders
                 </a>
             </div>
         </div>
         
         <div class="sb-sidenav-footer">
-            <div class="small" style="color: var(--text-muted);">Đang đăng nhập:</div>
+            <div class="small" style="color: var(--text-muted);">Logged in as:</div>
             <span class="footer-user-name">
                 <i class="fas fa-circle text-success me-1" style="font-size: 0.6rem;"></i>
                 <c:out value="${pageContext.request.userPrincipal.name}" /> </span>

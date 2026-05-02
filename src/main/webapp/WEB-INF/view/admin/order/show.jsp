@@ -165,6 +165,9 @@
             color: var(--text-dark) !important;
             border: 1px solid var(--border-color) !important;
         }
+        .status-badge.status-paid { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+        .status-badge.status-unpaid { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+        .status-badge.status-pending-confirm { background: rgba(245, 158, 11, 0.1); color: #f59e0b; border: 1px dashed #f59e0b; }
     </style>
 </head>
 
@@ -178,26 +181,26 @@
                     <h1 class="mt-4">Manage Orders</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="/admin" class="text-decoration-none" style="color: var(--text-muted);">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Đơn hàng</li>
+                        <li class="breadcrumb-item active">Orders</li>
                     </ol>
 
                     <div class="table-container mb-4">
                         <div class="row g-3 align-items-center">
                             <div class="col-md-4">
                                 <select class="form-select" id="adminStatusFilter">
-                                    <option value="">-- Tất cả trạng thái --</option>
-                                    <option value="UNPAID">💳 Chưa thanh toán (UNPAID)</option>
-                                    <option value="PENDING">🕒 Chờ xử lý (PENDING)</option>
-                                    <option value="SHIPPING">🚚 Đang giao hàng (SHIPPING)</option>
-                                    <option value="COMPLETE">✅ Hoàn thành (COMPLETE)</option>
-                                    <option value="CANCEL">❌ Đã hủy (CANCEL)</option>
+                                    <option value="">-- All Statuses --</option>
+                                    <option value="UNPAID">💳 UNPAID</option>
+                                    <option value="PENDING">🕒 PENDING</option>
+                                    <option value="SHIPPING">🚚 SHIPPING</option>
+                                    <option value="COMPLETE">✅ COMPLETE</option>
+                                    <option value="CANCEL">❌ CANCEL</option>
                                 </select>
                             </div>
                             <div class="col-md-8 d-flex gap-2">
                                 <button class="btn btn-primary px-4 fw-bold" id="adminBtnFilterOrder">
-                                    Lọc đơn hàng
+                                    Filter Orders
                                 </button>
-                                <button class="btn btn-outline-secondary" id="adminBtnRefreshOrder" title="Làm mới">
+                                <button class="btn btn-outline-secondary" id="adminBtnRefreshOrder" title="Refresh">
                                     <i class="fas fa-sync-alt"></i>
                                 </button>
                             </div>
@@ -206,19 +209,21 @@
 
                     <div class="table-container mb-5">
                         <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h3 class="m-0" style="font-weight: 700;">Danh sách giao dịch</h3>
-                            <div class="text-muted small">Hiển thị dữ liệu thời gian thực</div>
+                            <h3 class="m-0" style="font-weight: 700;">Transaction List</h3>
+                            <div class="text-muted small">Displaying real-time data</div>
                         </div>
 
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Mã đơn</th>
-                                        <th>Tổng thanh toán</th>
-                                        <th>Khách hàng</th>
-                                        <th>Trạng thái</th>
-                                        <th class="text-center">Thao tác</th>
+                                        <th>Order ID</th>
+                                        <th>Total Payment</th>
+                                        <th>Customer</th>
+                                        <th>Method</th>
+                                        <th>Payment</th>
+                                        <th>Status</th>
+                                        <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -239,15 +244,34 @@
                                                 </div>
                                             </td>
                                             <td>
+                                                <span class="badge ${order.paymentMethod eq 'VIETQR' ? 'bg-info text-dark' : 'bg-light text-muted'}">
+                                                    <i class="fas ${order.paymentMethod eq 'VIETQR' ? 'fa-qrcode' : 'fa-money-bill-wave'} me-1"></i>
+                                                    ${order.paymentMethod}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${order.paymentStatus eq 'PAYMENT_SUCCESS' or order.paymentStatus eq 'PAID'}">
+                                                        <span class="status-badge status-paid">Paid</span>
+                                                    </c:when>
+                                                    <c:when test="${order.paymentStatus eq 'PAYMENT_PENDING' or order.paymentStatus eq 'PENDING'}">
+                                                        <span class="status-badge status-pending-confirm">Pending Confirm</span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="status-badge status-unpaid">Unpaid</span>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <td>
                                                 <c:choose>
                                                     <c:when test="${order.status eq 'PENDING'}">
-                                                        <span class="status-badge status-pending">Chờ xử lý</span>
+                                                        <span class="status-badge status-pending">Pending</span>
                                                     </c:when>
                                                     <c:when test="${order.status eq 'SHIPPING'}">
-                                                        <span class="status-badge status-shipping">Đang giao</span>
+                                                        <span class="status-badge status-shipping">Shipping</span>
                                                     </c:when>
                                                     <c:when test="${order.status eq 'COMPLETE'}">
-                                                        <span class="status-badge status-completed">Thành công</span>
+                                                        <span class="status-badge status-completed">Completed</span>
                                                     </c:when>
                                                     <c:otherwise>
                                                         <span class="status-badge status-cancelled">${order.status}</span>
@@ -255,15 +279,15 @@
                                                 </c:choose>
                                             </td>
                                             <td class="text-center">
-                                                <a href="/admin/order/${order.id}" class="btn-action btn btn-outline-info" title="Xem chi tiết">
+                                                <a href="/admin/order/${order.id}" class="btn-action btn btn-outline-info" title="View details">
                                                     <i class="fas fa-eye"></i>
                                                 </a>
-                                                <a href="/admin/order/update/${order.id}" class="btn-action btn btn-outline-warning" title="Cập nhật">
+                                                <a href="/admin/order/update/${order.id}" class="btn-action btn btn-outline-warning" title="Update">
                                                     <i class="fas fa-pen-to-square"></i>
                                                 </a>
                                                 <button 
                                                     class="btn btn-action btn-outline-danger btn-delete-order" 
-                                                    title="Xóa"
+                                                    title="Delete"
                                                     data-id="${order.id}"
                                                     data-bs-toggle="modal" 
                                                     data-bs-target="#deleteOrderModal">
@@ -313,7 +337,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-0 pt-4 px-4">
-                    <h5 class="modal-title fw-bold" id="deleteModalLabel">Xác nhận xóa đơn hàng</h5>
+                    <h5 class="modal-title fw-bold" id="deleteModalLabel">Confirm Order Deletion</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body px-4 py-3">
@@ -321,16 +345,16 @@
                         <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 rounded-circle mb-3" style="width: 80px; height: 80px;">
                             <i class="fas fa-file-invoice-dollar text-danger fs-1"></i>
                         </div>
-                        <p class="mb-1 fw-bold fs-5">Bạn có chắc chắn muốn xóa đơn hàng này?</p>
-                        <p class="text-muted">Mã đơn hàng: <span id="displayOrderId" class="badge bg-secondary"></span>. Dữ liệu liên quan sẽ bị xóa vĩnh viễn.</p>
+                        <p class="mb-1 fw-bold fs-5">Are you sure you want to delete this order?</p>
+                        <p class="text-muted">Order ID: <span id="displayOrderId" class="badge bg-secondary"></span>. Related data will be permanently removed.</p>
                     </div>
                 </div>
                 <div class="modal-footer border-0 pb-4 px-4 gap-2">
-                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Hủy bỏ</button>
+                    <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
                     <form action="/admin/order/delete" method="post">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <input type="hidden" name="id" id="inputOrderId" />
-                        <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">XÁC NHẬN XÓA</button>
+                        <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">CONFIRM DELETE</button>
                     </form>
                 </div>
             </div>

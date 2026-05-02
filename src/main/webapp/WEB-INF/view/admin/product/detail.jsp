@@ -172,11 +172,11 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Chi tiết sản phẩm</h1>
+                    <h1 class="mt-4">Product Detail</h1>
                     <ol class="breadcrumb mb-4">
                         <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="/admin/product">Sản phẩm</a></li>
-                        <li class="breadcrumb-item active">Thông tin chi tiết</li>
+                        <li class="breadcrumb-item"><a href="/admin/product">Products</a></li>
+                        <li class="breadcrumb-item active">View Details</li>
                     </ol>
 
                     <div class="showcase-container">
@@ -189,7 +189,7 @@
 
                             <div class="col-lg-7">
                                 <div class="d-flex align-items-center mb-2">
-                                    <span class="text-muted">Mã sản phẩm:</span>
+                                    <span class="text-muted">Product ID:</span>
                                     <span class="badge-id">${product.id}</span>
                                 </div>
                                 <h2 class="product-title">${product.name}</h2>
@@ -199,29 +199,29 @@
                                 </span>
 
                                 <div class="desc-box">
-                                    <label class="spec-label">Mô tả ngắn gọn</label>
+                                    <label class="spec-label">Short Description</label>
                                     <p class="mb-0 text-white-50">${product.shortDesc}</p>
                                 </div>
 
                                 <div class="specs-grid">
                                     <div class="spec-item">
-                                        <span class="spec-label"><i class="fas fa-industry me-2"></i>Hãng sản xuất</span>
+                                        <span class="spec-label"><i class="fas fa-industry me-2"></i>Manufacturer</span>
                                         <span class="spec-value">${product.factory}</span>
                                     </div>
                                     <div class="spec-item">
-                                        <span class="spec-label"><i class="fas fa-bullseye me-2"></i>Phân khúc</span>
+                                        <span class="spec-label"><i class="fas fa-bullseye me-2"></i>Target Segment</span>
                                         <span class="spec-value">${product.target}</span>
                                     </div>
                                     <div class="spec-item">
-                                        <span class="spec-label"><i class="fas fa-cubes me-2"></i>Số lượng kho</span>
+                                        <span class="spec-label"><i class="fas fa-cubes me-2"></i>Stock Quantity</span>
                                         <span class="spec-value ${product.quantity > 0 ? 'text-success' : 'text-danger'}">
-                                            ${product.quantity} máy
+                                            ${product.quantity} units
                                         </span>
                                     </div>
                                 </div>
 
                                 <div class="mt-4">
-                                    <label class="spec-label">Thông số chi tiết</label>
+                                    <label class="spec-label">Detailed Specifications</label>
                                     <p class="mt-2" style="line-height: 1.8; color: #cbd5e1;">
                                         ${product.detailDesc}
                                     </p>
@@ -230,10 +230,10 @@
                                 <div class="mt-5 border-top pt-4" style="border-color: var(--border-glass) !important;">
                                     <div class="d-flex gap-3">
                                         <a href="/admin/product" class="btn-back">
-                                            <i class="fas fa-arrow-left me-2"></i> Quay lại
+                                            <i class="fas fa-arrow-left me-2"></i> Back
                                         </a>
                                         <a href="/admin/product/update/${product.id}" class="btn btn-warning px-4 d-inline-flex align-items-center" style="border-radius: 12px; font-weight: 600;">
-                                            <i class="fas fa-edit me-2"></i> Chỉnh sửa sản phẩm
+                                            <i class="fas fa-edit me-2"></i> Edit Product
                                         </a>
                                     </div>
                                 </div>

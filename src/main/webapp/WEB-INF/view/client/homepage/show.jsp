@@ -90,13 +90,12 @@
                                                                 style="top: 10px; left: 10px;">Laptop</div>
                                                             <div
                                                                 class="p-4 border border-secondary border-top-0 rounded-bottom">
-                                                                <h4 style="font-size: 15px;">
+                                                                <h4 class="product-name" style="font-size: 15px;">
                                                                     <a href="/product/${product.id}">
                                                                         ${product.name}
                                                                     </a>
-
                                                                 </h4>
-                                                                <p style="font-size: 13px;">${product.shortDesc}</p>
+                                                                <p class="product-short-desc" style="font-size: 13px;">${product.shortDesc}</p>
                                                                 <div
                                                                     class="d-flex  flex-lg-wrap justify-content-center flex-column">
                                                                     <p style="font-size: 15px; text-align: center; width: 100%;"

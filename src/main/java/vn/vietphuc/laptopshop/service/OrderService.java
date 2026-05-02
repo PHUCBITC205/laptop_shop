@@ -57,12 +57,26 @@ public class OrderService {
                 order.setPendingDate(LocalDateTime.now());
             } else if (status.equals("SHIPPING")) {
                 order.setShippingDate(LocalDateTime.now());
-            } else if (status.equals("SUCCESS") || status.equals("COMPLETE")) {
+            } else if (status.equals("COMPLETE")) {
                 order.setCompleteDate(LocalDateTime.now());
             } else if (status.equals("CANCEL")) {
                 order.setCancelDate(LocalDateTime.now());
             }
 
+            this.orderRepository.save(order);
+        }
+    }
+
+    public void updatePaymentStatus(long id, String paymentStatus) {
+        Optional<Order> optionalOrder = this.orderRepository.findById(id);
+        if (optionalOrder.isPresent()) {
+            Order order = optionalOrder.get();
+            order.setPaymentStatus(paymentStatus);
+            // Nếu admin xác nhận thanh toán thành công, tự động chuyển trạng thái đơn hàng sang PENDING (Chờ xử lý hàng)
+            if (paymentStatus.equals("PAYMENT_SUCCESS")) {
+                order.setStatus("PENDING");
+                order.setPendingDate(LocalDateTime.now());
+            }
             this.orderRepository.save(order);
         }
     }

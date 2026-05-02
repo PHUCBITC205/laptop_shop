@@ -64,18 +64,18 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Sản phẩm</th>
-                            <th scope="col">Tên</th>
-                            <th scope="col">Giá cả</th>
-                            <th scope="col">Số lượng</th>
-                            <th scope="col">Thành tiền</th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:if test="${ empty cartDetails}">
                             <tr>
                                 <td colspan="6">
-                                    Không có sản phẩm trong giỏ hàng
+                                    No products in cart
                                 </td>
                             </tr>
                         </c:if>
@@ -120,59 +120,59 @@
                 </table>
             </div>
             <c:if test="${not empty cartDetails}">
-                <form:form action="/place-order" method="post" modelAttribute="cart">
+                <form:form action="/place-order" method="post" modelAttribute="cart" id="checkoutForm">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     <div class="mt-5 row g-4 justify-content-start">
                         <div class="col-12 col-md-6">
                             <div class="p-4 ">
                                 <h5 class="mb-4" style="font-weight:700; color:#1e293b;">
                                     <i class="fas fa-map-marker-alt me-2" style="color:#22c55e;"></i>
-                                    Thông tin người nhận
+                                    Shipping Information
                                 </h5>
                                 <div class="row g-3">
                                     <!-- Họ và tên -->
                                     <div class="col-12 form-group">
-                                        <label class="fw-semibold mb-1" style="color:#374151;">Họ và tên <span
+                                        <label class="fw-semibold mb-1" style="color:#374151;">Full Name <span
                                                 class="text-danger">*</span></label>
                                         <input class="form-control" id="receiverName" name="receiverName"
-                                            placeholder="Nhập họ và tên đầy đủ..." autocomplete="name" />
+                                            placeholder="Enter full name..." autocomplete="name" />
                                         <div class="invalid-feedback" id="nameError"></div>
-                                        <div class="valid-feedback">Tên hợp lệ ✓</div>
+                                        <div class="valid-feedback">Valid name ✓</div>
                                     </div>
 
                                     <!-- Tỉnh / Thành phố -->
                                     <div class="col-12 col-md-4 form-group">
-                                        <label class="fw-semibold mb-1" style="color:#374151;">Tỉnh / Thành phố <span
+                                        <label class="fw-semibold mb-1" style="color:#374151;">Province / City <span
                                                 class="text-danger">*</span></label>
                                         <select class="form-select" id="provinceSelect">
-                                            <option value="">-- Chọn tỉnh/thành --</option>
+                                            <option value="">-- Select Province --</option>
                                         </select>
                                     </div>
 
                                     <!-- Quận / Huyện -->
                                     <div class="col-12 col-md-4 form-group">
-                                        <label class="fw-semibold mb-1" style="color:#374151;">Quận / Huyện <span
+                                        <label class="fw-semibold mb-1" style="color:#374151;">District <span
                                                 class="text-danger">*</span></label>
                                         <select class="form-select" id="districtSelect" disabled>
-                                            <option value="">-- Chọn quận/huyện --</option>
+                                            <option value="">-- Select District --</option>
                                         </select>
                                     </div>
 
                                     <!-- Phường / Xã -->
                                     <div class="col-12 col-md-4 form-group">
-                                        <label class="fw-semibold mb-1" style="color:#374151;">Phường / Xã <span
+                                        <label class="fw-semibold mb-1" style="color:#374151;">Ward / Commune <span
                                                 class="text-danger">*</span></label>
                                         <select class="form-select" id="wardSelect" disabled>
-                                            <option value="">-- Chọn phường/xã --</option>
+                                            <option value="">-- Select Ward --</option>
                                         </select>
                                     </div>
 
                                     <!-- Số nhà / Đường -->
                                     <div class="col-12 form-group">
-                                        <label class="fw-semibold mb-1" style="color:#374151;">Số nhà, tên đường <span
+                                        <label class="fw-semibold mb-1" style="color:#374151;">Street Address <span
                                                 class="text-danger">*</span></label>
                                         <input class="form-control" id="streetInput"
-                                            placeholder="VD: 123 Đường Lê Lợi..." />
+                                            placeholder="Ex: 123 Le Loi Street..." />
                                         <div class="invalid-feedback" id="addressError"></div>
                                     </div>
 
@@ -181,14 +181,14 @@
 
                                     <!-- Số điện thoại -->
                                     <div class="col-12 form-group">
-                                        <label class="fw-semibold mb-1" style="color:#374151;">Số điện thoại <span
+                                        <label class="fw-semibold mb-1" style="color:#374151;">Phone Number <span
                                                 class="text-danger">*</span></label>
                                         <div class="input-group">
                                             <span class="input-group-text"
                                                 style="background:#f8fafc; color:#374151; font-weight:600;">🇻🇳
                                                 +84</span>
                                             <input class="form-control" id="receiverPhone" name="receiverPhone"
-                                                type="tel" placeholder="VD: 0901234567" maxlength="10"
+                                                type="tel" placeholder="Ex: 0901234567" maxlength="10"
                                                 inputmode="numeric" />
                                         </div>
                                         <div id="phoneError" class="text-danger small mt-1" style="display:none;"></div>
@@ -197,7 +197,7 @@
 
                                     <div class="mt-2">
                                         <i class="fas fa-arrow-left"></i>
-                                        <a href="/cart">Quay lại giỏ hàng</a>
+                                        <a href="/cart">Back to Cart</a>
                                     </div>
                                 </div>
                             </div>
@@ -273,51 +273,81 @@
 
     <script>
         (function () {
-            // ===== API ĐỊA CHỈ VIỆT NAM =====
-            const API = 'https://provinces.open-api.vn/api';
+            // ===== API ĐỊA CHỈ VIỆT NAM (ESGOO) =====
+            const API_BASE = 'https://esgoo.net/api-tinhthanh';
+
+            function toEnglishName(name) {
+                if (!name) return name;
+                let result = name;
+                const mappings = [
+                    { vn: 'Thành phố ', en: ' City' },
+                    { vn: 'Tỉnh ', en: ' Province' },
+                    { vn: 'Quận ', en: ' District' },
+                    { vn: 'Huyện ', en: ' District' },
+                    { vn: 'Thị xã ', en: ' Town' },
+                    { vn: 'Thị trấn ', en: ' Town' },
+                    { vn: 'Phường ', en: ' Ward' },
+                    { vn: 'Xã ', en: ' Commune' }
+                ];
+                for (const m of mappings) {
+                    if (result.startsWith(m.vn)) {
+                        result = result.replace(m.vn, '') + m.en;
+                        break;
+                    }
+                }
+                return result;
+            }
 
             function setLoading(el, loading) {
                 el.disabled = loading;
-                if (loading) el.innerHTML = '<option>Đang tải...</option>';
+                if (loading) el.innerHTML = '<option>Loading...</option>';
             }
 
             // Load tỉnh/thành
-            fetch(API + '/?depth=1')
+            fetch(API_BASE + '/1/0.htm')
                 .then(r => r.json())
-                .then(provinces => {
-                    const sel = document.getElementById('provinceSelect');
-                    provinces.sort((a, b) => a.name.localeCompare(b.name, 'vi'));
-                    provinces.forEach(p => sel.appendChild(new Option(p.name, p.code)));
+                .then(res => {
+                    if (res.error === 0) {
+                        const sel = document.getElementById('provinceSelect');
+                        sel.innerHTML = '<option value="">-- Select Province --</option>';
+                        res.data.forEach(p => sel.appendChild(new Option(toEnglishName(p.full_name), p.id)));
+                    }
                 }).catch(() => { });
 
             // Khi chọn tỉnh → load quận
             document.getElementById('provinceSelect').addEventListener('change', function () {
                 const districtSel = document.getElementById('districtSelect');
                 const wardSel = document.getElementById('wardSelect');
-                wardSel.innerHTML = '<option value="">-- Chọn phường/xã --</option>';
+                wardSel.innerHTML = '<option value="">-- Select Ward --</option>';
                 wardSel.disabled = true;
-                if (!this.value) { districtSel.innerHTML = '<option value="">-- Chọn quận/huyện --</option>'; districtSel.disabled = true; return; }
+                if (!this.value) { districtSel.innerHTML = '<option value="">-- Select District --</option>'; districtSel.disabled = true; return; }
+                
                 setLoading(districtSel, true);
-                fetch(API + '/p/' + this.value + '?depth=2')
+                fetch(API_BASE + '/2/' + this.value + '.htm')
                     .then(r => r.json())
-                    .then(data => {
-                        districtSel.innerHTML = '<option value="">-- Chọn quận/huyện --</option>';
-                        data.districts.forEach(d => districtSel.appendChild(new Option(d.name, d.code)));
-                        districtSel.disabled = false;
+                    .then(res => {
+                        districtSel.innerHTML = '<option value="">-- Select District --</option>';
+                        if (res.error === 0) {
+                            res.data.forEach(d => districtSel.appendChild(new Option(toEnglishName(d.full_name), d.id)));
+                            districtSel.disabled = false;
+                        }
                     }).catch(() => { districtSel.disabled = false; });
             });
 
             // Khi chọn quận → load phường
             document.getElementById('districtSelect').addEventListener('change', function () {
                 const wardSel = document.getElementById('wardSelect');
-                if (!this.value) { wardSel.innerHTML = '<option value="">-- Chọn phường/xã --</option>'; wardSel.disabled = true; return; }
+                if (!this.value) { wardSel.innerHTML = '<option value="">-- Select Ward --</option>'; wardSel.disabled = true; return; }
+                
                 setLoading(wardSel, true);
-                fetch(API + '/d/' + this.value + '?depth=2')
+                fetch(API_BASE + '/3/' + this.value + '.htm')
                     .then(r => r.json())
-                    .then(data => {
-                        wardSel.innerHTML = '<option value="">-- Chọn phường/xã --</option>';
-                        data.wards.forEach(w => wardSel.appendChild(new Option(w.name, w.code)));
-                        wardSel.disabled = false;
+                    .then(res => {
+                        wardSel.innerHTML = '<option value="">-- Select Ward --</option>';
+                        if (res.error === 0) {
+                            res.data.forEach(w => wardSel.appendChild(new Option(toEnglishName(w.full_name), w.id)));
+                            wardSel.disabled = false;
+                        }
                     }).catch(() => { wardSel.disabled = false; });
             });
 
@@ -335,12 +365,12 @@
                     this.classList.remove('is-valid', 'is-invalid');
                 } else if (valid) {
                     phoneError.style.display = 'none';
-                    phoneOk.textContent = '✓ Số điện thoại hợp lệ';
+                    phoneOk.textContent = '✓ Valid phone number';
                     phoneOk.style.display = 'block';
                     this.classList.add('is-valid'); this.classList.remove('is-invalid');
                 } else {
                     phoneOk.style.display = 'none';
-                    phoneError.textContent = '✗ Không hợp lệ. Phải là 10 số, bắt đầu 03/05/07/08/09';
+                    phoneError.textContent = '✗ Invalid. Must be 10 digits starting with 03/05/07/08/09';
                     phoneError.style.display = 'block';
                     this.classList.add('is-invalid'); this.classList.remove('is-valid');
                 }
@@ -356,8 +386,8 @@
                 if (hasNum || !hasTwoWords) {
                     this.classList.add('is-invalid'); this.classList.remove('is-valid');
                     document.getElementById('nameError').textContent = hasNum
-                        ? '✗ Họ tên không được chứa số'
-                        : '✗ Vui lòng nhập ít nhất 2 từ (họ và tên)';
+                        ? '✗ Name cannot contain numbers'
+                        : '✗ Please enter at least 2 words (full name)';
                 } else {
                     this.classList.add('is-valid'); this.classList.remove('is-invalid');
                 }
@@ -371,14 +401,14 @@
                 const nameVal = nameInput.value.trim();
                 if (!nameVal || /\d/.test(nameVal) || nameVal.split(/\s+/).filter(Boolean).length < 2) {
                     nameInput.classList.add('is-invalid'); nameInput.classList.remove('is-valid');
-                    document.getElementById('nameError').textContent = '✗ Vui lòng nhập họ và tên hợp lệ (ít nhất 2 từ, không chứa số)';
+                    document.getElementById('nameError').textContent = '✗ Please enter a valid full name (at least 2 words, no numbers)';
                     isValid = false;
                 }
 
                 // -- Kiểm tra số điện thoại --
                 if (!vnPhoneRegex.test(phoneInput.value)) {
                     phoneInput.classList.add('is-invalid'); phoneInput.classList.remove('is-valid');
-                    phoneError.textContent = '✗ Số điện thoại không hợp lệ. VD: 0901234567';
+                    phoneError.textContent = '✗ Invalid phone number. Ex: 0901234567';
                     phoneError.style.display = 'block';
                     isValid = false;
                 }
@@ -404,7 +434,7 @@
                 }
                 if (!street.value.trim()) {
                     street.classList.add('is-invalid');
-                    addrErr.textContent = '✗ Vui lòng nhập số nhà, tên đường';
+                    addrErr.textContent = '✗ Please enter street address';
                     isValid = false;
                 }
 
@@ -421,7 +451,7 @@
                 document.getElementById('receiverAddress').value = fullAddress;
 
                 // Submit form thủ công
-                document.querySelector('form').submit();
+                document.getElementById('checkoutForm').submit();
             });
 
             // Xóa is-invalid khi thay đổi dropdown

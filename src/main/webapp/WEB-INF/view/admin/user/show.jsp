@@ -187,17 +187,17 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Quản lý người dùng</h1>
+                                <h1 class="mt-4">User Management</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Người dùng</li>
+                                    <li class="breadcrumb-item active">Users</li>
                                 </ol>
 
                                 <div class="table-container">
                                     <div class="d-flex justify-content-between align-items-center mb-4">
-                                        <h3 class="m-0" style="font-weight: 700; color: var(--text-dark);">Danh sách thành viên</h3>
+                                        <h3 class="m-0" style="font-weight: 700; color: var(--text-dark);">User List</h3>
                                         <a href="/admin/user/create" class="btn btn-primary btn-create">
-                                            <i class="fas fa-user-plus me-2"></i>Thêm người dùng
+                                            <i class="fas fa-user-plus me-2"></i>Add User
                                         </a>
                                     </div>
 
@@ -206,10 +206,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Thông tin cơ bản</th>
-                                                    <th>Họ tên</th>
-                                                    <th>Vai trò</th>
-                                                    <th class="text-center">Thao tác</th>
+                                                    <th>Basic Info</th>
+                                                    <th>Full Name</th>
+                                                    <th>Role</th>
+                                                    <th class="text-center">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -231,16 +231,16 @@
                                                         <td><span class="role-badge">${user.role.name}</span></td>
                                                         <td class="text-center">
                                                             <a href="/admin/user/${user.id}"
-                                                                class="btn btn-action btn-outline-info" title="Xem">
+                                                                class="btn btn-action btn-outline-info" title="View">
                                                                 <i class="fas fa-eye"></i>
                                                             </a>
                                                             <a href="/admin/user/update/${user.id}"
-                                                                class="btn btn-action btn-outline-warning" title="Sửa">
+                                                                class="btn btn-action btn-outline-warning" title="Edit">
                                                                 <i class="fas fa-edit"></i>
                                                             </a>
                                                             <button 
                                                                 class="btn btn-action btn-outline-danger btn-delete-user" 
-                                                                title="Xóa"
+                                                                title="Delete"
                                                                 data-id="${user.id}"
                                                                 data-bs-toggle="modal" 
                                                                 data-bs-target="#deleteUserModal">
@@ -294,7 +294,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header border-0 pt-4 px-4">
-                                <h5 class="modal-title fw-bold" id="deleteModalLabel">Xác nhận xóa người dùng</h5>
+                                <h5 class="modal-title fw-bold" id="deleteModalLabel">Confirm User Deletion</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body px-4 py-3">
@@ -302,16 +302,16 @@
                                     <div class="d-inline-flex align-items-center justify-content-center bg-danger bg-opacity-10 rounded-circle mb-3" style="width: 80px; height: 80px;">
                                         <i class="fas fa-exclamation-triangle text-danger fs-1"></i>
                                     </div>
-                                    <p class="mb-1 fw-bold fs-5">Bạn có chắc chắn muốn xóa?</p>
-                                    <p class="text-muted">Hành động này sẽ xóa vĩnh viễn tài khoản có mã <span id="displayUserId" class="badge bg-secondary"></span>. Không thể hoàn tác sau khi thực hiện.</p>
+                                    <p class="mb-1 fw-bold fs-5">Are you sure you want to delete?</p>
+                                    <p class="text-muted">This action will permanently delete the account with ID <span id="displayUserId" class="badge bg-secondary"></span>. This cannot be undone.</p>
                                 </div>
                             </div>
                             <div class="modal-footer border-0 pb-4 px-4 gap-2">
-                                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Hủy bỏ</button>
+                                <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
                                 <form action="/admin/user/delete" method="post">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input type="hidden" name="id" id="inputUserId" />
-                                    <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">XÁC NHẬN XÓA</button>
+                                    <button type="submit" class="btn btn-danger rounded-pill px-4 shadow-sm">CONFIRM DELETE</button>
                                 </form>
                             </div>
                         </div>

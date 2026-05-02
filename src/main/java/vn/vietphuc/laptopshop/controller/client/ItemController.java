@@ -201,7 +201,7 @@ public class ItemController {
 
     @PostMapping("/confirm-payment")
     public String handleConfirmPayment(@RequestParam("id") long id) {
-        this.productService.updatePaymentStatus(id, "PAYMENT_SUCCESS");
+        this.productService.updatePaymentStatus(id, "PAYMENT_PENDING");
         return "redirect:/thankiu";
     }
 

@@ -208,7 +208,7 @@
                             <ol class="breadcrumb mb-4 animate-in">
                                 <li class="breadcrumb-item"><a href="/admin" class="text-decoration-none"
                                         style="color: var(--text-muted);">Admin</a></li>
-                                <li class="breadcrumb-item active">Thống kê hệ thống</li>
+                                <li class="breadcrumb-item active">System Statistics</li>
                             </ol>
 
                             <!-- Filter Section - New 2-panel layout -->
@@ -218,34 +218,34 @@
                                     <div class="col-md-8">
                                         <div class="d-flex align-items-center mb-3 gap-2">
                                             <i class="fas fa-sliders-h text-primary"></i>
-                                            <span class="fw-bold text-uppercase small text-muted">Bộ lọc thống kê</span>
+                                            <span class="fw-bold text-uppercase small text-muted">Statistics Filters</span>
                                         </div>
                                         <div class="row g-3">
                                             <div class="col-md-4">
-                                                <label class="form-label fw-bold small text-muted text-uppercase mb-1">Khoảng thời gian</label>
+                                                <label class="form-label fw-bold small text-muted text-uppercase mb-1">Time Range</label>
                                                 <select class="form-select shadow-none" id="statsTimeRange">
-                                                    <option value="today">Hôm nay</option>
-                                                    <option value="7days" selected>7 ngày qua</option>
-                                                    <option value="1month">30 ngày qua</option>
-                                                    <option value="1year">1 năm qua</option>
-                                                    <option value="all">Tất cả thời gian</option>
-                                                    <option value="custom">Tùy chỉnh (From-To)</option>
+                                                    <option value="today">Today</option>
+                                                    <option value="7days" selected>Last 7 days</option>
+                                                    <option value="1month">Last 30 days</option>
+                                                    <option value="1year">Last year</option>
+                                                    <option value="all">All time</option>
+                                                    <option value="custom">Custom (From-To)</option>
                                                 </select>
                                             </div>
                                             <div id="customDateRange" class="col-md-5 d-none">
                                                 <div class="row g-2">
                                                     <div class="col-6">
-                                                        <label class="form-label fw-bold small text-muted text-uppercase mb-1">Từ ngày</label>
+                                                        <label class="form-label fw-bold small text-muted text-uppercase mb-1">From Date</label>
                                                         <input type="date" class="form-control" id="statsFromDate">
                                                     </div>
                                                     <div class="col-6">
-                                                        <label class="form-label fw-bold small text-muted text-uppercase mb-1">Đến ngày</label>
+                                                        <label class="form-label fw-bold small text-muted text-uppercase mb-1">To Date</label>
                                                         <input type="date" class="form-control" id="statsToDate">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <label class="form-label fw-bold small text-muted text-uppercase mb-1">Hãng sản xuất</label>
+                                                <label class="form-label fw-bold small text-muted text-uppercase mb-1">Manufacturer</label>
                                                 <select class="form-select" id="statsBrandFilter" multiple>
                                                     <c:forEach var="brand" items="${brands}">
                                                         <option value="${brand}">${brand}</option>
@@ -254,10 +254,10 @@
                                             </div>
                                             <div class="col-12">
                                                 <button class="btn btn-primary fw-bold px-4" id="btnApplyStats">
-                                                    <i class="fas fa-filter me-2"></i>Lọc dữ liệu
+                                                    <i class="fas fa-filter me-2"></i>Filter Data
                                                 </button>
                                                 <span class="text-muted small ms-3">
-                                                    <i class="fas fa-info-circle me-1"></i>Tính trên đơn hàng COMPLETE
+                                                    <i class="fas fa-info-circle me-1"></i>Calculated on COMPLETE orders
                                                 </span>
                                             </div>
                                         </div>
@@ -267,19 +267,19 @@
                                     <div class="col-md-4">
                                         <div class="d-flex align-items-center mb-3 gap-2">
                                             <i class="fas fa-bullseye text-danger"></i>
-                                            <span class="fw-bold text-uppercase small text-muted">Mục tiêu doanh thu</span>
+                                            <span class="fw-bold text-uppercase small text-muted">Revenue Target</span>
                                         </div>
                                         <div class="row g-2 mb-3">
                                             <div class="col-7">
-                                                <label class="form-label fw-bold small text-muted text-uppercase mb-1">Đặt mục tiêu (VNĐ)</label>
-                                                <input type="number" class="form-control" id="targetAmount" placeholder="vd: 10000000" min="0" step="1000000" value="10000000">
+                                                <label class="form-label fw-bold small text-muted text-uppercase mb-1">Set Target (VNĐ)</label>
+                                                <input type="number" class="form-control" id="targetAmount" placeholder="ex: 10000000" min="0" step="1000000" value="10000000">
                                             </div>
                                             <div class="col-5">
-                                                <label class="form-label fw-bold small text-muted text-uppercase mb-1">Kỳ theo dõi</label>
+                                                <label class="form-label fw-bold small text-muted text-uppercase mb-1">Tracking Period</label>
                                                 <select class="form-select" id="targetPeriod">
-                                                    <option value="week">Tuần</option>
-                                                    <option value="month" selected>Tháng</option>
-                                                    <option value="year">Năm</option>
+                                                    <option value="week">Week</option>
+                                                    <option value="month" selected>Month</option>
+                                                    <option value="year">Year</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -287,7 +287,7 @@
                                             <canvas id="targetDonutChart"></canvas>
                                             <div id="targetCenterText" style="position:absolute; text-align:center; pointer-events:none;">
                                                 <div id="targetPct" style="font-size:1.8rem; font-weight:800; color:#0f172a; line-height:1;">0%</div>
-                                                <div id="targetLabel" style="font-size:0.7rem; color:#64748b; margin-top:2px;">đạt mục tiêu</div>
+                                                <div id="targetLabel" style="font-size:0.7rem; color:#64748b; margin-top:2px;">target achieved</div>
                                             </div>
                                         </div>
                                         <div class="text-center mt-2">
@@ -295,7 +295,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mt-2 text-muted xsmall"><i class="fas fa-info-circle me-1"></i>Dữ liệu tính trên đơn hàng đã giao thành công COMPLETE.</div>
+                                <div class="mt-2 text-muted xsmall"><i class="fas fa-info-circle me-1"></i>Data calculated based on COMPLETE orders.</div>
                             </div>
 
                             <div class="row mt-4">
@@ -304,13 +304,13 @@
                                     <div class="card stat-card card-order animate-in delay-1" style="border-top: 4px solid #f59e0b !important;">
                                         <div class="card-body">
                                             <div style="position: relative; z-index: 2;">
-                                                <div class="stat-label">Tổng Doanh Thu</div>
+                                                <div class="stat-label">Total Revenue</div>
                                                 <div class="stat-value" id="displayTotalRevenue">0 VNĐ</div>
                                             </div>
                                             <i class="fas fa-hand-holding-usd bg-icon" style="color: #f59e0b; opacity: 0.4;"></i>
                                         </div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <span class="small text-muted">Dữ liệu thành công</span>
+                                            <span class="small text-muted">Successful orders</span>
                                             <div class="small text-muted"><i class="fas fa-chart-line"></i></div>
                                         </div>
                                     </div>
@@ -320,13 +320,13 @@
                                     <div class="card stat-card card-user animate-in delay-2">
                                         <div class="card-body">
                                             <div style="position: relative; z-index: 2;">
-                                                <div class="stat-label">Tổng người dùng</div>
+                                                <div class="stat-label">Total Users</div>
                                                 <div class="stat-value">${countUser}</div>
                                             </div>
                                             <i class="fas fa-users bg-icon"></i>
                                         </div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <a class="small stretched-link text-decoration-none" href="/admin/user">Xem chi tiết</a>
+                                            <a class="small stretched-link text-decoration-none" href="/admin/user">View details</a>
                                             <div class="small text-muted"><i class="fas fa-chevron-right"></i></div>
                                         </div>
                                     </div>
@@ -336,13 +336,13 @@
                                     <div class="card stat-card card-product animate-in delay-3">
                                         <div class="card-body">
                                             <div style="position: relative; z-index: 2;">
-                                                <div class="stat-label">Sản phẩm hiện có</div>
+                                                <div class="stat-label">Available Products</div>
                                                 <div class="stat-value">${countProduct}</div>
                                             </div>
                                             <i class="fas fa-box-open bg-icon"></i>
                                         </div>
                                         <div class="card-footer d-flex align-items-center justify-content-between">
-                                            <a class="small stretched-link text-decoration-none" href="/admin/product">Quản lý kho</a>
+                                            <a class="small stretched-link text-decoration-none" href="/admin/product">Manage inventory</a>
                                             <div class="small text-muted"><i class="fas fa-chevron-right"></i></div>
                                         </div>
                                     </div>
@@ -353,8 +353,8 @@
                             <div class="table-container mb-5 animate-in">
                                 <div class="d-flex justify-content-between align-items-center mb-4">
                                     <div class="d-flex align-items-center gap-2">
-                                        <h3 class="m-0" style="font-weight: 700; color: var(--text-main);">Xu hướng doanh thu</h3>
-                                        <span id="demoBadge" style="display:none; font-size: 0.7rem; background: #f1f5f9; color: #64748b; border: 1px dashed #94a3b8; padding: 2px 10px; border-radius: 20px; font-weight: 600;">Dữ liệu mô phỏng</span>
+                                        <h3 class="m-0" style="font-weight: 700; color: var(--text-main);">Revenue Trends</h3>
+                                        <span id="demoBadge" style="display:none; font-size: 0.7rem; background: #f1f5f9; color: #64748b; border: 1px dashed #94a3b8; padding: 2px 10px; border-radius: 20px; font-weight: 600;">Simulation Data</span>
                                     </div>
                                 </div>
                                 <div style="height: 350px;">
@@ -381,8 +381,8 @@
                     const choices = new Choices(brandSelect, {
                         removeItemButton: true,
                         placeholder: true,
-                        placeholderValue: 'Chọn hãng...',
-                        noResultsText: 'Không tìm thấy',
+                        placeholderValue: 'Select brand...',
+                        noResultsText: 'No results found',
                         itemSelectText: ''
                     });
 
@@ -580,7 +580,7 @@
                     function updateTargetChart(actualRevenue) {
                         const target = parseFloat(document.getElementById('targetAmount').value) || 10000000;
                         const period = document.getElementById('targetPeriod').value;
-                        const periodLabels = { week: 'tuần', month: 'tháng', year: 'năm' };
+                        const periodLabels = { week: 'week', month: 'month', year: 'year' };
 
                         const rawPct = target > 0 ? (actualRevenue / target) * 100 : 0;
                         const pct = Math.min(rawPct, 100); // Giới hạn 100% cho phần hiển thị

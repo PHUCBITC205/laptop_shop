@@ -156,11 +156,11 @@
                             <div id="layoutSidenav_content">
                                 <main>
                                     <div class="container-fluid px-4">
-                                        <h1 class="mt-4">Quản lý sản phẩm</h1>
+                                        <h1 class="mt-4">Product Management</h1>
                                         <ol class="breadcrumb mb-4">
                                             <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                            <li class="breadcrumb-item"><a href="/admin/product">Sản phẩm</a></li>
-                                            <li class="breadcrumb-item active">Cập nhật ${newProduct.id}</li>
+                                            <li class="breadcrumb-item"><a href="/admin/product">Products</a></li>
+                                            <li class="breadcrumb-item active">Update ${newProduct.id}</li>
                                         </ol>
 
                                         <div class="row justify-content-center">
@@ -172,9 +172,7 @@
                                                             style="background: rgba(255, 202, 40, 0.1); padding: 12px; border-radius: 12px;">
                                                             <i class="fas fa-edit text-warning fa-xl"></i>
                                                         </div>
-                                                        <h3 class="m-0" style="font-weight: 800;">Chỉnh sửa thông tin
-                                                            sản
-                                                            phẩm</h3>
+                                                        <h3 class="m-0" style="font-weight: 800;">Edit Product Information</h3>
                                                     </div>
 
                                                     <form:form method="post" action="/admin/product/update"
@@ -186,7 +184,7 @@
                                                         <div class="col-lg-7">
                                                             <div class="row g-3">
                                                                 <div class="col-md-8">
-                                                                    <label class="form-label">Tên sản phẩm</label>
+                                                                    <label class="form-label">Product Name</label>
                                                                     <spring:bind path="name">
                                                                         <form:input type="text"
                                                                             class="form-control ${status.error ? 'is-invalid' : ''}"
@@ -197,7 +195,7 @@
                                                                 </div>
 
                                                                 <div class="col-md-4">
-                                                                    <label class="form-label">Giá sản phẩm</label>
+                                                                    <label class="form-label">Product Price</label>
                                                                     <div class="input-group has-validation">
                                                                         <spring:bind path="price">
                                                                             <form:input type="text" id="priceInput"
@@ -212,7 +210,7 @@
                                                                 </div>
 
                                                                 <div class="col-12">
-                                                                    <label class="form-label">Mô tả chi tiết</label>
+                                                                    <label class="form-label">Detailed Description</label>
                                                                     <spring:bind path="detailDesc">
                                                                         <form:textarea rows="5"
                                                                             class="form-control ${status.error ? 'is-invalid' : ''}"
@@ -223,7 +221,7 @@
                                                                 </div>
 
                                                                 <div class="col-12">
-                                                                    <label class="form-label">Mô tả tóm tắt (Short Description)</label>
+                                                                    <label class="form-label">Short Description</label>
                                                                     <spring:bind path="shortDesc">
                                                                         <form:input type="text"
                                                                             class="form-control ${status.error ? 'is-invalid' : ''}"
@@ -235,7 +233,7 @@
 
                                                                 <!-- Technical Specs Section -->
                                                                 <div class="col-12 mt-4 mb-2">
-                                                                    <h5 class="text-warning">Thông số kỹ thuật</h5>
+                                                                    <h5 class="text-warning">Technical Specifications</h5>
                                                                 </div>
 
                                                                 <div class="col-md-6">
@@ -268,7 +266,7 @@
                                                                 </div>
 
                                                                 <div class="col-md-4">
-                                                                    <label class="form-label">Số lượng kho</label>
+                                                                    <label class="form-label">Stock Quantity</label>
                                                                     <spring:bind path="quantity">
                                                                         <form:input type="number"
                                                                             class="form-control ${status.error ? 'is-invalid' : ''}"
@@ -279,7 +277,7 @@
                                                                 </div>
 
                                                                 <div class="col-md-4">
-                                                                    <label class="form-label">Hãng</label>
+                                                                    <label class="form-label">Brand</label>
                                                                     <form:select class="form-select" path="factory">
                                                                         <form:option style="background-color:#2B2C39;"
                                                                             value="APPLE">Apple (MacBook)
@@ -298,21 +296,18 @@
                                                                 </div>
 
                                                                 <div class="col-md-4">
-                                                                    <label class="form-label">Phân khúc</label>
+                                                                    <label class="form-label">Segment</label>
                                                                     <form:select class="form-select" path="target">
                                                                         <form:option style="background-color:#2B2C39;"
                                                                             value="GAMING">Gaming</form:option>
                                                                         <form:option style="background-color:#2B2C39;"
-                                                                            value="SINHVIEN-VANPHONG">Sinh viên -
-                                                                            Văn phòng</form:option>
+                                                                            value="SINHVIEN-VANPHONG">Student - Office</form:option>
                                                                         <form:option style="background-color:#2B2C39;"
-                                                                            value="THIET-KE-DO-HOA">Thiết kế đồ họa
-                                                                        </form:option>
+                                                                            value="THIET-KE-DO-HOA">Graphic Design</form:option>
                                                                         <form:option style="background-color:#2B2C39;"
-                                                                            value="MONG-NHE">Mỏng nhẹ</form:option>
+                                                                            value="MONG-NHE">Thin & Light</form:option>
                                                                         <form:option style="background-color:#2B2C39;"
-                                                                            value="DOANH-NHAN">Doanh nhân
-                                                                        </form:option>
+                                                                            value="DOANH-NHAN">Business</form:option>
                                                                     </form:select>
                                                                 </div>
                                                             </div>
@@ -320,16 +315,14 @@
 
                                                         <div class="col-lg-5">
                                                             <div class="image-preview-wrapper">
-                                                                <label class="form-label mb-3">Hình ảnh hiển thị</label>
+                                                                <label class="form-label mb-3">Display Image</label>
                                                                 <img id="avatarPreview" src="#" alt="product preview"
                                                                     style="display: none;" />
                                                                 <div class="mt-2">
                                                                     <input class="form-control" type="file"
                                                                         id="avatarFile" accept=".png, .jpg, .jpeg"
                                                                         name="phucvietFile" />
-                                                                    <p class="small text-muted mt-3">Chọn tệp mới nếu
-                                                                        bạn
-                                                                        muốn thay đổi hình ảnh hiện tại.</p>
+                                                                    <p class="small text-muted mt-3">Select a new file if you want to change the current image.</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -338,10 +331,8 @@
                                                             style="border-color: var(--border-glass) !important;">
                                                             <a href="/admin/product"
                                                                 class="btn btn-outline-secondary me-3 px-4 py-2"
-                                                                style="border-radius: 12px; color: #fff; border-color: var(--border-glass);">Hủy
-                                                                bỏ</a>
-                                                            <button type="submit" class="btn btn-update-now">Lưu thay
-                                                                đổi</button>
+                                                                style="border-radius: 12px; color: #fff; border-color: var(--border-glass);">Cancel</a>
+                                                            <button type="submit" class="btn btn-update-now">Save Changes</button>
                                                         </div>
                                                     </form:form>
                                                 </div>
