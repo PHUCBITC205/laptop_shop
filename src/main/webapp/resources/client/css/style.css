@@ -465,7 +465,10 @@
 
 /*** Single Page Start ***/
 .pagination {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
 }
 
 .pagination a {

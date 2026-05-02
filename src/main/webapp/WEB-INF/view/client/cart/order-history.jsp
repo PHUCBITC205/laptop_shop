@@ -7,7 +7,7 @@
 
             <head>
                 <meta charset="utf-8">
-                <title>Lịch sử mua hàng - Laptopshop</title>
+                <title>Order History - Laptopshop</title>
                 <meta content="width=device-width, initial-scale=1.0" name="viewport">
                 <meta content="" name="keywords">
                 <meta content="" name="description">
@@ -35,6 +35,7 @@
                 <!-- Template Stylesheet -->
                 <link href="/client/css/style.css" rel="stylesheet">
                 <jsp:include page="/WEB-INF/view/client/layout/favicon.jsp" />
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
             </head>
 
@@ -56,15 +57,15 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Lịch sử mua hàng</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Order History</li>
                                 </ol>
                             </nav>
-                            <h1 class="mb-0">Lịch sử mua hàng</h1>
+                            <h1 class="mb-0">Order History</h1>
                         </div>
 
                         <c:if test="${empty orders}">
                             <div class="alert alert-info text-center" role="alert">
-                                Không có đơn hàng nào được tạo.
+                                No orders found.
                             </div>
                         </c:if>
 
@@ -74,8 +75,7 @@
                                 <div class="card-header bg-primary text-white py-3 rounded-top-3">
                                     <div class="row align-items-center">
                                         <div class="col-md-6">
-                                            <h5 class="mb-0 text-white"><i class="fas fa-shopping-bag me-2"></i>Đơn
-                                                hàng: #${order.id}</h5>
+                                            <h5 class="mb-0 text-white"><i class="fas fa-shopping-bag me-2"></i>Order: #${order.id}</h5>
                                         </div>
                                         <div class="col-md-6 text-md-end mt-2 mt-md-0">
                                             <span class="badge 
@@ -94,13 +94,12 @@
                                 <div class="card-body p-4">
                                     <div class="row mb-4">
                                         <div class="col-md-6 border-end">
-                                            <h6 class="text-primary fw-bold mb-3"><i class="fas fa-user me-2"></i>Thông
-                                                tin người nhận</h6>
-                                            <p class="mb-1"><strong>Họ tên:</strong> ${order.receiverName}</p>
-                                            <p class="mb-1"><strong>Địa chỉ:</strong> ${order.receiverAddress}</p>
-                                            <p class="mb-1"><strong>Số điện thoại:</strong> ${order.receiverPhone}</p>
-                                            <p class="mb-1"><strong>Phương thức:</strong> ${order.paymentMethod}</p>
-                                            <p class="mb-0"><strong>Thanh toán:</strong>
+                                            <h6 class="text-primary fw-bold mb-3"><i class="fas fa-user me-2"></i>Shipping Details</h6>
+                                            <p class="mb-1"><strong>Name:</strong> ${order.receiverName}</p>
+                                            <p class="mb-1"><strong>Address:</strong> ${order.receiverAddress}</p>
+                                            <p class="mb-1"><strong>Phone:</strong> ${order.receiverPhone}</p>
+                                            <p class="mb-1"><strong>Method:</strong> ${order.paymentMethod}</p>
+                                            <p class="mb-0"><strong>Payment:</strong>
                                                 <span
                                                     class="${order.paymentStatus == 'PAYMENT_SUCCESS' ? 'text-success' : 'text-danger'}">
                                                     ${order.paymentStatus}
@@ -109,36 +108,36 @@
                                         </div>
                                         <div class="col-md-6 ps-md-4">
                                             <h6 class="text-primary fw-bold mb-3"><i
-                                                    class="fas fa-history me-2"></i>Trạng thái chi tiết</h6>
+                                                    class="fas fa-history me-2"></i>Order Status Timeline</h6>
                                             <ul class="list-unstyled small">
                                                 <c:if test="${not empty order.orderDate}">
                                                     <li class="mb-1">
                                                         <span class="text-muted"><fmt:formatDate value="${order.orderDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></span>: 
-                                                        <span class="fw-bold">Đã đặt đơn</span>
+                                                        <span class="fw-bold">Placed</span>
                                                     </li>
                                                 </c:if>
                                                 <c:if test="${not empty order.pendingDate}">
                                                     <li class="mb-1">
                                                         <span class="text-muted"><fmt:formatDate value="${order.pendingDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></span>: 
-                                                        <span class="fw-bold text-warning">Chờ xác nhận</span>
+                                                        <span class="fw-bold text-warning">Pending Confirmation</span>
                                                     </li>
                                                 </c:if>
                                                 <c:if test="${not empty order.shippingDate}">
                                                     <li class="mb-1">
                                                         <span class="text-muted"><fmt:formatDate value="${order.shippingDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></span>: 
-                                                        <span class="fw-bold text-info">Đang giao hàng</span>
+                                                        <span class="fw-bold text-info">Shipping</span>
                                                     </li>
                                                 </c:if>
                                                 <c:if test="${not empty order.completeDate}">
                                                     <li class="mb-1">
                                                         <span class="text-muted"><fmt:formatDate value="${order.completeDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></span>: 
-                                                        <span class="fw-bold text-success">Hoàn thành</span>
+                                                        <span class="fw-bold text-success">Completed</span>
                                                     </li>
                                                 </c:if>
                                                 <c:if test="${not empty order.cancelDate}">
                                                     <li class="mb-1">
                                                         <span class="text-muted"><fmt:formatDate value="${order.cancelDateAsDate}" pattern="dd/MM/yyyy HH:mm" /></span>: 
-                                                        <span class="fw-bold text-danger">Đã hủy</span>
+                                                        <span class="fw-bold text-danger">Canceled</span>
                                                     </li>
                                                 </c:if>
                                             </ul>
@@ -149,10 +148,10 @@
                                         <table class="table table-bordered align-middle">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th scope="col" colspan="2">Sản phẩm</th>
-                                                    <th scope="col" class="text-center">Giá</th>
-                                                    <th scope="col" class="text-center">Số lượng</th>
-                                                    <th scope="col" class="text-end">Thành tiền</th>
+                                                    <th scope="col" colspan="2">Product</th>
+                                                    <th scope="col" class="text-center">Price</th>
+                                                    <th scope="col" class="text-center">Qty</th>
+                                                    <th scope="col" class="text-end">Total</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -185,9 +184,9 @@
                                             </tbody>
                                             <tfoot>
                                                 <tr>
-                                                    <td colspan="4" class="text-end fw-bold">Tổng cộng:</td>
+                                                    <td colspan="4" class="text-end fw-bold">Grand Total:</td>
                                                     <td class="text-end fw-bold text-danger fs-5">
-                                                        <fmt:formatNumber type="number" value="${order.totalPrice}" /> đ
+                                                        <fmt:formatNumber type="number" value="${order.totalPrice}" /> VNĐ
                                                     </td>
                                                 </tr>
                                             </tfoot>
@@ -198,21 +197,27 @@
                                         <c:if test="${order.status == 'UNPAID' || order.status == 'PENDING'}">
                                             <button type="button" class="btn btn-outline-primary btn-sm"
                                                 data-bs-toggle="modal" data-bs-target="#updateModal${order.id}">
-                                                <i class="fas fa-edit me-1"></i>Cập nhật thông tin
+                                                <i class="fas fa-edit me-1"></i>Update Info
                                             </button>
 
-                                            <form action="${pageContext.request.contextPath}/cancel-order/${order.id}" method="post"
-                                                onsubmit="return confirm('Bạn có chắc chắn muốn hủy đơn hàng này?')">
+                                            <form id="cancelForm${order.id}" action="${pageContext.request.contextPath}/cancel-order/${order.id}" method="post">
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                                                <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                    <i class="fas fa-times me-1"></i>Hủy đơn
+                                                <button type="button" class="btn btn-outline-danger btn-sm" onclick="confirmCancel(${order.id})">
+                                                    <i class="fas fa-times me-1"></i>Cancel Order
                                                 </button>
                                             </form>
                                         </c:if>
 
                                         <c:if test="${order.status == 'UNPAID'}">
+                                            <form id="codForm${order.id}" action="${pageContext.request.contextPath}/change-payment-to-cod" method="post" class="d-inline">
+                                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                                                <input type="hidden" name="id" value="${order.id}" />
+                                                <button type="button" class="btn btn-outline-secondary btn-sm" onclick="confirmCOD(${order.id})">
+                                                    <i class="fas fa-exchange-alt me-1"></i>Change to COD
+                                                </button>
+                                            </form>
                                             <a href="/payment/${order.id}" class="btn btn-primary btn-sm">
-                                                <i class="fas fa-credit-card me-1"></i>Thanh toán ngay
+                                                <i class="fas fa-credit-card me-1"></i>Pay Now
                                             </a>
                                         </c:if>
                                     </div>
@@ -226,38 +231,68 @@
                                         <form action="${pageContext.request.contextPath}/update-order-info" method="post">
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Cập nhật thông tin nhận hàng</h5>
+                                                <h5 class="modal-title">Update Shipping Information</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
                                                 <input type="hidden" name="id" value="${order.id}">
                                                 <div class="mb-3">
-                                                    <label class="form-label">Tên người nhận</label>
+                                                    <label class="form-label">Receiver Name</label>
                                                     <input type="text" class="form-control" name="receiverName"
                                                         value="${order.receiverName}" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">Địa chỉ nhận hàng</label>
+                                                    <label class="form-label">Shipping Address</label>
                                                     <textarea class="form-control" name="receiverAddress" rows="2"
                                                         required>${order.receiverAddress}</textarea>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label class="form-label">Số điện thoại</label>
+                                                    <label class="form-label">Phone Number</label>
                                                     <input type="text" class="form-control" name="receiverPhone"
                                                         value="${order.receiverPhone}" required>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Đóng</button>
-                                                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save Changes</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </c:forEach>
+
+                        <!-- Pagination -->
+                        <c:if test="${totalPages > 1}">
+                            <div class="row mt-5">
+                                <div class="col-12">
+                                    <nav aria-label="Page navigation">
+                                        <ul class="pagination justify-content-center">
+                                            <li class="page-item ${currentPage == 1 ? 'disabled' : ''}">
+                                                <a class="page-link" href="/order-history?page=${currentPage - 1}"
+                                                    aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                </a>
+                                            </li>
+                                            <c:forEach begin="1" end="${totalPages}" varStatus="loop">
+                                                <li class="page-item ${currentPage == loop.index ? 'active' : ''}">
+                                                    <a class="page-link"
+                                                        href="/order-history?page=${loop.index}">${loop.index}</a>
+                                                </li>
+                                            </c:forEach>
+                                            <li class="page-item ${currentPage == totalPages ? 'disabled' : ''}">
+                                                <a class="page-link" href="/order-history?page=${currentPage + 1}"
+                                                    aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </c:if>
                     </div>
                 </div>
                 <!-- Cart Page End -->
@@ -281,6 +316,42 @@
 
                 <!-- Template Javascript -->
                 <script src="/client/js/main.js"></script>
+
+                <script>
+                    function confirmCancel(orderId) {
+                        Swal.fire({
+                            title: 'Cancel Order?',
+                            text: "Are you sure you want to cancel this order? This action cannot be undone.",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#d33',
+                            cancelButtonColor: '#3085d6',
+                            confirmButtonText: 'Yes, cancel it!',
+                            cancelButtonText: 'No, keep it'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('cancelForm' + orderId).submit();
+                            }
+                        })
+                    }
+
+                    function confirmCOD(orderId) {
+                        Swal.fire({
+                            title: 'Switch to COD?',
+                            text: "Change payment method to Cash on Delivery?",
+                            icon: 'question',
+                            showCancelButton: true,
+                            confirmButtonColor: '#81c408',
+                            cancelButtonColor: '#6c757d',
+                            confirmButtonText: 'Yes, change to COD',
+                            cancelButtonText: 'No, stay with QR'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('codForm' + orderId).submit();
+                            }
+                        })
+                    }
+                </script>
             </body>
 
             </html>

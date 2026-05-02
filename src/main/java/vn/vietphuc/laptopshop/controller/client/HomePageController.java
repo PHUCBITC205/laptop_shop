@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,14 +89,20 @@ public class HomePageController {
     }
 
     @GetMapping("/order-history")
-    public String getOrderHistoryPage(Model model, HttpServletRequest request) {
+    public String getOrderHistoryPage(Model model, HttpServletRequest request,
+            @RequestParam(value = "page", defaultValue = "1") int page) {
         User cureenUser = new User();
         HttpSession session = request.getSession(false);
         long id = (long) session.getAttribute("id");
         cureenUser.setId(id);
 
-        List<Order> order = this.orderService.fetchOrderByUser(cureenUser);
+        Pageable pageable = PageRequest.of(page - 1, 5, Sort.by("id").descending());
+        Page<Order> orderPage = this.orderService.fetchOrderByUser(cureenUser, pageable);
+        List<Order> order = orderPage.getContent();
+
         model.addAttribute("orders", order);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", orderPage.getTotalPages());
         return "client/cart/order-history";
     }
 
@@ -133,6 +140,22 @@ public class HomePageController {
             if (order.getUser().getId() == userId &&
                     (order.getStatus().equals("UNPAID") || order.getStatus().equals("PENDING"))) {
                 this.orderService.updateOrderInfo(id, receiverName, receiverAddress, receiverPhone);
+            }
+        }
+        return "redirect:/order-history";
+    }
+
+    @PostMapping("/change-payment-to-cod")
+    public String handlePayWithCOD(@RequestParam("id") long id, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        long userId = (long) session.getAttribute("id");
+
+        Optional<Order> orderOptional = this.orderService.fetchOrderById(id);
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            // Verify ownership and status
+            if (order.getUser().getId() == userId && order.getStatus().equals("UNPAID")) {
+                this.orderService.changePaymentMethodToCOD(id);
             }
         }
         return "redirect:/order-history";

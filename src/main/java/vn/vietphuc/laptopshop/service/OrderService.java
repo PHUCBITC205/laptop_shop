@@ -92,6 +92,18 @@ public class OrderService {
         }
     }
 
+    public void changePaymentMethodToCOD(long id) {
+        Optional<Order> orderOptional = this.orderRepository.findById(id);
+        if (orderOptional.isPresent()) {
+            Order order = orderOptional.get();
+            order.setPaymentMethod("COD");
+            order.setStatus("PENDING");
+            order.setPaymentStatus("PAYMENT_PENDING");
+            order.setPendingDate(LocalDateTime.now());
+            this.orderRepository.save(order);
+        }
+    }
+
     public void deleteOrderById(long id) {
         // delete order detail
         Optional<Order> orderOptional = this.fetchOrderById(id);
@@ -108,6 +120,10 @@ public class OrderService {
 
     public List<Order> fetchOrderByUser(User user) {
         return this.orderRepository.findByUser(user);
+    }
+
+    public Page<Order> fetchOrderByUser(User user, Pageable pageable) {
+        return this.orderRepository.findByUser(user, pageable);
     }
 
     public Double calculateRevenue(List<String> brands, LocalDateTime start, LocalDateTime end, boolean isAllTime) {

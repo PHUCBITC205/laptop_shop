@@ -12,6 +12,7 @@ import vn.vietphuc.laptopshop.domain.User;
 
 public interface OrderRepository extends JpaRepository<Order, Long>, JpaSpecificationExecutor<Order> {
     List<Order> findByUser(User user);
+    Page<Order> findByUser(User user, Pageable pageable);
 
     Page<Order> findAll(Pageable page);
 

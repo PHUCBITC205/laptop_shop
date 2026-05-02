@@ -79,8 +79,8 @@
                                     <i class="fas fa-check-circle me-2"></i>I have transferred successfully
                                 </button>
                             </form>
-                            <a href="/" class="text-muted" style="text-decoration: none; font-size: 0.85rem;">
-                                <i class="fas fa-arrow-left me-1"></i> Back to Home
+                            <a href="/order-history" class="text-muted" style="text-decoration: none; font-size: 0.85rem;">
+                                <i class="fas fa-history me-1"></i> View in Order History
                             </a>
                         </div>
                     </div>
