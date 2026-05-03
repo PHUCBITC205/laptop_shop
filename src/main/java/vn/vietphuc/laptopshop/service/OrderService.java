@@ -72,8 +72,8 @@ public class OrderService {
         if (optionalOrder.isPresent()) {
             Order order = optionalOrder.get();
             order.setPaymentStatus(paymentStatus);
-            // Nếu admin xác nhận thanh toán thành công, tự động chuyển trạng thái đơn hàng sang PENDING (Chờ xử lý hàng)
-            if (paymentStatus.equals("PAYMENT_SUCCESS")) {
+            // Nếu admin xác nhận thanh toán thành công và đơn hàng đang ở trạng thái UNPAID, tự động chuyển sang PENDING
+            if (paymentStatus.equals("PAYMENT_SUCCESS") && "UNPAID".equals(order.getStatus())) {
                 order.setStatus("PENDING");
                 order.setPendingDate(LocalDateTime.now());
             }
