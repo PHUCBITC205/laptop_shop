@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+            <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
             <!DOCTYPE html>
             <html lang="en">
@@ -194,7 +195,7 @@
                                     </div>
 
                                     <div class="d-flex justify-content-end gap-2">
-                                        <c:if test="${order.status == 'UNPAID' || order.status == 'PENDING'}">
+                                        <c:if test="${fn:toUpperCase(order.status) == 'UNPAID' || fn:toUpperCase(order.status) == 'PENDING'}">
                                             <button type="button" class="btn btn-outline-primary btn-sm"
                                                 data-bs-toggle="modal" data-bs-target="#updateModal${order.id}">
                                                 <i class="fas fa-edit me-1"></i>Update Info
@@ -208,7 +209,7 @@
                                             </form>
                                         </c:if>
 
-                                        <c:if test="${order.status == 'UNPAID'}">
+                                        <c:if test="${fn:toUpperCase(order.status) == 'UNPAID'}">
                                             <form id="codForm${order.id}" action="${pageContext.request.contextPath}/change-payment-to-cod" method="post" class="d-inline">
                                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                                                 <input type="hidden" name="id" value="${order.id}" />

@@ -116,7 +116,7 @@ public class HomePageController {
             Order order = orderOptional.get();
             // Verify ownership and status
             if (order.getUser().getId() == userId &&
-                    (order.getStatus().equals("UNPAID") || order.getStatus().equals("PENDING"))) {
+                    ("UNPAID".equalsIgnoreCase(order.getStatus()) || "PENDING".equalsIgnoreCase(order.getStatus()))) {
                 this.orderService.updateOrderStatus(id, "CANCEL");
             }
         }
@@ -138,7 +138,7 @@ public class HomePageController {
             Order order = orderOptional.get();
             // Verify ownership and status (only allow update if not shipped/cancelled/success)
             if (order.getUser().getId() == userId &&
-                    (order.getStatus().equals("UNPAID") || order.getStatus().equals("PENDING"))) {
+                    ("UNPAID".equalsIgnoreCase(order.getStatus()) || "PENDING".equalsIgnoreCase(order.getStatus()))) {
                 this.orderService.updateOrderInfo(id, receiverName, receiverAddress, receiverPhone);
             }
         }
