@@ -142,7 +142,7 @@
                 <h3 class="fw-bold mb-1" style="color: var(--text-dark);">Forgot Password?</h3>
                 <p class="text-muted small mb-4">Enter your registered email to receive recovery instructions.</p>
 
-                <form action="/forgot-password" method="post">
+                <form id="forgotForm" action="/forgot-password" method="post">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
                     <c:if test="${not empty error}">
@@ -164,8 +164,9 @@
                                placeholder="name@example.com" required>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-submit w-100">
-                        Send Recovery Request
+                    <button type="submit" id="submitBtn" class="btn btn-primary btn-submit w-100">
+                        <span id="btnSpinner" class="spinner-border spinner-border-sm d-none me-2" role="status" aria-hidden="true"></span>
+                        <span id="btnText">Send Recovery Request</span>
                     </button>
 
                     <div class="text-center mt-4">
@@ -187,6 +188,79 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const forgotForm = document.getElementById('forgotForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+
+            let countdownTimer;
+
+            function startCountdown(seconds) {
+                submitBtn.disabled = true;
+                submitBtn.classList.remove('btn-primary');
+                submitBtn.classList.add('btn-secondary');
+                
+                let timeLeft = seconds;
+                updateCountdownUI(timeLeft);
+
+                countdownTimer = setInterval(() => {
+                    timeLeft--;
+                    if (timeLeft <= 0) {
+                        clearInterval(countdownTimer);
+                        resetButton();
+                        localStorage.removeItem('forgotPasswordCountdown');
+                    } else {
+                        updateCountdownUI(timeLeft);
+                        // Lưu thời điểm kết thúc tuyệt đối để xử lý khi refresh trang
+                        localStorage.setItem('forgotPasswordCountdown', Date.now() + timeLeft * 1000);
+                    }
+                }, 1000);
+            }
+
+            function updateCountdownUI(seconds) {
+                btnText.innerText = 'Resend in ' + seconds + 's';
+                btnSpinner.classList.add('d-none');
+            }
+
+            function resetButton() {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('btn-secondary');
+                submitBtn.classList.add('btn-primary');
+                btnText.innerText = 'Send Recovery Request';
+                btnSpinner.classList.add('d-none');
+            }
+
+            // Kiểm tra nếu có bộ đếm đang chạy trong localStorage
+            const storedEndTime = localStorage.getItem('forgotPasswordCountdown');
+            if (storedEndTime) {
+                const timeLeft = Math.round((storedEndTime - Date.now()) / 1000);
+                if (timeLeft > 0) {
+                    startCountdown(timeLeft);
+                } else {
+                    localStorage.removeItem('forgotPasswordCountdown');
+                }
+            }
+
+            // Nếu trang vừa tải xong và có thông báo thành công từ server -> bắt đầu đếm ngược 60s
+            <c:if test="${not empty message}">
+                startCountdown(60);
+            </c:if>
+
+            if (forgotForm) {
+                forgotForm.addEventListener('submit', function (e) {
+                    // Hiển thị trạng thái loading
+                    submitBtn.disabled = true;
+                    btnText.innerText = 'Processing...';
+                    btnSpinner.classList.remove('d-none');
+                    
+                    // Form sẽ submit bình thường và tải lại trang
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
