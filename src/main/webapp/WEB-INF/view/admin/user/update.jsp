@@ -258,10 +258,8 @@
                                                                 <div class="col-md-4">
                                                                     <label class="form-label">System Role</label>
                                                                     <form:select class="form-select" path="role.name">
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="ADMIN">ADMIN (Administrator)</form:option>
-                                                                        <form:option style="background-color:#2B2C39;"
-                                                                            value="USER">USER (Customer)</form:option>
+                                                                        <form:option value="ADMIN">ADMIN (Administrator)</form:option>
+                                                                        <form:option value="USER">USER (Customer)</form:option>
                                                                     </form:select>
                                                                 </div>
                                                             </div>

@@ -20,31 +20,31 @@
 
     <style>
         :root {
-            --bg-dark: #0f111a;
-            --card-glass: rgba(255, 255, 255, 0.03);
+            --bg-light: #f8fafc;
+            --card-bg: #ffffff;
             --accent-purple: #7c4dff;
-            --border-glass: rgba(255, 255, 255, 0.1);
-            --text-muted: #94a3b8;
+            --border-color: #e2e8f0;
+            --text-dark: #1e293b;
+            --text-muted: #64748b;
         }
 
         body {
             font-family: 'Inter', sans-serif !important;
-            background-color: var(--bg-dark) !important;
-            color: #fff;
+            background-color: var(--bg-light) !important;
+            color: var(--text-dark);
         }
 
         #layoutSidenav_content {
-            background-image: radial-gradient(circle at top right, rgba(124, 77, 255, 0.05), transparent);
+            background-color: #f4f7f6;
         }
 
         /* Profile Card Styling */
         .profile-container {
-            background: var(--card-glass);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--border-glass);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
             animation: slideUp 0.6s ease-out;
             max-width: 800px;
             margin: 0 auto;
@@ -68,19 +68,19 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            border: 4px solid var(--accent-purple);
+            border: 4px solid #fff;
             padding: 5px;
-            box-shadow: 0 0 20px rgba(124, 77, 255, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
         .status-indicator {
             position: absolute;
-            bottom: 10px;
+            bottom: 15px;
             right: 15px;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             background: #10b981;
-            border: 3px solid #1a1c23;
+            border: 4px solid #fff;
             border-radius: 50%;
         }
 
@@ -93,18 +93,19 @@
         }
 
         .info-item {
-            background: rgba(255,255,255,0.02);
+            background: #f8fafc;
             padding: 15px 20px;
             border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             transition: 0.3s;
         }
 
         .info-item:hover {
-            background: rgba(124, 77, 255, 0.05);
-            border-color: rgba(124, 77, 255, 0.2);
+            background: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
         .info-icon {
@@ -127,19 +128,20 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 2px;
+            font-weight: 700;
         }
 
         .info-content span {
             font-weight: 600;
-            color: #fff;
+            color: var(--text-dark);
             font-size: 1rem;
         }
 
         /* Back Button */
         .btn-back {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-glass);
-            color: #fff;
+            background: #f1f5f9;
+            border: 1px solid var(--border-color);
+            color: var(--text-dark);
             padding: 12px 30px;
             border-radius: 12px;
             font-weight: 600;
@@ -151,10 +153,9 @@
         }
 
         .btn-back:hover {
-            background: var(--accent-purple);
-            color: #fff;
+            background: #e2e8f0;
+            color: var(--text-dark);
             transform: translateX(-5px);
-            box-shadow: 0 5px 15px rgba(124, 77, 255, 0.3);
         }
     </style>
 </head>
