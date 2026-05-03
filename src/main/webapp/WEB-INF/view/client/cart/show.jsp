@@ -49,6 +49,9 @@
                     <!-- Spinner End -->
 
                     <jsp:include page="../layout/header.jsp" />
+                    <c:if test="${not empty pageContext.request.userPrincipal}">
+                        <div id="isLoggedInFlag" style="display: none;"></div>
+                    </c:if>
 
                     <!-- Cart Page Start -->
                     <div class="container-fluid py-5">
@@ -198,7 +201,8 @@
                                                         </c:forEach>
                                                     </div>
                                                     <button
-                                                        class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4">Checkout
+                                                        ${empty cartDetails ? 'disabled' : ''}
+                                                        class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4 ${empty cartDetails ? 'opacity-50' : ''}">Checkout
                                                     </button>
                                                 </form:form>
                                             </c:if>
