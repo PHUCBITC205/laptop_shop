@@ -211,11 +211,10 @@
                                 <li class="breadcrumb-item active">System Statistics</li>
                             </ol>
 
-                            <!-- Filter Section - New 2-panel layout -->
+                            <!-- Filter Section - Expanded Full Width -->
                             <div class="table-container mb-4 animate-in" style="position: relative; z-index: 100;">
-                                <div class="row g-4">
-                                    <!-- LEFT: Filter Controls -->
-                                    <div class="col-md-8">
+                                <div class="row">
+                                    <div class="col-12">
                                         <div class="d-flex align-items-center mb-3 gap-2">
                                             <i class="fas fa-sliders-h text-primary"></i>
                                             <span class="fw-bold text-uppercase small text-muted">Statistics Filters</span>
@@ -262,40 +261,7 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <!-- RIGHT: Revenue Target Widget -->
-                                    <div class="col-md-4">
-                                        <div class="d-flex align-items-center mb-3 gap-2">
-                                            <i class="fas fa-bullseye text-danger"></i>
-                                            <span class="fw-bold text-uppercase small text-muted">Revenue Target</span>
-                                        </div>
-                                        <div class="row g-2 mb-3">
-                                            <div class="col-7">
-                                                <label class="form-label fw-bold small text-muted text-uppercase mb-1">Set Target (VNĐ)</label>
-                                                <input type="number" class="form-control" id="targetAmount" placeholder="ex: 10000000" min="0" step="1000000" value="10000000">
-                                            </div>
-                                            <div class="col-5">
-                                                <label class="form-label fw-bold small text-muted text-uppercase mb-1">Tracking Period</label>
-                                                <select class="form-select" id="targetPeriod">
-                                                    <option value="week">Week</option>
-                                                    <option value="month" selected>Month</option>
-                                                    <option value="year">Year</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div style="position: relative; height: 180px; display: flex; align-items: center; justify-content: center;">
-                                            <canvas id="targetDonutChart"></canvas>
-                                            <div id="targetCenterText" style="position:absolute; text-align:center; pointer-events:none;">
-                                                <div id="targetPct" style="font-size:1.8rem; font-weight:800; color:#0f172a; line-height:1;">0%</div>
-                                                <div id="targetLabel" style="font-size:0.7rem; color:#64748b; margin-top:2px;">target achieved</div>
-                                            </div>
-                                        </div>
-                                        <div class="text-center mt-2">
-                                            <span id="targetSummaryText" class="small text-muted"></span>
-                                        </div>
-                                    </div>
                                 </div>
-                                <div class="mt-2 text-muted xsmall"><i class="fas fa-info-circle me-1"></i>Data calculated based on COMPLETE orders.</div>
                             </div>
 
                             <div class="row mt-4">
@@ -444,8 +410,6 @@
                                 console.groupEnd();
 
                                 revenueDisplay.innerText = formatCurrency(data.totalRevenue);
-                                lastActualRevenue = data.totalRevenue || 0;
-                                updateTargetChart(lastActualRevenue);
 
                                 const labels = data.chartData.map(function(item) {
                                         return item[0]; 
@@ -610,69 +574,6 @@
                     }
 
                     btnApply.addEventListener('click', updateDashboard);
-
-                    // ---- Biểu đồ tròn Mục tiêu doanh thu ----
-                    let targetDonutChart = null;
-
-                    function updateTargetChart(actualRevenue) {
-                        const target = parseFloat(document.getElementById('targetAmount').value) || 10000000;
-                        const period = document.getElementById('targetPeriod').value;
-                        const periodLabels = { week: 'week', month: 'month', year: 'year' };
-
-                        const rawPct = target > 0 ? (actualRevenue / target) * 100 : 0;
-                        const pct = Math.min(rawPct, 100); // Giới hạn 100% cho phần hiển thị
-                        const achieved = Math.min(Math.round(rawPct), 100); // Hiển thị tối đa 100%
-
-                        // Màu theo mức đạt được
-                        let color = '#3b82f6'; // xanh dương < 50%
-                        if (rawPct >= 100) color = '#22c55e';      // xanh lá = đạt
-                        else if (rawPct >= 50) color = '#f59e0b';  // cam = gần đạt
-
-                        const chartData = {
-                            datasets: [{
-                                data: [pct, 100 - pct],
-                                backgroundColor: [color, '#f1f5f9'],
-                                borderWidth: 0,
-                                hoverOffset: 0
-                            }]
-                        };
-
-                        if (targetDonutChart) {
-                            targetDonutChart.data = chartData;
-                            targetDonutChart.update('none');
-                        } else {
-                            const ctx2 = document.getElementById('targetDonutChart').getContext('2d');
-                            targetDonutChart = new Chart(ctx2, {
-                                type: 'doughnut',
-                                data: chartData,
-                                options: {
-                                    cutout: '75%',
-                                    responsive: true,
-                                    maintainAspectRatio: false,
-                                    animation: { animateRotate: true, duration: 800 },
-                                    plugins: { legend: { display: false }, tooltip: { enabled: false } }
-                                }
-                            });
-                        }
-
-                        // Cập nhật chữ ở giữa
-                        document.getElementById('targetPct').textContent = achieved + '%';
-                        document.getElementById('targetPct').style.color = color;
-
-                        // Cập nhật dòng tóm tắt bên dưới
-                        const summaryEl = document.getElementById('targetSummaryText');
-                        summaryEl.textContent = formatCurrency(actualRevenue) + ' / ' + formatCurrency(target) + ' (' + periodLabels[period] + ')';
-                        summaryEl.style.color = color;
-                    }
-
-                    // Khi thay đổi target hoặc kỳ, vẽ lại ngay với doanh thu hiện tại
-                    let lastActualRevenue = 0;
-                    document.getElementById('targetAmount').addEventListener('input', function() {
-                        updateTargetChart(lastActualRevenue);
-                    });
-                    document.getElementById('targetPeriod').addEventListener('change', function() {
-                        updateTargetChart(lastActualRevenue);
-                    });
 
                     updateDashboard();
                 });

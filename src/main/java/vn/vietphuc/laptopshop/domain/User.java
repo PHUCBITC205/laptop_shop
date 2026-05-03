@@ -34,11 +34,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotNull
     @Email(message = "Invalid email address", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
 
-    @NotNull
     @Size(min = 2, message = "Password must be at least 2 characters")
     // @StrongPassword(message = "Password phải có 8 kí tự ")
     private String password;

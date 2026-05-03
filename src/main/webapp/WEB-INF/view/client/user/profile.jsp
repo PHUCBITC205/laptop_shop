@@ -45,6 +45,18 @@
                 <div class="bg-light rounded h-100 p-4">
                     <h2>User Profile</h2>
                     <hr>
+                    <c:if test="${not empty successMessage}">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            ${successMessage}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </c:if>
+                    <c:if test="${not empty errorMessage}">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            ${errorMessage}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </c:if>
                     <div class="row">
                         <div class="col-md-3">
                                 <h4>Profile Picture</h4>
@@ -65,6 +77,7 @@
                                     <div class="mb-3">
                                         <label for="fullName" class="form-label">Full Name</label>
                                         <form:input type="text" class="form-control" id="fullName" path="fullName" />
+                                        <form:errors path="fullName" cssClass="text-danger" />
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
@@ -74,10 +87,12 @@
                                     <div class="mb-3">
                                         <label for="address" class="form-label">Address</label>
                                         <form:input type="text" class="form-control" id="address" path="address" />
+                                        <form:errors path="address" cssClass="text-danger" />
                                     </div>
                                     <div class="mb-3">
                                         <label for="phone" class="form-label">Phone Number</label>
                                         <form:input type="text" class="form-control" id="phone" path="phone" />
+                                        <form:errors path="phone" cssClass="text-danger" />
                                     </div>
                                     <button type="submit" class="btn btn-primary">Update</button>
                                 </form:form>

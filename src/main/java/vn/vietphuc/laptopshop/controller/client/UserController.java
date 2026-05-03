@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import org.springframework.validation.BindingResult;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import jakarta.validation.Valid;
 import vn.vietphuc.laptopshop.domain.User;
 import vn.vietphuc.laptopshop.service.UploadService;
 import vn.vietphuc.laptopshop.service.UserSevice;
@@ -38,8 +41,20 @@ public class UserController {
     }
 
     @PostMapping("/user/profile")
-    public String handleUpdateProfile(@ModelAttribute("user") User user, @RequestParam("avatarFile") MultipartFile avatarFile,
-            jakarta.servlet.http.HttpSession session) {
+    public String handleUpdateProfile(@ModelAttribute("user") @Valid User user,
+            BindingResult bindingResult,
+            @RequestParam("avatarFile") MultipartFile avatarFile,
+            jakarta.servlet.http.HttpSession session,
+            RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            String email = this.userSevice.getCurrentUserEmail();
+            User currentUser = this.userSevice.getUserByEmail(email);
+            user.setAvatar(currentUser.getAvatar());
+            user.setEmail(currentUser.getEmail());
+            return "client/user/profile";
+        }
+
         String email = this.userSevice.getCurrentUserEmail();
         if (email == null) {
             return "redirect:/login";
@@ -57,6 +72,7 @@ public class UserController {
         this.userSevice.handlSaveUser(currentUser);
         session.setAttribute("fullName", currentUser.getFullName());
         session.setAttribute("avatar", currentUser.getAvatar());
+        redirectAttributes.addFlashAttribute("successMessage", "Profile updated successfully!");
         return "redirect:/user/profile";
     }
 
@@ -64,7 +80,8 @@ public class UserController {
     public String handleChangePassword(
             @RequestParam("oldPassword") String oldPassword,
             @RequestParam("newPassword") String newPassword,
-            @RequestParam("confirmPassword") String confirmPassword) {
+            @RequestParam("confirmPassword") String confirmPassword,
+            RedirectAttributes redirectAttributes) {
         String email = this.userSevice.getCurrentUserEmail();
         if (email == null) {
             return "redirect:/login";
@@ -72,16 +89,19 @@ public class UserController {
         User currentUser = this.userSevice.getUserByEmail(email);
 
         if (!this.passwordEncoder.matches(oldPassword, currentUser.getPassword())) {
-            return "redirect:/user/profile?error=password";
+            redirectAttributes.addFlashAttribute("errorMessage", "Incorrect old password.");
+            return "redirect:/user/profile";
         }
 
         if (!newPassword.equals(confirmPassword)) {
-            return "redirect:/user/profile?error=confirm";
+            redirectAttributes.addFlashAttribute("errorMessage", "New password and confirmation do not match.");
+            return "redirect:/user/profile";
         }
 
         currentUser.setPassword(this.passwordEncoder.encode(newPassword));
         this.userSevice.handlSaveUser(currentUser);
 
-        return "redirect:/user/profile?success_password";
+        redirectAttributes.addFlashAttribute("successMessage", "Password changed successfully!");
+        return "redirect:/user/profile";
     }
 }
