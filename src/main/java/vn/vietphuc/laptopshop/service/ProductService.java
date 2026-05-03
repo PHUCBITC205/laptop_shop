@@ -104,28 +104,33 @@ public class ProductService {
         for (String p : price) {
             double min = 0;
             double max = 0;
+            boolean matched = false;
 
             // Set the appropriate min and max based on the price range string
             switch (p) {
                 case "duoi-10-trieu":
                     min = 0;
                     max = 10000000;
+                    matched = true;
                     break;
                 case "10-15-trieu":
                     min = 10000000;
                     max = 15000000;
+                    matched = true;
                     break;
                 case "15-20-trieu":
                     min = 15000000;
                     max = 20000000;
+                    matched = true;
                     break;
                 case "tren-20-trieu":
                     min = 20000000;
                     max = 200000000;
+                    matched = true;
                     break;
             }
 
-            if (min != 0 && max != 0) {
+            if (matched) {
                 Specification<Product> rangeSpec = ProductSpecs.matchMultiplePrice(min, max);
                 combinedSpec = combinedSpec.or(rangeSpec);
             }

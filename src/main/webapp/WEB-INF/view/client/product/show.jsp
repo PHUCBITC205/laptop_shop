@@ -167,7 +167,7 @@
 
                                                 <div class="form-check form-check-inline">
                                                     <input class="form-check-input" type="checkbox" id="price-5"
-                                                        value="tren-20-triệu">
+                                                        value="tren-20-trieu">
                                                     <label class="form-check-label" for="price-5">Above 20 million</label>
                                                 </div>
                                             </div>
@@ -267,7 +267,7 @@
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <a class="page-link"
-                                                                    href="/products?page=${currentPage - 1}">
+                                                                    href="/products?page=${currentPage - 1}&${querySString}">
                                                                     <span aria-hidden="true">&laquo;</span>
                                                                 </a>
                                                             </c:otherwise>
@@ -277,7 +277,7 @@
                                                     <c:forEach begin="0" end="${totalPages - 1}" varStatus="loop">
                                                         <li class="page-item">
                                                             <a class="${(loop.index + 1) eq currentPage ? 'active page-link' : 'page-link'}"
-                                                                href="/products?page=${loop.index + 1}${queryString}">
+                                                                href="/products?page=${loop.index + 1}&${querySString}">
                                                                 ${loop.index + 1}
                                                             </a>
                                                         </li>
@@ -292,7 +292,7 @@
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <a class="page-link"
-                                                                    href="/products?page=${currentPage + 1}${queryString}">
+                                                                    href="/products?page=${currentPage + 1}&${querySString}">
                                                                     <span aria-hidden="true">&raquo;</span>
                                                                 </a>
                                                             </c:otherwise>

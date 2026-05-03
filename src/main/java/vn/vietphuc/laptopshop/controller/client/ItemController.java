@@ -291,8 +291,8 @@ public class ItemController {
 
         String qs = request.getQueryString();
         if (qs != null && !qs.isBlank()) {
-            // remove page
-            qs = qs.replace("page=" + page, "");
+            // Remove page=N along with any surrounding & characters
+            qs = qs.replaceAll("&?page=\\d+", "").replaceAll("^&", "");
         }
         model.addAttribute("products", listProducts);
         model.addAttribute("currentPage", page);
